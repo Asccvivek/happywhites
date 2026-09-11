@@ -186,7 +186,7 @@
           <span class="hidden sm:inline">WhatsApp Doctor</span>
           <span class="sm:hidden">WhatsApp</span>
         </a>
-        <button onclick="scrollToBookingTool()" class="magnetic-btn inline-flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-5 py-1.5 sm:py-2.5 rounded-xl text-[11px] sm:text-xs font-extrabold text-white bg-gradient-to-r from-teal-500 via-brand-600 to-emerald-500 hover:from-teal-400 hover:to-emerald-400 shadow-md shadow-teal-500/25 whitespace-nowrap">
+        <button onclick="openServiceBookingModal('In-House TruAlign Clear Aligners')" class="magnetic-btn inline-flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-5 py-1.5 sm:py-2.5 rounded-xl text-[11px] sm:text-xs font-extrabold text-white bg-gradient-to-r from-teal-500 via-brand-600 to-emerald-500 hover:from-teal-400 hover:to-emerald-400 shadow-md shadow-teal-500/25 whitespace-nowrap">
           <i data-lucide="calendar-plus" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
           <span class="hidden sm:inline">Book Appointment</span>
           <span class="sm:hidden">Book Now</span>
@@ -1425,7 +1425,7 @@
               <i data-lucide="navigation" class="w-4 h-4 text-teal-600"></i>
               Open Google Maps Route
             </a>
-            <button onclick="scrollToBookingTool()" class="magnetic-btn flex-1 py-3 px-4 rounded-xl text-xs font-extrabold text-white bg-brand-600 hover:bg-brand-700 shadow-md transition-colors flex items-center justify-center gap-2">
+            <button onclick="openServiceBookingModal('In-House TruAlign Clear Aligners')" class="magnetic-btn flex-1 py-3 px-4 rounded-xl text-xs font-extrabold text-white bg-brand-600 hover:bg-brand-700 shadow-md transition-colors flex items-center justify-center gap-2">
               <i data-lucide="calendar-plus" class="w-4 h-4"></i>
               Schedule OPD Visit
             </button>
@@ -1723,14 +1723,16 @@
     }
 
     function pickProcedureFromCard(procName) {
-      bookingData.procedure = procName;
+      const serviceName = procName || "In-House TruAlign Clear Aligners";
+      bookingData.procedure = serviceName;
+      // Sync chips in the inline tool as well
       document.querySelectorAll('.proc-chip').forEach(c => {
-        if (c.innerText.includes(procName) || procName.includes(c.querySelector('span')?.innerText || '')) {
+        if (c.innerText.includes(serviceName) || serviceName.includes(c.querySelector('span')?.innerText || '')) {
           c.className = "proc-chip text-left p-3 rounded-2xl border border-teal-500 bg-teal-50/80 text-brand-900 shadow-sm transition-all flex flex-col justify-between";
         }
       });
-      scrollToBookingTool();
-      goToStep(2);
+      // Directly open high-converting contextual booking popup modal
+      openServiceBookingModal(serviceName);
     }
 
     function scrollToBookingTool() {
@@ -2133,6 +2135,145 @@
     </div>
   </div>
 
+  <!-- Dedicated Service Booking Popup Modal -->
+  <div id="service-booking-modal" class="fixed inset-0 z-[110] bg-slate-950/85 backdrop-blur-md hidden items-center justify-center p-3.5 sm:p-6 transition-all duration-300 overflow-y-auto">
+    <div class="relative max-w-lg w-full bg-slate-900 border border-slate-700/90 rounded-3xl shadow-2xl shadow-black/80 overflow-hidden flex flex-col my-auto animate-modal-enter">
+      
+      <!-- Modal Header with Doctor & Clinic Credential -->
+      <div class="px-5 sm:px-6 py-4 border-b border-slate-800/90 bg-gradient-to-r from-slate-900 via-teal-950/40 to-slate-900 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-2xl bg-teal-900/60 border border-teal-500/30 flex items-center justify-center text-teal-300 shadow-inner flex-shrink-0">
+            <i data-lucide="calendar-check" class="w-5 h-5 text-teal-400"></i>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h3 class="text-sm sm:text-base font-black text-white">Book Appointment</h3>
+              <span class="text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-500/30">
+                Direct OPD
+              </span>
+            </div>
+            <p class="text-[11px] font-semibold text-slate-400">Happy Whites Dental • Dr. Vaibhav Shrivastav</p>
+          </div>
+        </div>
+        <button onclick="closeServiceBookingModal()" aria-label="Close booking modal" class="w-8 h-8 rounded-full bg-slate-800/80 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition-colors">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- Modal Body Form -->
+      <div class="p-5 sm:p-6 space-y-4 max-h-[78vh] overflow-y-auto custom-scrollbar text-left">
+        
+        <!-- Contextual Service Focus Card (Prominently shows what they are booking for) -->
+        <div class="p-4 rounded-2xl bg-gradient-to-r from-teal-950/70 via-slate-800/90 to-emerald-950/50 border border-teal-500/40 shadow-inner relative overflow-hidden">
+          <div class="flex items-start justify-between gap-2">
+            <div class="flex items-center gap-2.5">
+              <div id="modal-proc-icon" class="w-9 h-9 rounded-xl bg-teal-500/20 text-teal-300 flex items-center justify-center flex-shrink-0 border border-teal-400/30">
+                <i data-lucide="sparkles" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <span class="text-[10px] font-extrabold uppercase tracking-widest text-teal-300 block">Selected Dental Service</span>
+                <h4 id="modal-proc-title" class="text-sm sm:text-base font-black text-white leading-tight mt-0.5">
+                  In-House TruAlign Clear Aligners
+                </h4>
+              </div>
+            </div>
+            <span id="modal-proc-badge" class="text-[9px] font-black uppercase px-2 py-0.5 rounded bg-teal-900/80 text-teal-200 border border-teal-400/30 flex-shrink-0">
+              Specialty
+            </span>
+          </div>
+          
+          <div class="mt-2.5 pt-2.5 border-t border-teal-500/20 flex items-center justify-between text-[11px] text-slate-300">
+            <span class="flex items-center gap-1">
+              <i data-lucide="map-pin" class="w-3.5 h-3.5 text-amber-400"></i> Bawadiya Kalan, Bhopal
+            </span>
+            <span class="text-teal-300 font-bold flex items-center gap-1">
+              <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-400"></i> Zero Registration Fee
+            </span>
+          </div>
+        </div>
+
+        <!-- Optional Change Service Dropdown -->
+        <div>
+          <label class="block text-[11px] font-bold text-slate-300 uppercase tracking-wider mb-1">Procedure / Treatment</label>
+          <select id="modal_service_select" onchange="onModalServiceDropdownChange(this.value)" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs font-bold text-white focus:bg-slate-900 focus:outline-none focus:border-teal-400 focus:ring-2 focus:ring-teal-500/20 cursor-pointer">
+            <option value="In-House TruAlign Clear Aligners">In-House TruAlign Clear Aligners (Invisible Braces)</option>
+            <option value="Single-Sitting Painless Rotary RCT">Single-Sitting Painless Rotary RCT</option>
+            <option value="Permanent Dental Implants & Zirconia Crown">Permanent Dental Implants & Zirconia Crown</option>
+            <option value="Laser Teeth Whitening">Laser Teeth Whitening (8 Shades Brighter)</option>
+            <option value="Ultrasonic Dental Scaling & Polishing">Ultrasonic Dental Scaling & Deep Polishing</option>
+            <option value="Wisdom Tooth Pain / Extraction">Wisdom Tooth Pain / Extraction</option>
+            <option value="FREE 3D Digital Dental Scan">FREE 3D Digital Dental Scan & Consultation</option>
+          </select>
+        </div>
+
+        <!-- Patient Name Input -->
+        <div>
+          <label class="block text-[11px] font-bold text-slate-300 uppercase tracking-wider mb-1">Patient Full Name <span class="text-rose-400">*</span></label>
+          <input type="text" id="modal_patient_name" placeholder="Enter patient full name" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs font-semibold text-white placeholder-slate-500 focus:bg-slate-900 focus:outline-none focus:border-teal-400 focus:ring-2 focus:ring-teal-500/20">
+        </div>
+
+        <!-- Mobile Number Input with Flag & Real-Time Validation -->
+        <div>
+          <div class="flex items-center justify-between mb-1">
+            <label class="block text-[11px] font-bold text-slate-300 uppercase tracking-wider">WhatsApp Mobile Number <span class="text-rose-400">*</span></label>
+            <span id="modal-phone-digit-counter" class="text-[10px] font-bold text-slate-500">0/10 Digits</span>
+          </div>
+          <div class="relative flex items-center">
+            <div class="absolute left-3 flex items-center gap-1.5 pointer-events-none text-xs font-bold text-slate-300 pr-2.5 border-r border-slate-700/80">
+              <span class="text-xs">🇮🇳</span>
+              <span class="text-slate-300 font-extrabold">+91</span>
+            </div>
+            <input 
+              type="tel" 
+              id="modal_patient_phone" 
+              maxlength="10" 
+              pattern="[0-9]{10}"
+              inputmode="numeric"
+              oninput="handleModalPhoneInput(this)"
+              placeholder="98765 43210" 
+              required 
+              class="w-full bg-slate-950 border border-slate-700 rounded-xl pl-20 pr-9 py-2.5 text-xs font-semibold text-white placeholder-slate-600 focus:bg-slate-900 focus:outline-none focus:border-teal-400 focus:ring-2 focus:ring-teal-500/20 tracking-wider transition-all">
+            <div id="modal-phone-valid-icon" class="absolute right-3 hidden text-emerald-400 pointer-events-none">
+              <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+            </div>
+          </div>
+          <p id="modal-phone-error-msg" class="text-[10px] text-rose-400 font-semibold mt-1 hidden"></p>
+        </div>
+
+        <!-- Preferred Date & Slot Row -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-[11px] font-bold text-slate-300 uppercase tracking-wider mb-1">Preferred Date</label>
+            <input type="date" id="modal_appointment_date" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2.5 text-xs font-bold text-white focus:bg-slate-900 focus:outline-none focus:border-teal-400 focus:ring-2 focus:ring-teal-500/20 cursor-pointer">
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold text-slate-300 uppercase tracking-wider mb-1">Preferred OPD Shift</label>
+            <select id="modal_appointment_slot" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2.5 text-xs font-bold text-white focus:bg-slate-900 focus:outline-none focus:border-teal-400 focus:ring-2 focus:ring-teal-500/20 cursor-pointer">
+              <option value="Morning (10:00 AM – 02:00 PM)">Morning (10 AM – 2 PM)</option>
+              <option value="Evening (05:00 PM – 09:00 PM)" selected>Evening (5 PM – 9 PM)</option>
+              <option value="Any Time Slot / Call to Confirm">Flexible / Confirm on WhatsApp</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Submit to Doctor on WhatsApp CTA -->
+        <button type="button" onclick="submitModalWhatsAppBooking()" class="magnetic-btn w-full mt-2 py-3.5 px-4 rounded-2xl text-xs sm:text-sm font-extrabold text-white bg-gradient-to-r from-emerald-600 via-teal-600 to-brand-700 hover:from-emerald-500 hover:to-teal-500 shadow-xl shadow-teal-900/40 flex items-center justify-center gap-2.5 transition-all transform active:scale-[0.98]">
+          <i data-lucide="message-circle" class="w-4 h-4 sm:w-5 sm:h-5 text-emerald-300"></i>
+          <span>Confirm Booking with Dr. Vaibhav</span>
+        </button>
+
+        <!-- Trust Subtext -->
+        <div class="flex items-center justify-center gap-4 text-[10px] font-bold text-slate-400 pt-1">
+          <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3 h-3 text-teal-400"></i> Fast 15-Min Confirmation</span>
+          <span>•</span>
+          <span class="flex items-center gap-1"><i data-lucide="shield" class="w-3 h-3 text-emerald-400"></i> No Spam Guarantee</span>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
   <script>
     function openClinicLightbox(imgSrc, title, desc) {
       const modal = document.getElementById('clinic-lightbox');
@@ -2155,8 +2296,173 @@
     document.getElementById('clinic-lightbox')?.addEventListener('click', function(e) {
       if (e.target === this) closeClinicLightbox();
     });
+
+    // ==========================================
+    // Dedicated Service Booking Popup Modal Logic
+    // ==========================================
+    const SERVICE_DETAILS_MAP = {
+      'In-House TruAlign Clear Aligners': { badge: 'Invisible Braces', icon: 'sparkles' },
+      'Single-Sitting Painless Rotary RCT': { badge: '45-Min Painless', icon: 'activity' },
+      'Permanent Dental Implants & Zirconia Crown': { badge: 'Lifetime Warranty', icon: 'shield' },
+      'Laser Teeth Whitening': { badge: '8 Shades Brighter', icon: 'zap' },
+      'Ultrasonic Dental Scaling & Polishing': { badge: 'Deep Cleaning', icon: 'sparkles' },
+      'Wisdom Tooth Pain / Extraction': { badge: 'Emergency Relief', icon: 'heart-pulse' },
+      'FREE 3D Digital Dental Scan': { badge: '₹0 Worth ₹5,000', icon: 'scan' }
+    };
+
+    function openServiceBookingModal(procName) {
+      const modal = document.getElementById('service-booking-modal');
+      if (!modal) return;
+
+      const serviceName = procName || 'In-House TruAlign Clear Aligners';
+      bookingData.procedure = serviceName;
+
+      // Update modal title and service dropdown
+      const titleEl = document.getElementById('modal-proc-title');
+      const badgeEl = document.getElementById('modal-proc-badge');
+      const selectEl = document.getElementById('modal_service_select');
+      const iconContainer = document.getElementById('modal-proc-icon');
+      
+      if (titleEl) titleEl.textContent = serviceName;
+      
+      const meta = SERVICE_DETAILS_MAP[serviceName] || { badge: 'Specialty', icon: 'sparkles' };
+      if (badgeEl) badgeEl.textContent = meta.badge;
+      if (iconContainer) {
+        iconContainer.innerHTML = `<i data-lucide="${meta.icon}" class="w-5 h-5"></i>`;
+      }
+
+      if (selectEl) {
+        selectEl.value = serviceName;
+        // If not found in select, set first option
+        if (!selectEl.value) {
+          selectEl.value = 'In-House TruAlign Clear Aligners';
+        }
+      }
+
+      // Initialize date if empty
+      const dateInput = document.getElementById('modal_appointment_date');
+      if (dateInput) {
+        const todayStr = new Date().toISOString().split('T')[0];
+        dateInput.min = todayStr;
+        if (!dateInput.value) dateInput.value = todayStr;
+      }
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+
+      // Auto focus name input
+      setTimeout(() => {
+        document.getElementById('modal_patient_name')?.focus();
+      }, 100);
+
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function closeServiceBookingModal() {
+      const modal = document.getElementById('service-booking-modal');
+      if (!modal) return;
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+
+    function onModalServiceDropdownChange(val) {
+      bookingData.procedure = val;
+      const titleEl = document.getElementById('modal-proc-title');
+      const badgeEl = document.getElementById('modal-proc-badge');
+      const iconContainer = document.getElementById('modal-proc-icon');
+      if (titleEl) titleEl.textContent = val;
+      const meta = SERVICE_DETAILS_MAP[val] || { badge: 'Specialty', icon: 'sparkles' };
+      if (badgeEl) badgeEl.textContent = meta.badge;
+      if (iconContainer) {
+        iconContainer.innerHTML = `<i data-lucide="${meta.icon}" class="w-5 h-5"></i>`;
+      }
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function handleModalPhoneInput(input) {
+      let cleaned = input.value.replace(/\D/g, '');
+      if (cleaned.length > 10 && cleaned.startsWith('91')) {
+        cleaned = cleaned.substring(2);
+      }
+      if (cleaned.length > 10) {
+        cleaned = cleaned.substring(0, 10);
+      }
+      input.value = cleaned;
+
+      const counter = document.getElementById('modal-phone-digit-counter');
+      const validIcon = document.getElementById('modal-phone-valid-icon');
+      const errorMsg = document.getElementById('modal-phone-error-msg');
+
+      if (counter) {
+        counter.innerText = `${cleaned.length}/10 Digits`;
+        counter.className = cleaned.length === 10 ? "text-[10px] font-extrabold text-emerald-400" : "text-[10px] font-bold text-slate-500";
+      }
+
+      if (validIcon) {
+        if (cleaned.length === 10) {
+          validIcon.classList.remove('hidden');
+          input.classList.remove('border-rose-500', 'border-slate-700');
+          input.classList.add('border-emerald-500');
+        } else {
+          validIcon.classList.add('hidden');
+          input.classList.remove('border-emerald-500');
+          input.classList.add('border-slate-700');
+        }
+      }
+      if (errorMsg) errorMsg.classList.add('hidden');
+    }
+
+    function submitModalWhatsAppBooking() {
+      const nameInput = document.getElementById('modal_patient_name');
+      const phoneInput = document.getElementById('modal_patient_phone');
+      const dateInput = document.getElementById('modal_appointment_date');
+      const slotSelect = document.getElementById('modal_appointment_slot');
+      const errorMsg = document.getElementById('modal-phone-error-msg');
+
+      const name = nameInput.value.trim();
+      const phone = phoneInput.value.replace(/\D/g, '').trim();
+      const date = dateInput.value || 'Earliest Available';
+      const slot = slotSelect ? slotSelect.value : 'Evening (05:00 PM – 09:00 PM)';
+      const proc = bookingData.procedure || document.getElementById('modal-proc-title')?.innerText || 'Dental Consultation';
+
+      if (!name) {
+        alert("Please enter patient full name.");
+        nameInput.focus();
+        return;
+      }
+
+      if (phone.length !== 10 || !/^[6-9]\d{9}$/.test(phone)) {
+        if (errorMsg) {
+          errorMsg.innerText = "Please enter a valid 10-digit Indian mobile number (e.g. 9876543210).";
+          errorMsg.classList.remove('hidden');
+        }
+        phoneInput.classList.remove('border-slate-700', 'border-emerald-500');
+        phoneInput.classList.add('border-rose-500');
+        phoneInput.focus();
+        return;
+      }
+
+      // Close modal gracefully
+      closeServiceBookingModal();
+
+      // Formulate clear, structured WhatsApp message for Dr. Vaibhav
+      const msg = `Namaste Dr. Vaibhav,\n\nI would like to book an appointment at Happy Whites Dental Clinic:\n\n🦷 Selected Service: *${proc}*\n👤 Patient Name: *${name}*\n📱 Mobile: *+91 ${phone}*\n📅 Preferred Date: *${date}*\n⏰ Preferred Shift: *${slot}*\n\nKindly confirm my consultation slot. Thank you!`;
+      const encoded = encodeURIComponent(msg);
+      const url = `https://wa.me/919406951737?text=${encoded}`;
+      window.open(url, '_blank');
+    }
+
+    document.getElementById('service-booking-modal')?.addEventListener('click', function(e) {
+      if (e.target === this) closeServiceBookingModal();
+    });
+
     document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') closeClinicLightbox();
+      if (e.key === 'Escape') {
+        closeClinicLightbox();
+        closeServiceBookingModal();
+      }
     });
   </script>
 
