@@ -208,15 +208,18 @@
 <!-- Hero Section (Premium Dark Clinical Aesthetic with Luxury Operatory Backdrop) -->
   <section class="relative bg-[#031329] pt-10 pb-24 overflow-hidden border-b border-slate-800/80">
     
-    <!-- Relevant Luxury Dental Operatory Suite Background Image & Gradient Masks -->
-    <div class="absolute inset-0 z-0 pointer-events-none select-none">
-      <img src="assets/hd/luxury_clinic_suite.jpg" alt="Happy Whites Luxury Operatory Suite" class="w-full h-full object-cover object-center opacity-25">
-      <!-- Multi-stop directional gradient overlays for pristine text readability -->
-      <div class="absolute inset-0 bg-gradient-to-r from-[#031329] via-[#031329]/88 to-[#031329]/65"></div>
-      <div class="absolute inset-0 bg-gradient-to-b from-[#031329]/95 via-transparent to-[#031329]"></div>
-      <!-- Ambient Teal & Emerald Glow Orbs -->
-      <div class="absolute top-10 left-1/4 w-96 h-96 bg-[#0050A8]/35 rounded-full blur-3xl animate-pulse-glow"></div>
-      <div class="absolute bottom-10 right-1/4 w-80 h-80 bg-sky-500/20 rounded-full blur-3xl animate-float"></div>
+    <!-- Relevant Luxury Dental Operatory Suite Background Image & Calibrated Directional Lighting -->
+    <div class="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden">
+      <!-- High-Resolution Dental Operatory Suite Backdrop (Visible & Luminous) -->
+      <img src="assets/hd/luxury_clinic_suite.jpg" alt="Happy Whites Luxury Operatory Suite" class="w-full h-full object-cover object-center lg:object-right opacity-60 transition-opacity duration-700">
+      
+      <!-- Directional Contrast Gradient: Deep navy on left for crisp readability, luminous transparent view on right -->
+      <div class="absolute inset-0 bg-gradient-to-r from-[#031329] via-[#031329]/80 to-[#031329]/25"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-[#031329]/90 via-transparent to-[#031329]"></div>
+      
+      <!-- Operatory Spotlight & Brand Atmosphere Glows -->
+      <div class="absolute top-1/4 right-10 w-[550px] h-[550px] bg-sky-400/20 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute top-10 left-1/4 w-96 h-96 bg-[#0050A8]/30 rounded-full blur-3xl pointer-events-none"></div>
     </div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -248,6 +251,12 @@
               <i data-lucide="message-circle" class="w-5 h-5 text-emerald-400"></i>
               Claim Free 3D Scan on WhatsApp
             </a>
+            <button onclick="openClinicVideoModal()" class="magnetic-btn inline-flex justify-center items-center gap-2 px-5 py-4 rounded-2xl text-sm font-bold text-sky-200 bg-sky-950/60 hover:bg-sky-900/80 border border-sky-400/40 shadow-sm backdrop-blur-md transition-all">
+              <span class="w-5 h-5 rounded-full bg-sky-400/20 text-sky-300 flex items-center justify-center">
+                <i data-lucide="play" class="w-3 h-3 fill-current"></i>
+              </span>
+              <span>Watch Video Tour</span>
+            </button>
           </div>
 
           <!-- Feature Pills (Dark Glass) -->
@@ -2144,6 +2153,100 @@
     </div>
   </div>
 
+  <!-- Interactive Virtual Clinic Tour & Video Spotlight Modal -->
+  <div id="clinic-video-modal" class="fixed inset-0 z-[115] bg-slate-950/90 backdrop-blur-md hidden items-center justify-center p-3.5 sm:p-6 transition-all duration-300 overflow-y-auto">
+    <div class="relative max-w-2xl w-full bg-slate-900 border border-slate-700 rounded-3xl shadow-2xl shadow-black/90 overflow-hidden flex flex-col my-auto animate-modal-enter">
+      
+      <!-- Modal Header -->
+      <div class="px-5 py-4 border-b border-slate-800 flex items-center justify-between bg-slate-900/95">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full bg-[#0050A8] flex items-center justify-center text-white shadow-md">
+            <i data-lucide="play" class="w-4 h-4 fill-current"></i>
+          </div>
+          <div>
+            <h3 class="text-sm sm:text-base font-black text-white flex items-center gap-2">
+              Virtual Clinic Tour & Patient Stories
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">Verified Bhopal</span>
+            </h3>
+            <p class="text-[11px] text-slate-400 font-medium">Inside Happy Whites Dental Clinic • Mahendra Medisquare</p>
+          </div>
+        </div>
+        <button onclick="closeClinicVideoModal()" aria-label="Close video modal" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center transition-colors">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- Video Tour Showcase Container -->
+      <div class="relative bg-slate-950 p-4 sm:p-6 flex flex-col items-center justify-center">
+        <!-- Interactive Video / Showcase Screen -->
+        <div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 shadow-inner group">
+          <img id="video-tour-poster" src="assets/hd/luxury_clinic_suite.jpg" alt="Happy Whites Dental Clinic Operatory Tour" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent flex flex-col justify-end p-5 sm:p-6">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#0050A8]/90 text-white flex items-center justify-center shadow-xl border-2 border-white/80 animate-pulse">
+                <i data-lucide="play" class="w-6 h-6 sm:w-7 sm:h-7 fill-white translate-x-0.5"></i>
+              </div>
+              <div>
+                <span class="text-[11px] font-extrabold text-sky-300 uppercase tracking-wider">Clinical Walkthrough</span>
+                <h4 class="text-base sm:text-lg font-black text-white leading-tight">State-of-the-Art Digital Operatory Tour</h4>
+                <p class="text-xs text-slate-300 mt-0.5">3D Intraoral Scanners • Class-B Autoclave • Single-Sitting RCT Setup</p>
+              </div>
+            </div>
+          </div>
+          <div class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-slate-900/80 backdrop-blur text-[10px] font-bold text-slate-300 border border-white/10 flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span> 4K Ultra HD Facility
+          </div>
+        </div>
+
+        <!-- Clinic Reels & Social Proof Bar -->
+        <div class="w-full mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-900/80 border border-slate-800">
+            <div class="w-10 h-10 rounded-lg bg-pink-500/20 text-pink-400 flex items-center justify-center flex-shrink-0 border border-pink-500/30">
+              <i data-lucide="instagram" class="w-5 h-5"></i>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="text-xs font-bold text-white truncate">@happywhitesdental</div>
+              <div class="text-[11px] text-slate-400">Dr. Vaibhav's Daily Patient Tips & Reels</div>
+            </div>
+            <a href="https://www.instagram.com/happywhitesdental" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded-lg bg-pink-600 hover:bg-pink-500 text-white text-[11px] font-bold shadow transition-colors whitespace-nowrap">
+              Follow
+            </a>
+          </div>
+
+          <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-900/80 border border-slate-800">
+            <div class="w-10 h-10 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center flex-shrink-0 border border-emerald-500/30">
+              <i data-lucide="map-pin" class="w-5 h-5"></i>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="text-xs font-bold text-white truncate">Bawadiya Kalan, Bhopal</div>
+              <div class="text-[11px] text-slate-400">2nd Floor, Mahendra Medisquare</div>
+            </div>
+            <a href="#location" onclick="closeClinicVideoModal()" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-sky-300 text-[11px] font-bold border border-slate-700 shadow transition-colors whitespace-nowrap">
+              Directions
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="p-4 sm:p-5 bg-slate-900 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div class="flex items-center gap-2 text-xs text-slate-300">
+          <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400 flex-shrink-0"></i>
+          <span>100% Sterile Protocol • Pain-Free Digital Dentistry</span>
+        </div>
+        <div class="flex items-center gap-2.5 w-full sm:w-auto">
+          <button onclick="closeClinicVideoModal(); openServiceBookingModal('Digital Smile Scan & Consultation');" class="flex-1 sm:flex-initial px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#0050A8] to-[#0284C7] hover:from-[#033f85] hover:to-sky-400 text-white font-extrabold text-xs shadow-md flex items-center justify-center gap-1.5 transition-all">
+            <i data-lucide="calendar-plus" class="w-4 h-4"></i> Book Appointment
+          </button>
+          <a href="https://wa.me/919406951737?text=Namaste%20Dr.%20Vaibhav,%20I%20watched%20the%20clinic%20video%20tour%20and%20want%20to%20book%20a%20consultation." target="_blank" class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs shadow-md flex items-center justify-center gap-1.5 transition-all">
+            <i data-lucide="message-circle" class="w-4 h-4"></i> WhatsApp
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
   <!-- Dedicated Service Booking Popup Modal -->
   <div id="service-booking-modal" class="fixed inset-0 z-[110] bg-slate-950/85 backdrop-blur-md hidden items-center justify-center p-3.5 sm:p-6 transition-all duration-300 overflow-y-auto">
     <div class="relative max-w-lg w-full bg-slate-900 border border-slate-700/90 rounded-3xl shadow-2xl shadow-black/80 overflow-hidden flex flex-col my-auto animate-modal-enter">
@@ -2295,6 +2398,26 @@
       document.body.style.overflow = 'hidden';
       if (window.lucide) lucide.createIcons();
     }
+
+    function openClinicVideoModal() {
+      const modal = document.getElementById('clinic-video-modal');
+      if (!modal) return;
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+      if (window.lucide) {
+        lucide.createIcons();
+      }
+    }
+
+    function closeClinicVideoModal() {
+      const modal = document.getElementById('clinic-video-modal');
+      if (!modal) return;
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+
     function closeClinicLightbox() {
       const modal = document.getElementById('clinic-lightbox');
       if (!modal) return;
