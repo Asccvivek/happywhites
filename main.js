@@ -549,7 +549,7 @@ function applySliderPercent(percent, cancelActiveAnim = false) {
   sliderState.currentPercent = percent;
 
   if (beforeLayer) {
-    beforeLayer.style.clipPath = `polygon(${percent.toFixed(2)}% 0, 100% 0, 100% 100%, ${percent.toFixed(2)}% 100%)`;
+    beforeLayer.style.clipPath = `polygon(0 0, ${percent.toFixed(2)}% 0, ${percent.toFixed(2)}% 100%, 0 100%)`;
   }
   if (divider) {
     divider.style.left = `${percent.toFixed(2)}%`;
@@ -557,18 +557,14 @@ function applySliderPercent(percent, cancelActiveAnim = false) {
 
   if (beforeBadge) {
     if (percent < 22) {
-      beforeBadge.style.opacity = '1';
-    } else if (percent > 78) {
-      beforeBadge.style.opacity = Math.max(0.1, ((100 - percent) / 22)).toFixed(2);
+      beforeBadge.style.opacity = Math.max(0.1, (percent / 22)).toFixed(2);
     } else {
       beforeBadge.style.opacity = '1';
     }
   }
   if (afterBadge) {
     if (percent > 78) {
-      afterBadge.style.opacity = '1';
-    } else if (percent < 22) {
-      afterBadge.style.opacity = Math.max(0.1, (percent / 22)).toFixed(2);
+      afterBadge.style.opacity = Math.max(0.1, ((100 - percent) / 22)).toFixed(2);
     } else {
       afterBadge.style.opacity = '1';
     }
@@ -598,9 +594,9 @@ function updatePresetButtonStyles(percent) {
   const inactiveClass = "preset-btn px-4 py-2 rounded-xl text-xs font-bold bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 shadow-sm transition-all flex items-center gap-2";
 
   if (p0 && p50 && p100) {
-    p0.className = percent <= 5 ? activeClass : inactiveClass;
+    p0.className = percent >= 95 ? activeClass : inactiveClass;
     p50.className = (percent >= 45 && percent <= 55) ? activeClass : inactiveClass;
-    p100.className = percent >= 95 ? activeClass : inactiveClass;
+    p100.className = percent <= 5 ? activeClass : inactiveClass;
   }
 }
 
@@ -691,10 +687,10 @@ if (sliderContainer) {
       applySliderPercent(sliderState.currentPercent + step);
       e.preventDefault();
     } else if (e.key === 'Home') {
-      setSliderPreset(0);
+      setSliderPreset(100);
       e.preventDefault();
     } else if (e.key === 'End') {
-      setSliderPreset(100);
+      setSliderPreset(0);
       e.preventDefault();
     }
   });
