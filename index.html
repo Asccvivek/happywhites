@@ -203,7 +203,7 @@
   <div class="bg-gradient-to-r from-[#021838] via-[#0050A8] to-[#041d3d] text-blue-100 text-xs py-1.5 sm:py-2 px-3 sm:px-4 border-b border-sky-800/60 sticky top-0 z-50">
     <div class="max-w-7xl mx-auto flex justify-between items-center gap-2">
       <div class="flex items-center gap-1.5 sm:gap-2 truncate">
-        <span class="inline-flex items-center px-1.5 sm:px-2 py-0.5 rounded text-[9px] sm:text-[10px] font-black bg-amber-400 text-slate-950 uppercase tracking-wide flex-shrink-0">
+        <span class="inline-flex items-center px-1.5 sm:px-2 py-0.5 rounded text-[9px] sm:text-[10px] font-black bg-amber-400 text-slate-950 uppercase tracking-wide flex-shrink-0" data-i18n="announcement_special">
           ✨ SPECIAL
         </span>
         <span class="font-semibold text-sky-100 text-[10px] sm:text-xs truncate" id="offer-text" data-i18n="announcement_offer">
@@ -217,7 +217,7 @@
         <a href="tel:+919406951737" class="text-white hover:text-teal-300 flex items-center gap-1 font-bold transition-colors">
           <i data-lucide="phone-call" class="w-3 h-3 text-amber-400"></i> 
           <span class="hidden sm:inline">+91 94069 51737</span>
-          <span class="sm:hidden text-[10px]">Call</span>
+          <span class="sm:hidden text-[10px]" data-i18n="announcement_call_mob">Call</span>
         </a>
       </div>
     </div>
@@ -248,10 +248,15 @@
 
       <!-- Action Buttons -->
       <div class="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
-        <!-- Language Toggle -->
+        <!-- Language Toggle (Desktop) -->
         <div class="lang-toggle hidden md:flex flex-shrink-0" id="lang-toggle">
           <button type="button" class="active" onclick="setLanguage('en')" data-lang-btn="en" id="lang-en">EN</button>
           <button type="button" onclick="setLanguage('hi')" data-lang-btn="hi" id="lang-hi">हिन्दी</button>
+        </div>
+        <!-- Language Toggle (Mobile) -->
+        <div class="lang-toggle md:hidden flex flex-shrink-0 text-[10px]" id="lang-toggle-mob">
+          <button type="button" class="active px-2 py-1" onclick="setLanguage('en')" data-lang-btn="en" id="lang-en-mob">EN</button>
+          <button type="button" class="px-2 py-1" onclick="setLanguage('hi')" data-lang-btn="hi" id="lang-hi-mob">हि</button>
         </div>
         <a href="https://wa.me/919406951737?text=Namaste%20Dr.%20Vaibhav,%20I%20would%20like%20to%20consult%20at%20Happy%20Whites%20Dental%20Clinic." target="_blank" rel="noopener noreferrer" class="magnetic-btn inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-xl text-[11px] sm:text-xs font-bold text-emerald-300 bg-emerald-950/70 hover:bg-emerald-900/80 border border-emerald-500/40 shadow-sm whitespace-nowrap flex-shrink-0">
           <i data-lucide="message-circle" class="w-4 h-4 text-emerald-400"></i>
@@ -1607,7 +1612,7 @@
       <div class="mt-10 text-center reveal">
         <a href="https://search.google.com/local/writereview?placeid=ChIJ_PkECjZFjkARl6bEErDH-Io" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white border border-slate-200 hover:border-sky-300 hover:shadow-md text-sm font-bold text-slate-700 transition-all">
           <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-          See All 58+ Reviews on Google
+          <span data-i18n="reviews_see_all">See All 58+ Reviews on Google</span>
           <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </div>
@@ -1699,7 +1704,7 @@
       <div class="mt-8 text-center">
         <a href="https://wa.me/919406951737?text=Namaste%20Dr.%20Vaibhav,%20I%20have%20a%20question%20about%20dental%20treatment." target="_blank" rel="noopener noreferrer" class="magnetic-btn inline-flex items-center gap-2 px-6 py-3 rounded-xl text-xs font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 hover:bg-emerald-100 transition-colors">
           <i data-lucide="message-circle" class="w-4 h-4 text-emerald-600"></i>
-          Have More Questions? Ask Dr. Vaibhav on WhatsApp
+          <span data-i18n="faq_ask_whatsapp">Have More Questions? Ask Dr. Vaibhav on WhatsApp</span>
         </a>
       </div>
 

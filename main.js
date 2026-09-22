@@ -70,14 +70,20 @@ const translations = {
     header_whatsapp_short: 'Chat',
     header_book: 'Book Appointment',
     header_book_short: 'Book',
-    mobile_lang_select: 'Language / भाषा:',
+    mobile_lang_select: 'Language:',
+    announcement_special: '✨ SPECIAL',
+    announcement_call_mob: 'Call',
+    reviews_see_all: 'See All 58+ Reviews on Google',
+    faq_ask_whatsapp: 'Have More Questions? Ask Dr. Vaibhav on WhatsApp',
+    float_ai_label: 'Ask AI Assistant',
+    float_whatsapp_label: 'Chat on WhatsApp',
 
     // Hero Section
     hero_badge: '<span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span> ⭐ 4.9 Verified Google Rating (61+ Reviews) • Bawadiya Kalan, Bhopal',
     hero_title: 'Bhopal\'s Trusted Centre for <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-sky-200 to-sky-400">Painless & Digital</span> Dentistry.',
     hero_desc: 'Specialized in <strong class="text-white font-bold">In-House TruAlign Clear Aligners</strong>, <strong class="text-white font-bold">Single-Sitting Rotary RCT</strong>, and <strong class="text-white font-bold">Permanent Dental Implants</strong> by <strong class="text-sky-300 font-bold">Dr. Vaibhav Shrivastav</strong> at Mahendra Medisquare (near ApolloSAGE Hospital).',
-    hero_cta_booking: '<i data-lucide="sparkles" class="w-5 h-5"></i> Launch Smart Booking Wizard',
-    hero_cta_scan: '<i data-lucide="message-circle" class="w-5 h-5 text-emerald-400"></i> Claim Free 3D Scan on WhatsApp',
+    hero_cta_booking: 'Launch Smart Booking Wizard',
+    hero_cta_scan: 'Claim Free 3D Scan on WhatsApp',
     hero_cta_video: 'Watch Video Tour',
     hero_feat_1: 'In-House 3D Scan',
     hero_feat_2: '6-Step Sterile Lab',
@@ -147,14 +153,20 @@ const translations = {
     header_whatsapp_short: 'व्हाट्सएप',
     header_book: 'अपॉइंटमेंट बुक करें',
     header_book_short: 'बुक करें',
-    mobile_lang_select: 'भाषा चुनें / Language:',
+    mobile_lang_select: 'भाषा चुनें:',
+    announcement_special: '✨ विशेष ऑफ़र',
+    announcement_call_mob: 'कॉल',
+    reviews_see_all: 'गूगल पर सभी 58+ समीक्षाएं देखें',
+    faq_ask_whatsapp: 'कोई अन्य सवाल है? व्हाट्सएप पर डॉ. वैभव से पूछें',
+    float_ai_label: 'AI से पूछें',
+    float_whatsapp_label: 'व्हाट्सएप चैट',
 
     // Hero Section
     hero_badge: '<span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span> ⭐ 4.9 गूगल रेटिंग (61+ संतुष्ट मरीज) • बावड़िया कलां, भोपाल',
     hero_title: 'पेनलेस और आधुनिक <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-sky-200 to-sky-400">डिजिटल डेंटिस्ट्री</span> में भोपाल का सबसे भरोसेमंद क्लिनिक।',
     hero_desc: '<strong class="text-white font-bold">इन-हाउस ट्रूअलाइन अदृश्य अलाइनर</strong>, <strong class="text-white font-bold">सिंगल-सिटिंग रोटरी आरसीटी</strong>, एवं <strong class="text-white font-bold">परमानेंट डेंटल इम्प्लांट्स</strong> के विशेषज्ञ — <strong class="text-sky-300 font-bold">डॉ. वैभव श्रीवास्तव</strong> (महेंद्रा मेडिस्क्वेयर, अपोलो सेज अस्पताल के पास)।',
-    hero_cta_booking: '<i data-lucide="sparkles" class="w-5 h-5"></i> स्मार्ट बुकिंग टूल शुरू करें',
-    hero_cta_scan: '<i data-lucide="message-circle" class="w-5 h-5 text-emerald-400"></i> व्हाट्सएप पर फ्री 3D स्कैन पाएं',
+    hero_cta_booking: 'स्मार्ट बुकिंग टूल शुरू करें',
+    hero_cta_scan: 'व्हाट्सएप पर फ्री 3D स्कैन पाएं',
     hero_cta_video: 'क्लिनिक वीडियो टूर देखें',
     hero_feat_1: 'इन-हाउस 3D स्कैन',
     hero_feat_2: '6-स्तरीय स्टेरिलाइजेशन',
@@ -387,7 +399,479 @@ const treatmentCardTranslations = [
   }
 ];
 
+function translateCases(lang) {
+  const isHi = lang === 'hi';
+  const casesData = [
+    {
+      badge: isHi ? 'केस स्टडी 01' : 'Case Study 01',
+      time: isHi ? '⏱️ 35 मिनट (एक सिटिंग)' : '⏱️ 35 Mins Single Visit',
+      title: isHi ? 'चाय, कॉफी व गुटखा के दाग हटाना' : 'Tea, Coffee & Nicotine Stain Removal',
+      desc: isHi ? 'मरीज के दांतों और मसूड़ों के पास सालों से जमे कड़े टार्टर और गहरे निकोटीन के दाग थे।' : 'Patient presented with deep extrinsic tobacco stains and tartar calculus along the gumline.',
+      procLabel: isHi ? 'उपचार:' : 'Procedure:',
+      procVal: isHi ? 'अल्ट्रासोनिक पिज़ो स्केलिंग एवं एयर-फ्लो पॉलिशिंग' : 'Ultrasonic Piezo Scaling & Air-Flow Polish',
+      outLabel: isHi ? 'परिणाम:' : 'Outcome:',
+      outVal: isHi ? '100% दाग साफ • स्वस्थ व मजबूत मसूड़े' : '100% Stains Cleared • Healthy Gums',
+      sensLabel: isHi ? 'सेंसिटिविटी:' : 'Sensitivity:',
+      sensVal: isHi ? 'उपचार के बाद शून्य झनझनाहट' : 'Zero Post-Op Sensitivity',
+      btn: isHi ? 'दाग हटाने का स्लॉट बुक करें →' : 'Book Stain Removal Slot →'
+    },
+    {
+      badge: isHi ? 'केस स्टडी 02' : 'Case Study 02',
+      time: isHi ? '⏱️ 45 मिनट क्लिनिक में' : '⏱️ 45 Mins In-Office',
+      title: isHi ? 'शादी से पहले लेज़र टीथ व्हाइटनिंग' : 'Pre-Wedding Laser Teeth Whitening',
+      desc: isHi ? 'शादी की फोटोग्राफी से पहले मरीज ने दांतों की प्राकृतिक चमक और सफेदी बढ़ाने का अनुरोध किया।' : 'Patient requested rapid smile brightening for upcoming wedding photography (VITA Shade A4).',
+      procLabel: isHi ? 'उपचार:' : 'Procedure:',
+      procVal: isHi ? 'कोल्ड लेज़र इनेमल ब्लीचिंग (3 साइकल)' : 'Cold Laser Enamel Bleaching (3 Cycles)',
+      outLabel: isHi ? 'परिणाम:' : 'Outcome:',
+      outVal: isHi ? '8 शेड ज्यादा चमकदार (शेड B1 फिनिश)' : '8 Shades Brighter (Shade B1 Finish)',
+      sensLabel: isHi ? 'सुरक्षा:' : 'Safety:',
+      sensVal: isHi ? 'इनेमल-सुरक्षित और माइक्रो-पॉलिश्ड' : 'Enamel-Safe & Micro-Polished',
+      btn: isHi ? 'लेज़र व्हाइटनिंग बुक करें →' : 'Book Laser Whitening →'
+    },
+    {
+      badge: isHi ? 'केस स्टडी 03' : 'Case Study 03',
+      time: isHi ? '⏱️ कुल 6.5 महीने' : '⏱️ 6.5 Months Total',
+      title: isHi ? 'टेढ़े-मेढ़े दांत व ओवरलैपिंग का इलाज' : 'Crooked Front Teeth & Crowding',
+      desc: isHi ? 'मरीज के निचले सामने के दांत काफी टेढ़े थे और वे पुराने दर्दनाक तार (मेटल ब्रेसेस) नहीं लगवाना चाहते थे।' : 'Patient had severe lower front crowding and avoided traditional painful metal brackets.',
+      procLabel: isHi ? 'उपचार:' : 'Procedure:',
+      procVal: isHi ? '16 कस्टम इन-हाउस ट्रूअलाइन ट्रे' : '16 Custom In-House TruAlign Trays',
+      outLabel: isHi ? 'परिणाम:' : 'Outcome:',
+      outVal: isHi ? 'परफेक्ट अलाइनमेंट व सीधी सुंदर मुस्कान' : 'Perfect Dental Arch Alignment',
+      sensLabel: isHi ? 'सुविधा:' : 'Lifestyle:',
+      sensVal: isHi ? '100% अदृश्य • खान-पान में कोई पाबंदी नहीं' : '100% Invisible • No Diet Limits',
+      btn: isHi ? 'फ्री अलाइनर स्कैन बुक करें →' : 'Book Free Aligner Scan →'
+    }
+  ];
+
+  const cards = document.querySelectorAll('#cases .grid > div.tilt-card');
+  cards.forEach((card, idx) => {
+    const d = casesData[idx];
+    if (!d) return;
+    const badgeSpan = card.querySelector('.text-\\[10px\\].font-black');
+    if (badgeSpan) badgeSpan.textContent = d.badge;
+    const timeSpan = card.querySelector('.text-xs.font-bold.text-slate-500');
+    if (timeSpan) timeSpan.textContent = d.time;
+    const h3 = card.querySelector('h3');
+    if (h3) h3.textContent = d.title;
+    const p = card.querySelector('p.text-xs');
+    if (p) p.textContent = d.desc;
+
+    const rows = card.querySelectorAll('.border-y > div');
+    if (rows.length >= 1) {
+      const lbl = rows[0].querySelector('span.w-20');
+      const val = rows[0].querySelector('span.text-slate-600');
+      if (lbl) lbl.textContent = d.procLabel;
+      if (val) val.textContent = d.procVal;
+    }
+    if (rows.length >= 2) {
+      const lbl = rows[1].querySelector('span.w-20');
+      const val = rows[1].querySelector('span.font-extrabold:last-child');
+      if (lbl) lbl.textContent = d.outLabel;
+      if (val) val.textContent = d.outVal;
+    }
+    if (rows.length >= 3) {
+      const lbl = rows[2].querySelector('span.w-20');
+      const val = rows[2].querySelector('span.text-slate-600');
+      if (lbl) lbl.textContent = d.sensLabel;
+      if (val) val.textContent = d.sensVal;
+    }
+
+    const btn = card.querySelector('button.magnetic-btn');
+    if (btn) btn.textContent = d.btn;
+  });
+}
+
+function translateAlignerSteps(lang) {
+  const isHi = lang === 'hi';
+  
+  const topPill = document.querySelector('#aligner-journey .inline-flex span');
+  if (topPill) {
+    topPill.textContent = isHi ? "भोपाल की एकमात्र इन-हाउस क्लियर अलाइनर लैब" : "BHOPAL'S ONLY IN-HOUSE CLEAR ALIGNER LAB";
+  }
+
+  const steps = [
+    {
+      stepBadge: isHi ? 'चरण 01' : 'Step 01',
+      offerBadge: isHi ? '₹0 फ्री ऑफर' : '₹0 Free Offer',
+      title: isHi ? '3D डिजिटल इंट्राओरल स्कैन' : '3D Digital Intraoral Scan',
+      desc: isHi ? 'बिना किसी गंदे पेस्ट या उल्टी के अहसास के, हाई-प्रिसिजन लेज़र स्कैनर मात्र 3 मिनट में आपके दांतों का 100% सटीक 3D मॉडल तैयार करता है।' : 'No messy impression pastes or gag reflex. High-precision optical laser scanner captures 100,000+ data points of your bite in under 3 minutes.',
+      tag: isHi ? '100% दर्द-मुक्त' : '100% Painless',
+      btn: isHi ? 'फ्री स्कैन' : 'Scan Free'
+    },
+    {
+      stepBadge: isHi ? 'चरण 02' : 'Step 02',
+      offerBadge: isHi ? '3D सिमुलेशन' : 'CAD Simulation',
+      title: isHi ? '3D स्माइल सिमुलेशन' : 'Projected Smile Simulation',
+      desc: isHi ? 'डॉ. वैभव 3D सॉफ्टवेयर पर दांतों के मूवमेंट की योजना बनाते हैं। इलाज शुरू होने से पहले ही स्क्रीन पर अपनी फाइनल मुस्कान देखें।' : 'Dr. Vaibhav designs your step-by-step tooth movements on 3D orthodontic software. Preview your exact final smile before treatment starts.',
+      tag: isHi ? 'बायोमैकेनिकल प्लानिंग' : 'Biomechanical Plan',
+      btn: isHi ? 'सिमुलेशन देखें' : 'View CAD'
+    },
+    {
+      stepBadge: isHi ? 'चरण 03' : 'Step 03',
+      offerBadge: isHi ? 'इन-हाउस लैब' : 'In-House Lab',
+      title: isHi ? 'इन-हाउस लैब निर्माण' : 'Precision In-House Lab Crafting',
+      desc: isHi ? 'भोपाल स्थित हमारी लैब में उच्चतम मेडिकल-ग्रेड क्रिस्टल पॉलीमर से अलाइनर ट्रे तैयार की जाती हैं, जिससे परफेक्ट फिटिंग मिलती है।' : 'Thermoformed directly in our Bhopal aligner lab using FDA-approved medical-grade crystal polymers for ultra-snug fit and invisible comfort.',
+      tag: isHi ? 'डॉक्टर द्वारा जांची गई गुणवत्ता' : 'Doctor QA Checked',
+      btn: isHi ? 'लैब टूर' : 'Lab Tour'
+    },
+    {
+      stepBadge: isHi ? 'चरण 04' : 'Step 04',
+      offerBadge: isHi ? '100% सुविधाजनक' : 'Zero Disruption',
+      title: isHi ? 'अदृश्य दैनिक बदलाव' : 'Discreet Daily Transformation',
+      desc: isHi ? 'खाना खाते समय आसानी से निकालें। हर 10–14 दिन में नई ट्रे बदलें और 6 से 12 महीनों में बिना किसी को पता चले सीधी मुस्कान पाएं।' : 'Removable for dining, meetings, and photos. Switch trays every 10–14 days. Complete teeth alignment in 6 to 12 months discreetly.',
+      tag: isHi ? '100% अदृश्य' : '100% Invisible',
+      btn: isHi ? 'अभी शुरू करें' : 'Start Now'
+    }
+  ];
+
+  const cards = document.querySelectorAll('#aligner-journey .framer-card');
+  cards.forEach((card, idx) => {
+    const s = steps[idx];
+    if (!s) return;
+    
+    const stepSpan = card.querySelector('.absolute.top-3.left-3 span.font-black');
+    if (stepSpan) {
+      stepSpan.innerHTML = `<span class="w-2 h-2 rounded-full ${idx === 0 ? 'bg-teal-500 animate-pulse' : idx === 1 ? 'bg-sky-500' : idx === 2 ? 'bg-amber-500' : 'bg-emerald-500'}"></span> ${s.stepBadge}`;
+    }
+
+    const offerSpan = card.querySelector('.absolute.top-3.right-3 span');
+    if (offerSpan) {
+      const icon = offerSpan.querySelector('i');
+      const iconHtml = icon ? icon.outerHTML : '';
+      offerSpan.innerHTML = `${iconHtml} ${s.offerBadge}`;
+    }
+
+    const h3 = card.querySelector('h3');
+    if (h3) h3.textContent = s.title;
+
+    const p = card.querySelector('p');
+    if (p) p.textContent = s.desc;
+
+    const tagSpan = card.querySelector('.border-t span.text-\\[11px\\]');
+    if (tagSpan) {
+      const icon = tagSpan.querySelector('i');
+      const iconHtml = icon ? icon.outerHTML : '';
+      tagSpan.innerHTML = `${iconHtml} ${s.tag}`;
+    }
+
+    const btnSpan = card.querySelector('.framer-motion-btn span');
+    if (btnSpan) btnSpan.textContent = s.btn;
+  });
+
+  const offerBadge = document.getElementById('limited-offer-text');
+  if (offerBadge) {
+    offerBadge.textContent = isHi ? 'सीमित समय का विशेष ऑफर' : 'LIMITED PERIOD OFFER';
+  }
+  const offerHeading = document.querySelector('#aligner-journey .bg-gradient-to-r h4');
+  if (offerHeading) {
+    offerHeading.textContent = isHi ? 'अपना फ्री 3D अलाइनर स्कैन पाएं (मूल्य ₹5,000)' : 'Claim Your FREE 3D Aligner Scan (Worth ₹5,000)';
+  }
+  const offerSub = document.querySelector('#aligner-journey .bg-gradient-to-r p');
+  if (offerSub) {
+    offerSub.innerHTML = isHi 
+      ? 'चैंबर 4, महेंद्रा मेडिस्क्वेयर, बावड़िया कलां में पधारें। <span id="offer-validity">सीमित समय के लिए मान्य।</span>' 
+      : 'Visit Chamber 4, Mahendra Medisquare, Bawadiya Kalan. <span id="offer-validity">Valid for a limited time only.</span>';
+  }
+  const offerCtaBtn = document.querySelector('#aligner-journey .framer-cta-btn');
+  if (offerCtaBtn) {
+    offerCtaBtn.textContent = isHi ? 'फ्री अलाइनर स्कैन बुक करें →' : 'Claim Free Aligner Scan →';
+  }
+}
+
+function translateTreatments(lang) {
+  const isHi = lang === 'hi';
+  
+  const topBadge = document.querySelector('#specialties .inline-flex span');
+  if (topBadge) {
+    topBadge.textContent = isHi ? 'भोपाल में प्रमाणित विशेषज्ञ उपचार' : 'VERIFIED CLINICAL SPECIALTIES IN BHOPAL';
+  }
+
+  const treatmentData = [
+    {
+      badge1: isHi ? 'इन-हाउस लैब' : 'In-House Lab',
+      badge2: isHi ? '₹0 फ्री स्कैन' : '₹0 Free Scan',
+      title: isHi ? 'ट्रूअलाइन® क्लियर अलाइनर' : 'TruAlign® Clear Aligners',
+      desc: isHi ? 'हमारी इन-हाउस लैब में निर्मित कस्टम अदृश्य अलाइनर। बिना किसी मेटल वायर के मात्र 4 से 8 महीनों में दांतों को सही आकार में लाएं।' : 'Invisible, custom-milled thermoformed aligners crafted in our in-house lab. Straighten teeth discreetly in 4–8 months without metal brackets.',
+      footerTag: isHi ? 'डॉक्टर द्वारा जांच' : 'Direct Doctor QC',
+      btn: isHi ? 'अलाइनर बुक करें' : 'Book Scan'
+    },
+    {
+      badge1: isHi ? '1-सिटिंग (45 मिनट)' : '1-Visit (45 Min)',
+      badge2: isHi ? 'एपेक्स लोकेटर' : 'Apex Locator',
+      title: isHi ? 'सिंगल-सिटिंग दर्द-मुक्त आरसीटी' : 'Single-Sitting Painless RCT',
+      desc: isHi ? 'कम्प्यूटरीकृत रोटरी एंडोडॉन्टिक्स और डिजिटल एपेक्स लोकेटर के साथ मात्र 45 मिनट में अपने प्राकृतिक दांत को दर्द-मुक्त सुरक्षित करें।' : 'Save your natural tooth in a single 45-minute sitting using digital apex locators and computerized rotary endodontics with zero pain.',
+      footerTag: isHi ? 'दर्द-मुक्त एनेस्थीसिया' : 'Painless Anesthesia',
+      btn: isHi ? 'आरसीटी बुक करें' : 'Book RCT'
+    },
+    {
+      badge1: isHi ? 'जर्मन टाइटेनियम' : 'German Titanium',
+      badge2: isHi ? 'आजीवन वारंटी' : 'Lifetime Warranty',
+      title: isHi ? 'डेंटल इम्प्लांट्स और क्राउन' : 'Dental Implants & Crowns',
+      desc: isHi ? 'जर्मन ग्रेड-5 टाइटेनियम पोस्ट और अटूट ज़िरकोनिया क्राउन के साथ खोए हुए दांत का स्थायी इलाज, लाइफटाइम स्ट्रक्चरल वारंटी के साथ।' : 'Permanent missing tooth replacement with German Grade-5 titanium posts and unbreakable Zirconia crowns with lifetime structural warranty.',
+      footerTag: isHi ? 'मोनोलिथिक ज़िरकोनिया' : 'Monolithic Zirconia',
+      btn: isHi ? 'इम्प्लांट बुक करें' : 'Book Implant'
+    },
+    {
+      badge1: isHi ? 'पिज़ो अल्ट्रासोनिक' : 'Piezo Ultrasonic',
+      badge2: isHi ? 'डीप क्लीन' : 'Deep Clean',
+      title: isHi ? 'अल्ट्रासोनिक स्केलिंग व पॉलिशिंग' : 'Ultrasonic Scaling & Polishing',
+      desc: isHi ? 'इनेमल को नुकसान पहुंचाए बिना अल्ट्रासोनिक तरंगों द्वारा चाय, कॉफी और तंबाकू के जिद्दी दाग और टार्टर की सुरक्षित सफाई।' : 'Remove stubborn tobacco stains, tea tartar, and harmful sub-gingival calculus using gentle ultrasonic vibrations without enamel damage.',
+      footerTag: isHi ? 'शून्य इनेमल नुकसान' : 'Zero Enamel Damage',
+      btn: isHi ? 'स्केलिंग बुक करें' : 'Book Scaling'
+    },
+    {
+      badge1: isHi ? 'वीटा शेड गाइड' : 'Vita Shade Guide',
+      badge2: isHi ? '8 शेड ज्यादा सफेद' : '8 Shades Whiter',
+      title: isHi ? 'लेज़र टीथ व्हाइटनिंग' : 'Laser Teeth Whitening',
+      desc: isHi ? 'कोल्ड ब्लू लेज़र तकनीक द्वारा मात्र 45 मिनट में अपनी मुस्कान को 8 शेड तक अधिक चमकदार बनाएं, बिना किसी झनझनाहट के।' : 'Achieve a red-carpet bright smile in 45 minutes using cold blue laser activation. 100% painless with zero post-treatment sensitivity.',
+      footerTag: isHi ? 'उसी दिन परिणाम' : 'Same-Day Results',
+      btn: isHi ? 'व्हाइटनिंग बुक करें' : 'Book Whitening'
+    },
+    {
+      badge1: isHi ? 'डिजिटल ओपीजी स्कैन' : 'Digital OPG Scan',
+      badge2: isHi ? 'माइक्रो-सर्जिकल' : 'Micro-Surgical',
+      title: isHi ? 'अक्ल दाढ़ दर्द व सर्जरी' : 'Wisdom Tooth & Surgery',
+      desc: isHi ? 'अक्ल दाढ़ के असहनीय दर्द का आधुनिक दर्द-मुक्त सर्जिकल समाधान, जिससे आसपास के मसूड़ों और जबड़े को कोई नुकसान न पहुंचे।' : 'Minimally invasive, painless surgical extraction of impacted third molars using atraumatic instruments and precision piezo surgery.',
+      footerTag: isHi ? 'दर्द-मुक्त निष्कर्षण' : 'Painless Removal',
+      btn: isHi ? 'सर्जन से परामर्श लें' : 'Consult Surgeon'
+    }
+  ];
+
+  const cards = document.querySelectorAll('#specialties .framer-treatment-card');
+  cards.forEach((card, idx) => {
+    const d = treatmentData[idx];
+    if (!d) return;
+
+    const b1 = card.querySelector('.absolute.top-3.left-3 span.font-black');
+    if (b1) {
+      const dot = b1.querySelector('.rounded-full');
+      const dotHtml = dot ? dot.outerHTML : '';
+      b1.innerHTML = `${dotHtml} ${d.badge1}`;
+    }
+
+    const b2 = card.querySelector('.absolute.top-3.right-3 span');
+    if (b2) {
+      const icon = b2.querySelector('i');
+      const iconHtml = icon ? icon.outerHTML : '';
+      b2.innerHTML = `${iconHtml} ${d.badge2}`;
+    }
+
+    const h3 = card.querySelector('h3');
+    if (h3) h3.textContent = d.title;
+
+    const p = card.querySelector('p');
+    if (p) p.textContent = d.desc;
+
+    const fTag = card.querySelector('.border-t span.text-\\[11px\\]');
+    if (fTag) {
+      const icon = fTag.querySelector('i');
+      const iconHtml = icon ? icon.outerHTML : '';
+      fTag.innerHTML = `${iconHtml} ${d.footerTag}`;
+    }
+
+    const btnSpan = card.querySelector('.framer-motion-btn span');
+    if (btnSpan) btnSpan.textContent = d.btn;
+  });
+}
+
+function translateTechTour(lang) {
+  const isHi = lang === 'hi';
+  const tourSection = document.getElementById('clinic-tour');
+  if (!tourSection) return;
+
+  const topBadge = tourSection.querySelector('.inline-flex span, span.text-xs.font-extrabold');
+  if (topBadge) topBadge.textContent = isHi ? 'आधुनिक क्लिनिकल इंफ्रास्ट्रक्चर' : 'LIVE CLINICAL INFRASTRUCTURE';
+
+  const subP = tourSection.querySelector('.text-center p');
+  if (subP) subP.textContent = isHi ? 'बावड़िया कलां, भोपाल स्थित हमारे क्लिनिक की वास्तविक तस्वीरें।' : 'Authentic clinic photos from our chamber in Bawadiya Kalan, Bhopal.';
+
+  const cards = tourSection.querySelectorAll('.tilt-card');
+  if (cards.length >= 1) {
+    const c1 = cards[0];
+    const b1 = c1.querySelector('.absolute.top-3.left-3 span:first-child');
+    if (b1) b1.innerHTML = isHi ? '<i data-lucide="building" class="w-3.5 h-3.5"></i> मुख्य क्लिनिक प्रवेश' : '<i data-lucide="building" class="w-3.5 h-3.5"></i> Real Building Facade';
+    const b2 = c1.querySelector('.absolute.top-3.left-3 span:last-child');
+    if (b2) b2.innerHTML = isHi ? '<i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-teal-400"></i> क्लिनिक बोर्ड' : '<i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-teal-400"></i> Full Facility Board';
+    const tap = c1.querySelector('.absolute.bottom-3.right-3');
+    if (tap) tap.innerHTML = isHi ? '<i data-lucide="zoom-in" class="w-3 h-3 text-teal-400"></i> बड़ा करके देखें' : '<i data-lucide="zoom-in" class="w-3 h-3 text-teal-400"></i> Tap to Inspect';
+    const h4 = c1.querySelector('h4');
+    if (h4) h4.textContent = isHi ? 'दूसरी मंजिल, महेंद्रा मेडिस्क्वेयर' : '2nd Floor, Mahendra Medisquare';
+    const badge1 = c1.querySelector('span.text-\\[10px\\].font-extrabold');
+    if (badge1) badge1.textContent = isHi ? 'बावड़िया कलां' : 'Bawadiya Kalan';
+    const p = c1.querySelector('p');
+    if (p) p.textContent = isHi ? 'बावड़िया कलां मेन रोड, अरेरा कॉलोनी, भोपाल में मुख्य प्राइम लोकेशन (अपोलो सेज अस्पताल के पास)।' : 'Prime corner facility on Bawadiya Kalan Main Road, Arera Colony, Bhopal (Near ApolloSAGE Hospital).';
+    const tagSpans = c1.querySelectorAll('.border-t span');
+    if (tagSpans.length >= 5) {
+      tagSpans[0].textContent = isHi ? 'ट्रूअलाइन अलाइनर्स' : 'TruAlign Aligners';
+      tagSpans[1].textContent = isHi ? 'इनविज़ालाइन' : 'Invisalign';
+      tagSpans[2].textContent = isHi ? 'डेंटल इम्प्लांट्स' : 'Dental Implants';
+      tagSpans[3].textContent = isHi ? 'लेज़र आरसीटी' : 'Laser RCT';
+      tagSpans[4].textContent = isHi ? 'ज़िरकोनिया क्राउन्स' : 'Zirconia Crowns';
+    }
+  }
+  if (cards.length >= 2) {
+    const c2 = cards[1];
+    const b1 = c2.querySelector('.absolute.top-3.left-3 span:first-child');
+    if (b1) b1.innerHTML = isHi ? '<i data-lucide="shield-check" class="w-3.5 h-3.5"></i> स्टेरिलाइज्ड डेंटल सुइट' : '<i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Sterile Operatory Suite';
+    const b2 = c2.querySelector('.absolute.top-3.left-3 span:last-child');
+    if (b2) b2.innerHTML = isHi ? '<i data-lucide="sparkles" class="w-3.5 h-3.5 text-brand-400"></i> क्लास-बी ऑटोक्लेव' : '<i data-lucide="sparkles" class="w-3.5 h-3.5 text-brand-400"></i> Class-B Autoclave';
+    const tap = c2.querySelector('.absolute.bottom-3.right-3');
+    if (tap) tap.innerHTML = isHi ? '<i data-lucide="zoom-in" class="w-3 h-3 text-teal-400"></i> बड़ा करके देखें' : '<i data-lucide="zoom-in" class="w-3 h-3 text-teal-400"></i> Tap to Inspect';
+    const h4 = c2.querySelector('h4');
+    if (h4) h4.textContent = isHi ? 'डिजिटल स्कैनिंग एवं रोटरी सुइट' : 'Digital Scanning & Rotary Suite';
+    const badge2 = c2.querySelector('span.text-\\[10px\\].font-extrabold');
+    if (badge2) badge2.textContent = isHi ? 'स्कैन सुइट' : 'Scan Suite';
+    const p = c2.querySelector('p');
+    if (p) p.textContent = isHi ? '3D ओरल स्कैनर, माइक्रो-रोटरी एंडोडॉन्टिक्स मोटर्स एवं एरोसोल इवैक्युएशन से सुसज्जित आधुनिक चैंबर।' : 'Equipped with 3D intraoral scanner, micro-rotary endodontic motors & aerosol evacuation.';
+    const tagSpans2 = c2.querySelectorAll('.border-t span');
+    if (tagSpans2.length >= 4) {
+      tagSpans2[0].textContent = isHi ? '3D इंट्राओरल स्कैनर' : '3D Intraoral Scanner';
+      tagSpans2[1].textContent = isHi ? 'डिजिटल ओपीजी' : 'Digital OPG';
+      tagSpans2[2].textContent = isHi ? 'एपेक्स लोकेटर' : 'Apex Locator';
+      tagSpans2[3].textContent = isHi ? 'दर्द-मुक्त एनेस्थीसिया' : 'Painless Anesthesia';
+    }
+  }
+}
+
+function translateDoctorSection(lang) {
+  const isHi = lang === 'hi';
+  const docSec = document.getElementById('doctor');
+  if (!docSec) return;
+
+  const topBadge = docSec.querySelector('.inline-flex span, span.text-xs.font-extrabold');
+  if (topBadge) topBadge.textContent = isHi ? 'क्लिनिक नेतृत्व एवं रोगी देखभाल' : 'Clinic Leadership & Patient Care';
+
+  const cards = docSec.querySelectorAll('.tilt-card');
+  if (cards.length >= 1) {
+    const c1 = cards[0];
+    const role = c1.querySelector('.text-\\[10px\\].font-black');
+    if (role) role.textContent = isHi ? 'क्लिनिकल डायरेक्टर एवं मुख्य सर्जन' : 'Clinical Director & Surgeon';
+    const spec = c1.querySelector('.text-xs.font-semibold');
+    if (spec) spec.textContent = isHi ? 'BDS, MDS • वरिष्ठ ऑर्थोडॉन्टिस्ट' : 'BDS, MDS • Lead Orthodontist';
+    const stats = c1.querySelectorAll('.text-\\[11px\\].text-slate-400 span');
+    if (stats.length >= 1) stats[0].textContent = isHi ? '🏆 10+ वर्ष का अनुभव' : '🏆 10+ Yrs Exp.';
+    if (stats.length >= 3) stats[2].textContent = isHi ? '2,500+ मुस्कान संवारीं' : '2,500+ Smiles';
+    const allP = c1.querySelectorAll('p');
+    const bio = c1.querySelector('p.font-normal, p.leading-relaxed') || (allP.length > 1 ? allP[1] : null);
+    if (bio) bio.textContent = isHi ? 'दर्द-मुक्त डिजिटल रोटरी एंडोडॉन्टिक्स, डेंटल इम्प्लांट्स और इन-हाउस ट्रूअलाइन अलाइनर के विशेषज्ञ।' : 'Specialized in painless digital rotary endodontics, dental implants, and precision biomechanical planning for In-House TruAlign clear aligners.';
+    const btn = c1.querySelector('a.magnetic-btn');
+    if (btn) btn.innerHTML = isHi ? '<i data-lucide="message-circle" class="w-4 h-4"></i> डॉ. वैभव से व्हाट्सएप पर परामर्श लें' : '<i data-lucide="message-circle" class="w-4 h-4"></i> Consult Dr. Vaibhav on WhatsApp';
+  }
+
+  if (cards.length >= 2) {
+    const c2 = cards[1];
+    const role = c2.querySelector('.text-\\[10px\\].font-black');
+    if (role) role.textContent = isHi ? 'हेड ऑफ ऑपरेशन्स एवं पेशेंट केयर' : 'Operations & Patient Care';
+    const spec = c2.querySelector('.text-xs.font-semibold');
+    if (spec) spec.textContent = isHi ? 'ऑपरेशन्स एवं लैब संबंध प्रमुख' : 'Head of Operations & Lab Relations';
+    const stats = c2.querySelectorAll('.text-\\[11px\\].text-slate-400 span');
+    if (stats.length >= 1) stats[0].textContent = isHi ? '⚡ जीरो-वेटिंग ओपीडी' : '⚡ Zero-Wait OPD';
+    if (stats.length >= 3) stats[2].textContent = isHi ? 'केयर कोऑर्डिनेटर' : 'Care Coordinator';
+    const allP = c2.querySelectorAll('p');
+    const bio = c2.querySelector('p.font-normal, p.leading-relaxed') || (allP.length > 1 ? allP[1] : null);
+    if (bio) bio.textContent = isHi ? 'सुगम ओपीडी प्रबंधन, ट्रूअलाइन डिजिटल लैब समन्वय, अपॉइंटमेंट और पारदर्शी उपचार योजना सुनिश्चित करते हैं।' : 'Oversees seamless patient concierge services, TruAlign digital lab order dispatching, appointment scheduling, and transparent treatment plan coordination.';
+    const btn = c2.querySelector('a.magnetic-btn');
+    if (btn) btn.innerHTML = isHi ? '<i data-lucide="message-circle" class="w-4 h-4 text-brand-950"></i> आकाश जी से चैट करें (पेशेंट केयर)' : '<i data-lucide="message-circle" class="w-4 h-4 text-brand-950"></i> Chat with Akash (Patient Care Desk)';
+  }
+}
+
+function translateReviews(lang) {
+  const isHi = lang === 'hi';
+  const sec = document.getElementById('testimonials');
+  if (!sec) return;
+
+  const topBadge = sec.querySelector('.inline-flex span');
+  if (topBadge) topBadge.textContent = isHi ? 'गूगल समीक्षाएं' : 'GOOGLE REVIEWS';
+
+  const summaryBox = sec.querySelector('.max-w-md');
+  if (summaryBox) {
+    const basedOn = summaryBox.querySelector('p.text-sm');
+    if (basedOn) {
+      basedOn.innerHTML = isHi 
+        ? 'आधारित है <span class="text-slate-900">58+ सत्यापित समीक्षाओं</span> पर' 
+        : 'Based on <span class="text-slate-900">58+ Verified Reviews</span>';
+    }
+    const writeBtn = summaryBox.querySelector('a');
+    if (writeBtn) {
+      const svg = writeBtn.querySelector('svg');
+      const svgHtml = svg ? svg.outerHTML : '';
+      writeBtn.innerHTML = `${svgHtml} ${isHi ? 'गूगल पर समीक्षा लिखें' : 'Write a Review on Google'}`;
+    }
+  }
+
+  const reviewsData = [
+    {
+      avatar: isHi ? 'वि.मि.' : 'VM',
+      name: isHi ? 'विश्वेश्वर मिश्रा' : 'Vishveshwar Mishra',
+      text: isHi 
+        ? '"क्लिनिक का स्टाफ बहुत विनम्र है और माहौल बेहद साफ-सुथरा व सुरक्षित है। मेरे फुल-माउथ रिहैबिलिटेशन के दौरान डॉक्टर साहब का ध्यान सटीकता और लंबे समय तक चलने वाले परिणामों पर था। अगर आप भोपाल में स्माइल डिजाइनिंग या अलाइनर के लिए एक उच्च गुणवत्ता वाला डेंटिस्ट खोज रहे हैं, तो मैं हैप्पी व्हाइट्स की पुरजोर सिफारिश करता हूँ!"'
+        : '"The staff is professional, and the environment is very clean and welcoming. I especially appreciated their focus on long-term results and precision during my full-mouth rehabilitation. If you\'re looking for a high-quality, patient-focused dentist in Bhopal, especially for smile designing or aligners, I highly recommend this place!"',
+      tag: isHi ? 'फुल-माउथ रिहैबिलिटेशन' : 'Full-Mouth Rehabilitation'
+    },
+    {
+      avatar: isHi ? 'ह.ल.' : 'HL',
+      name: isHi ? 'हरकरन लबाना' : 'Harkaran Labana',
+      text: isHi
+        ? '"हैप्पी व्हाइट्स डेंटल क्लिनिक में मेरा अनुभव उत्कृष्ट रहा। क्लिनिक बेहद आधुनिक और सुव्यवस्थित है। डॉक्टर ने इलाज का हर चरण विस्तार से समझाया और पूरे समय मेरा आराम सुनिश्चित किया। सबसे ज्यादा मुझे उनके आधुनिक उपकरणों और साफ-सफाई ने प्रभावित किया। यह एक सामान्य डेंटल क्लिनिक से कहीं बेहतर है।"'
+        : '"I had an excellent experience at Happy Whites Dental Clinic. The clinic is extremely clean, modern, and well organized. The dentist took time to explain every step of the treatment and made sure I was comfortable throughout. What impressed me most was the attention to detail and the use of advanced equipment. It feels more like a premium healthcare experience than a typical dental visit."',
+      tag: isHi ? 'सामान्य डेंटल केयर' : 'General Dental Care'
+    },
+    {
+      avatar: isHi ? 'नि.गो.' : 'NG',
+      name: isHi ? 'निमिषा गोयल' : 'Nimisha Goyal',
+      text: isHi
+        ? '"इस डेंटल क्लिनिक में मेरा अनुभव बहुत शानदार रहा। जब मैं क्लिनिक पहुंची तो स्टाफ ने बहुत अच्छे से स्वागत किया जिससे मेरा डर दूर हो गया। डॉक्टर ने इलाज शुरू करने से पहले सब कुछ बहुत स्पष्टता से समझाया। क्लिनिक बहुत साफ है और मेरा इलाज पूरी तरह से दर्द-मुक्त रहा!"'
+        : '"I had a really great experience at this dental clinic. The staff was very friendly and made me feel comfortable from the moment I walked in. The dentist explained everything clearly before starting the treatment, which helped ease my anxiety. The clinic is very clean, well maintained, and uses modern equipment. My treatment was completely painless!"',
+      tag: isHi ? 'दर्द-मुक्त डेंटल उपचार' : 'Painless Dental Treatment'
+    },
+    {
+      avatar: isHi ? 'नि.सू.' : 'NS',
+      name: isHi ? 'नितिन सूद' : 'Nitin Sood',
+      text: isHi
+        ? '"क्लिनिक में बहुत ही बेहतरीन अनुभव मिला। डॉक्टर बहुत ही पेशेवर हैं, उन्होंने रूट कैनाल प्रक्रिया को बहुत अच्छी तरह समझाया और यह सुनिश्चित किया कि मुझे कोई दर्द न हो। स्टाफ बहुत विनम्र था और क्लिनिक की साफ-सफाई लाजवाब है।"'
+        : '"Excellent experience at the clinic. The doctor was very professional, explained the root canal procedure clearly, and made sure I was comfortable throughout the treatment. The staff was polite and the clinic was very clean and well maintained."',
+      tag: isHi ? 'रूट कैनाल ट्रीटमेंट' : 'Root Canal Treatment'
+    },
+    {
+      avatar: isHi ? 'गो.चं.' : 'GC',
+      name: isHi ? 'गोकुल चंद्रन' : 'Gokul Chandran',
+      text: isHi
+        ? '"मैंने शादी से पहले लेज़र टीथ व्हाइटनिंग कराई। केवल 45 मिनट में दांतों का रंग आश्चर्यजनक रूप से साफ और सफेद हो गया। सबसे अच्छी बात यह रही कि इसके बाद दांतों में कोई ठंडे-गर्म की झनझनाहट नहीं हुई। डॉ. वैभव और उनकी टीम का बहुत-बहुत धन्यवाद!"'
+        : '"I got laser teeth whitening done before my wedding. In just 45 minutes, my teeth became noticeably brighter and whiter. The best part was zero post-treatment sensitivity. Thanks to Dr. Vaibhav and his team!"',
+      tag: isHi ? 'लेज़र टीथ व्हाइटनिंग' : 'Laser Teeth Whitening'
+    },
+    {
+      avatar: isHi ? 'आ.अ.' : 'AA',
+      name: isHi ? 'आयशा अजहर' : 'Aysha Azhar',
+      text: isHi
+        ? '"मेरे सामने के दांतों के गैप के लिए मैंने ट्रूअलाइन अदृश्य अलाइनर लिया। किसी को पता भी नहीं चला कि मैं ब्रेसेस पहन रही हूँ और 6 महीने में मेरे दांत बिल्कुल सीधे हो गए। भोपाल में अलाइनर के लिए यह सबसे बेहतरीन क्लिनिक है।"'
+        : '"I chose TruAlign clear aligners for my front teeth spacing. Nobody even noticed I was wearing aligners, and my teeth straightened completely in 6 months. Best dental clinic in Bhopal for clear aligners."',
+      tag: isHi ? 'ट्रूअलाइन क्लियर अलाइनर' : 'TruAlign Clear Aligners'
+    }
+  ];
+
+  const reviewCards = sec.querySelectorAll('.grid > div.bg-white');
+  reviewCards.forEach((card, idx) => {
+    const d = reviewsData[idx];
+    if (!d) return;
+    const p = card.querySelector('p.text-sm');
+    if (p) p.textContent = d.text;
+    const tag = card.querySelector('p.text-\\[11px\\]');
+    if (tag) tag.textContent = d.tag;
+    const authorP = card.querySelector('.font-bold.text-slate-900, p.font-bold');
+    if (authorP && d.name) authorP.textContent = d.name;
+    const avatar = card.querySelector('.w-10.h-10');
+    if (avatar && d.avatar) avatar.textContent = d.avatar;
+  });
+
+  const bottomLink = sec.querySelector('.mt-10 a span');
+  if (bottomLink) {
+    bottomLink.textContent = isHi ? 'गूगल पर सभी 58+ समीक्षाएं देखें' : 'See All 58+ Reviews on Google';
+  }
+}
+
 function translateFaq(lang) {
+  const isHi = lang === 'hi';
   const faqItems = document.querySelectorAll('#faq .faq-item');
   faqItems.forEach((item, index) => {
     if (faqTranslations[index]) {
@@ -398,60 +882,192 @@ function translateFaq(lang) {
       if (aP && trans.a) aP.innerHTML = trans.a;
     }
   });
-}
 
-function translateTreatments(lang) {
-  const cards = document.querySelectorAll('#specialties .framer-treatment-card');
-  cards.forEach((card, index) => {
-    if (treatmentCardTranslations[index]) {
-      const trans = treatmentCardTranslations[index][lang];
-      const title = card.querySelector('h3');
-      if (title && trans.title) {
-        title.childNodes[0].textContent = trans.title + ' ';
-      }
-      const desc = card.querySelector('p');
-      if (desc && trans.desc) desc.textContent = trans.desc;
+  const bottomFaqBtn = document.querySelector('#faq .mt-8 a');
+  if (bottomFaqBtn) {
+    const span = bottomFaqBtn.querySelector('span');
+    if (span) {
+      span.textContent = isHi ? 'कोई अन्य सवाल है? व्हाट्सएप पर डॉ. वैभव से पूछें' : 'Have More Questions? Ask Dr. Vaibhav on WhatsApp';
     }
-  });
+  }
 }
 
-function translateAlignerSteps(lang) {
-  const steps = [
+function translateBlog(lang) {
+  const isHi = lang === 'hi';
+  const blogSec = document.getElementById('blog');
+  if (!blogSec) return;
+
+  const topBadge = blogSec.querySelector('.inline-flex span');
+  if (topBadge) topBadge.textContent = isHi ? 'दांतों की देखभाल के टिप्स' : 'DENTAL HEALTH TIPS & ARTICLES';
+
+  const blogData = [
     {
-      en: { title: '3D Digital Intraoral Scan', desc: 'A comfortable 5-minute digital scan creates a flawless 3D model of your teeth with zero messy putty.' },
-      hi: { title: '3D डिजिटल ओरल स्कैन', desc: 'बिना किसी चिपचिपे पेस्ट के मात्र 5 मिनट का डिजिटल स्कैन आपके दांतों का सटीक 3D मॉडल बनाता है।' }
+      cat: isHi ? 'डिजिटल डेंटिस्ट्री' : 'Digital Dentistry',
+      title: isHi ? 'पारंपरिक पेस्ट की जगह 3D डिजिटल स्कैन क्यों बेहतर हैं' : 'Why 3D Digital Scans Are Replacing Traditional Dental Impressions',
+      desc: isHi ? 'पुराने इंप्रेशन पेस्ट से उल्टी और असहजता होती है। जानें कैसे ऑप्टिकल 3D लेज़र स्कैनर मात्र 3 मिनट में दर्द-मुक्त सटीक माप लेता है।' : 'Traditional impression trays cause gagging and discomfort. Learn how optical 3D intraoral scanners capture 100,000+ data points in under 3 minutes — painlessly.',
+      time: isHi ? '5 मिनट में पढ़ें' : '5 Min Read',
+      btn: isHi ? 'डॉक्टर से पूछें' : 'Ask Doctor'
     },
     {
-      en: { title: 'Projected Smile Simulation', desc: 'See your final smile outcome on screen before treatment even begins with Dr. Vaibhav.' },
-      hi: { title: '3D स्माइल सिमुलेशन', desc: 'इलाज शुरू होने से पहले ही स्क्रीन पर देखें कि आपकी मुस्कान अंत में कैसी दिखेगी।' }
+      cat: isHi ? 'अदृश्य अलाइनर' : 'Aligners',
+      title: isHi ? 'अदृश्य अलाइनर बनाम मेटल तार: आपके लिए क्या सही है?' : 'Clear Aligners vs Metal Braces: Which Is Right for You?',
+      desc: isHi ? 'सीधे दांत पाने के लिए अदृश्य अलाइनर और पुराने मेटल ब्रेसेस के आराम, दृश्यता, समय और खर्च की निष्पक्ष तुलना।' : 'Comparing comfort, visibility, treatment time, and cost between invisible clear aligners and traditional metal brackets for teeth straightening.',
+      time: isHi ? '7 मिनट में पढ़ें' : '7 Min Read',
+      btn: isHi ? 'डॉक्टर से पूछें' : 'Ask Doctor'
     },
     {
-      en: { title: 'Precision In-House Lab Crafting', desc: 'Custom medical-grade aligners thermoformed and trimmed right in our Bhopal facility within 48 hours.' },
-      hi: { title: 'इन-हाउस लैब निर्माण', desc: 'भोपाल स्थित हमारे इन-हाउस सेटअप में मेडिकल-ग्रेड अलाइनर मात्र 48 घंटों में तैयार किए जाते हैं।' }
-    },
-    {
-      en: { title: 'Discreet Daily Transformation', desc: 'Wear your invisible trays daily, remove them easily for meals, and watch your smile transform weekly.' },
-      hi: { title: 'अदृश्य मुस्कान बदलाव', desc: 'रोजाना अपनी अदृश्य ट्रे पहनें, भोजन के समय आसानी से निकालें और सप्ताह-दर-सप्ताह मुस्कान में सुधार देखें।' }
+      cat: isHi ? 'रूट कैनाल' : 'Root Canal',
+      title: isHi ? 'सिंगल-सिटिंग दर्द-मुक्त रूट कैनाल: 45 मिनट में क्या होता है' : 'Painless Single-Visit Root Canal: What to Expect in 45 Minutes',
+      desc: isHi ? 'आधुनिक रोटरी एंडोडॉन्टिक्स और कम्प्यूटराइज्ड एनेस्थीसिया से आरसीटी पूरी तरह से दर्द-मुक्त हो गई है। जानें 1 सिटिंग प्रक्रिया।' : 'Modern rotary endodontics and computerized anesthesia make root canal treatment virtually painless. Here\'s what happens during a single-visit RCT.',
+      time: isHi ? '6 मिनट में पढ़ें' : '6 Min Read',
+      btn: isHi ? 'डॉक्टर से पूछें' : 'Ask Doctor'
     }
   ];
-  const stepCards = document.querySelectorAll('#aligner-journey .aligner-step-card, #aligner-journey .step-card, #aligner-journey .grid > div');
-  stepCards.forEach((card, idx) => {
-    if (steps[idx]) {
-      const h3 = card.querySelector('h3, h4');
-      if (h3 && steps[idx][lang]) h3.textContent = steps[idx][lang].title;
-      const p = card.querySelector('p');
-      if (p && steps[idx][lang]) p.textContent = steps[idx][lang].desc;
-    }
+
+  const articles = blogSec.querySelectorAll('article');
+  articles.forEach((art, idx) => {
+    const d = blogData[idx];
+    if (!d) return;
+    const catSpan = art.querySelector('.absolute.top-3.left-3 span');
+    if (catSpan) catSpan.textContent = d.cat;
+    const h3 = art.querySelector('h3');
+    if (h3) h3.textContent = d.title;
+    const p = art.querySelector('p');
+    if (p) p.textContent = d.desc;
+    const timeSpan = art.querySelector('.p-5 span.text-\\[11px\\]');
+    if (timeSpan) timeSpan.textContent = d.time;
+    const a = art.querySelector('.p-5 a');
+    if (a) a.innerHTML = `${d.btn} <i data-lucide="arrow-right" class="w-3 h-3"></i>`;
   });
 }
 
-function translateDoctorSection(lang) {
+function translateLocationSection(lang) {
   const isHi = lang === 'hi';
-  const docSec = document.getElementById('doctor');
-  if (!docSec) return;
-  const docTitle = docSec.querySelector('.doctor-title, .doc-spec');
-  if (docTitle) {
-    docTitle.textContent = isHi ? 'मुख्य डेंटल सर्जन एवं इम्प्लांटोलॉजिस्ट' : 'Lead Dental Surgeon & Orthodontist';
+  const loc = document.getElementById('location');
+  if (!loc) return;
+
+  const topBadge = loc.querySelector('.inline-flex span, span.text-xs.font-extrabold');
+  if (topBadge) topBadge.textContent = isHi ? 'क्लिनिक पता एवं संपर्क' : 'Location & Accessibility';
+
+  const h3 = loc.querySelector('h3');
+  if (h3) h3.textContent = isHi ? 'हैप्पी व्हाइट्स डेंटल क्लिनिक पधारें' : 'Visit Happy Whites Dental Clinic';
+
+  const cards = loc.querySelectorAll('.flex.items-start');
+  if (cards.length >= 1) {
+    const h4 = cards[0].querySelector('h4');
+    if (h4) h4.textContent = isHi ? 'क्लिनिक का पता' : 'Clinic Address';
+    const p = cards[0].querySelector('p');
+    if (p) p.innerHTML = isHi 
+      ? 'चैंबर नं. 4, दूसरी मंजिल, महेंद्रा मेडिस्क्वेयर,<br>बावड़िया कलां मेन रोड, अरेरा कॉलोनी,<br>भोपाल, मध्य प्रदेश 462039 <span class="text-teal-700 font-bold">(अपोलो सेज अस्पताल के पास)</span>'
+      : 'Chamber No. 4, 2nd Floor, Mahendra Medisquare,<br>Bawadiya Kalan Main Rd, Arera Colony,<br>Bhopal, Madhya Pradesh 462039 <span class="text-teal-700 font-bold">(Near ApolloSAGE Hospital)</span>';
+  }
+  if (cards.length >= 2) {
+    const h4 = cards[1].querySelector('h4');
+    if (h4) h4.textContent = isHi ? 'ओपीडी का समय' : 'OPD Timings';
+    const p = cards[1].querySelector('p');
+    if (p) p.innerHTML = isHi
+      ? '<strong class="text-slate-800 font-bold">सुबह:</strong> 10:00 AM – 02:00 PM<br><strong class="text-slate-800 font-bold">शाम:</strong> 05:00 PM – 09:00 PM<br><span class="text-emerald-600 font-bold">सोमवार से शनिवार खुला (रविवार केवल पूर्व अपॉइंटमेंट से)</span>'
+      : '<strong class="text-slate-800 font-bold">Morning:</strong> 10:00 AM – 02:00 PM<br><strong class="text-slate-800 font-bold">Evening:</strong> 05:00 PM – 09:00 PM<br><span class="text-emerald-600 font-bold">Open Monday to Saturday (Sunday by Prior Appointment)</span>';
+  }
+  if (cards.length >= 3) {
+    const h4 = cards[2].querySelector('h4');
+    if (h4) h4.textContent = isHi ? 'डॉक्टर एवं क्लिनिक हेल्पलाइन' : 'Direct Doctor & Clinic Line';
+  }
+
+  // Bottom action buttons in Card 1
+  const mapBtn = loc.querySelector('a[href*="maps.google.com"]');
+  if (mapBtn) {
+    mapBtn.innerHTML = isHi 
+      ? '<i data-lucide="navigation" class="w-4 h-4 text-teal-600"></i> गूगल मैप्स रूट खोलें' 
+      : '<i data-lucide="navigation" class="w-4 h-4 text-teal-600"></i> Open Google Maps Route';
+  }
+  const opdBtn = loc.querySelector('button[onclick*="openServiceBookingModal"]');
+  if (opdBtn) {
+    opdBtn.innerHTML = isHi
+      ? '<i data-lucide="calendar-plus" class="w-4 h-4"></i> ओपीडी विज़िट शेड्यूल करें'
+      : '<i data-lucide="calendar-plus" class="w-4 h-4"></i> Schedule OPD Visit';
+  }
+
+  // Card 2 (Neighborhood Proximity Card)
+  const proximityCard = loc.querySelectorAll('.lg\\:col-span-6')[1];
+  if (proximityCard) {
+    const proxH3 = proximityCard.querySelector('h3');
+    if (proxH3) proxH3.textContent = isHi ? 'महेंद्रा मेडिस्क्वेयर में प्राइम लोकेशन' : 'Prime Location at Mahendra Medisquare';
+    const proxP = proximityCard.querySelector('p.text-xs');
+    if (proxP) proxP.textContent = isHi 
+      ? 'बावड़िया कलां मेन रोड पर स्थित, बेसमेंट पार्किंग, लिफ्ट सुविधा और दक्षिण भोपाल के सभी प्रमुख इलाकों से सीधी कनेक्टिविटी।' 
+      : 'Conveniently located on Bawadiya Kalan Main Road with dedicated basement parking, lift access, and central accessibility across South Bhopal.';
+    
+    const rows = proximityCard.querySelectorAll('.space-y-2\\.5 > div');
+    if (rows.length >= 1) {
+      const spans = rows[0].querySelectorAll('span');
+      if (spans.length >= 1) spans[0].textContent = isHi ? '📍 10 नंबर मार्केट / अरेरा कॉलोनी से:' : '📍 From 10 No. Market / Arera Colony:';
+      if (spans.length >= 2) spans[1].textContent = isHi ? '5 मिनट की दूरी' : '5 Mins Drive';
+    }
+    if (rows.length >= 2) {
+      const spans = rows[1].querySelectorAll('span');
+      if (spans.length >= 1) spans[0].textContent = isHi ? '📍 गुलमोहर कॉलोनी / त्रिलंगा से:' : '📍 From Gulmohar Colony / Trilanga:';
+      if (spans.length >= 2) spans[1].textContent = isHi ? '3 मिनट की दूरी' : '3 Mins Drive';
+    }
+    if (rows.length >= 3) {
+      const spans = rows[2].querySelectorAll('span');
+      if (spans.length >= 1) spans[0].textContent = isHi ? '📍 शाहपुरा / रोहित नगर से:' : '📍 From Shahpura / Rohit Nagar:';
+      if (spans.length >= 2) spans[1].textContent = isHi ? '7 मिनट की दूरी' : '7 Mins Drive';
+    }
+
+    const waLocBtn = proximityCard.querySelector('a[href*="wa.me"]');
+    if (waLocBtn) {
+      waLocBtn.innerHTML = isHi
+        ? '<i data-lucide="message-circle" class="w-4 h-4 text-emerald-600"></i> व्हाट्सएप पर लोकेशन पिन मंगवाएं'
+        : '<i data-lucide="message-circle" class="w-4 h-4 text-emerald-600"></i> Request WhatsApp Location Pin';
+    }
+  }
+}
+
+function translateFooter(lang) {
+  const isHi = lang === 'hi';
+  const footer = document.querySelector('footer');
+  if (!footer) return;
+
+  const desc = footer.querySelector('p.text-xs');
+  if (desc) desc.textContent = isHi ? 'हैप्पी व्हाइट्स डेंटल क्लिनिक भोपाल में दर्द-मुक्त और आधुनिक डिजिटल डेंटिस्ट्री का अग्रणी केंद्र है, जो डॉ. वैभव श्रीवास्तव द्वारा संचालित है।' : "Bhopal's trusted centre for painless & digital dentistry by Dr. Vaibhav Shrivastav.";
+
+  const h4s = footer.querySelectorAll('h4');
+  if (h4s.length >= 1) h4s[0].textContent = isHi ? 'मुख्य लिंक्स' : 'Quick Links';
+  if (h4s.length >= 2) h4s[1].textContent = isHi ? 'संपर्क' : 'Contact';
+  if (h4s.length >= 3) h4s[2].textContent = isHi ? 'क्लिनिक समय' : 'OPD Timings';
+
+  const links = footer.querySelectorAll('a');
+  links.forEach(a => {
+    const href = a.getAttribute('href') || '';
+    if (href === '#cases') a.textContent = isHi ? 'केस परिणाम' : 'Cases';
+    else if (href === '#specialties') a.textContent = isHi ? 'उपचार सेवाएं' : 'Treatments';
+    else if (href === '#testimonials') a.textContent = isHi ? 'मरीजों की राय' : 'Reviews';
+    else if (href === '#faq') a.textContent = isHi ? 'सवाल-जवाब' : 'FAQ';
+    else if (href === '#location') a.textContent = isHi ? 'क्लिनिक पता' : 'Location';
+  });
+
+  const cols = footer.querySelectorAll('.grid > div');
+  if (cols.length >= 3) {
+    const contactPs = cols[2].querySelectorAll('p');
+    if (contactPs.length >= 1) contactPs[0].textContent = isHi ? 'चैंबर नंबर 4, दूसरी मंजिल' : 'Chamber No. 4, 2nd Floor';
+    if (contactPs.length >= 2) contactPs[1].textContent = isHi ? 'महेंद्रा मेडिस्क्वेयर, भोपाल' : 'Mahendra Medisquare, Bhopal';
+  }
+  if (cols.length >= 4) {
+    const timingPs = cols[3].querySelectorAll('p');
+    if (timingPs.length >= 1) timingPs[0].textContent = isHi ? 'सोम–शनि: सुबह 10 – दोपहर 2 बजे' : 'Mon–Sat: 10 AM – 2 PM';
+    if (timingPs.length >= 2) timingPs[1].textContent = isHi ? 'सोम–शनि: शाम 5 – रात 9 बजे' : 'Mon–Sat: 5 PM – 9 PM';
+    if (timingPs.length >= 3) timingPs[2].textContent = isHi ? 'रविवार: केवल अपॉइंटमेंट द्वारा' : 'Sunday: By Appointment';
+  }
+
+  const allFooterPs = footer.querySelectorAll('p');
+  if (allFooterPs.length > 0) {
+    allFooterPs[0].textContent = isHi 
+      ? 'हैप्पी व्हाइट्स डेंटल क्लिनिक भोपाल में दर्द-मुक्त और आधुनिक डिजिटल डेंटिस्ट्री का अग्रणी केंद्र है, जो डॉ. वैभव श्रीवास्तव द्वारा संचालित है।' 
+      : "Bhopal's trusted centre for painless & digital dentistry by Dr. Vaibhav Shrivastav.";
+    allFooterPs[allFooterPs.length - 1].textContent = isHi 
+      ? '© 2026 हैप्पी व्हाइट्स डेंटल क्लिनिक। सर्वाधिकार सुरक्षित।' 
+      : '© 2026 Happy Whites Dental Clinic. All rights reserved.';
   }
 }
 
@@ -613,6 +1229,15 @@ function translateBookingWizard(lang) {
       summaryProc.textContent = isHi ? (PROCEDURE_HI_MAP[bookingData.procedure] || bookingData.procedure) : bookingData.procedure;
     }
 
+    const summarySlot = step.querySelector('.summary-slot');
+    if (summarySlot) {
+      if (bookingData.time) {
+        summarySlot.textContent = isHi ? `${bookingData.time} (कन्फर्म स्लॉट)` : `${bookingData.time} (Confirmed Slot)`;
+      } else {
+        summarySlot.textContent = isHi ? 'शाम का स्लॉट (05:00 PM)' : 'Evening Slot (05:00 PM)';
+      }
+    }
+
     const labels = step.querySelectorAll('label');
     if (labels.length >= 2) {
       labels[1].textContent = isHi ? 'मरीज का पूरा नाम' : 'Patient Full Name';
@@ -657,11 +1282,15 @@ function translateBookingWizard(lang) {
 function translateSliderAndBeforeAfter(lang) {
   const isHi = lang === 'hi';
   
+  // Section top badge
+  const topBadge = document.querySelector('#transformation .inline-flex span:last-child');
+  if (topBadge) topBadge.textContent = isHi ? 'लाइव क्लिनिकल कॉन्ट्रास्ट प्रीव्यू' : 'Live Clinical Contrast Preview';
+
   // Before badge
   const bBadge = document.querySelector('#before-badge span.whitespace-nowrap');
   if (bBadge) {
     bBadge.textContent = isHi 
-      ? '🔍 इलाज से पहले: दांतों का पीलापन व दाग-धब्बे' 
+      ? '🔍 पहले: दांतों का पीलापन व दाग-धब्बे' 
       : '🔍 BEFORE: Natural Tooth Shade & Coffee Staining';
   }
 
@@ -669,7 +1298,7 @@ function translateSliderAndBeforeAfter(lang) {
   const aBadge = document.querySelector('#after-badge span.whitespace-nowrap');
   if (aBadge) {
     aBadge.textContent = isHi 
-      ? '✨ इलाज के बाद: 8 शेड चमकदार व सफेद मुस्कान' 
+      ? '✨ बाद: 8 शेड चमकदार व सफेद मुस्कान' 
       : '✨ AFTER: TruAlign & Laser Whitening (8 Shades Brightened)';
   }
 
@@ -684,16 +1313,23 @@ function translateSliderAndBeforeAfter(lang) {
   if (p100) p100.textContent = isHi ? '१००% सफेद दांत (बाद)' : '100% Whitened (After)';
 
   // Slider bottom bar text
-  const sliderBarText = document.querySelector('#transformation .bg-\\[\\#090e1a\\] span');
-  if (sliderBarText) {
-    sliderBarText.textContent = isHi
-      ? 'इलाज से पहले और बाद की चमक देखने के लिए स्लाइडर को दाएं-बाएं खींचें।'
-      : 'Drag the central divider left or right to inspect before and after enamel brightness.';
+  const sliderBar = document.querySelector('#transformation .border-t.border-slate-800\\/80');
+  if (sliderBar) {
+    const textSpan = sliderBar.querySelector('.text-xs span');
+    if (textSpan) {
+      textSpan.textContent = isHi
+        ? 'इलाज से पहले और बाद की चमक देखने के लिए स्लाइडर को बाएं या दाएं खींचें।'
+        : 'Drag the central divider left or right to inspect before and after enamel brightness.';
+    }
+    const centerBtn = sliderBar.querySelector('button');
+    if (centerBtn) centerBtn.textContent = isHi ? 'बीच में' : 'Center';
   }
 
-  const centerBtn = document.querySelector('#transformation button[onclick="setSliderPreset(50)"]');
-  if (centerBtn) {
-    centerBtn.textContent = isHi ? 'बीच में' : 'Center';
+  const sliderReadout = document.getElementById('slider-readout');
+  if (sliderReadout) {
+    if (sliderReadout.innerText.includes('50%')) {
+      sliderReadout.innerText = isHi ? 'विभाजन: 50% / 50%' : 'Split: 50% / 50%';
+    }
   }
 }
 
@@ -756,6 +1392,54 @@ function translateServiceModal(lang) {
     shiftSelect.options[2].text = isHi ? 'फ्लेक्सिबल / व्हाट्सएप पर कन्फर्म करें' : 'Flexible / Confirm on WhatsApp';
   }
 
+  const serviceSelect = document.getElementById('modal_service_select');
+  if (serviceSelect) {
+    const serviceOptionsMap = {
+      'In-House TruAlign Clear Aligners (Invisible Braces)': isHi ? 'इन-हाउस ट्रूअलाइन अलाइनर (अदृश्य ब्रेसेस)' : 'In-House TruAlign Clear Aligners (Invisible Braces)',
+      'Single-Sitting Painless Rotary RCT': isHi ? 'सिंगल-सिटिंग दर्द-मुक्त रोटरी आरसीटी' : 'Single-Sitting Painless Rotary RCT',
+      'Permanent Dental Implants & Zirconia Crown': isHi ? 'स्थायी डेंटल इम्प्लांट्स एवं ज़िरकोनिया क्राउन' : 'Permanent Dental Implants & Zirconia Crown',
+      'Laser Teeth Whitening (8 Shades Brighter)': isHi ? 'लेज़र टीथ व्हाइटनिंग (8 शेड चमकदार)' : 'Laser Teeth Whitening (8 Shades Brighter)',
+      'Ultrasonic Dental Scaling & Deep Polishing': isHi ? 'अल्ट्रासोनिक स्केलिंग एवं डीप पॉलिशिंग' : 'Ultrasonic Dental Scaling & Deep Polishing',
+      'Wisdom Tooth Pain / Extraction': isHi ? 'अक्ल दाढ़ का दर्द / निष्कासन' : 'Wisdom Tooth Pain / Extraction',
+      'FREE 3D Digital Dental Scan & Consultation': isHi ? 'मुफ़्त 3D डिजिटल स्कैन एवं परामर्श' : 'FREE 3D Digital Dental Scan & Consultation'
+    };
+    Array.from(serviceSelect.options).forEach(opt => {
+      for (const [enKey, hiVal] of Object.entries(serviceOptionsMap)) {
+        if (opt.value === enKey || opt.text === enKey || opt.text === hiVal) {
+          opt.text = isHi ? hiVal : enKey;
+          break;
+        }
+      }
+    });
+  }
+
+  const cardTitle = modal.querySelector('#modal-proc-title, #modal_service_name');
+  if (cardTitle) {
+    const raw = cardTitle.textContent.trim();
+    if (isHi) {
+      if (raw.includes('TruAlign') || raw.includes('Aligners')) cardTitle.textContent = 'इन-हाउस ट्रूअलाइन क्लियर अलाइनर';
+      else if (raw.includes('RCT')) cardTitle.textContent = 'सिंगल-सिटिंग दर्द-मुक्त रोटरी आरसीटी';
+      else if (raw.includes('Implant')) cardTitle.textContent = 'स्थायी डेंटल इम्प्लांट्स एवं क्राउन';
+      else if (raw.includes('Whitening')) cardTitle.textContent = 'लेज़र टीथ व्हाइटनिंग';
+      else if (raw.includes('Scan')) cardTitle.textContent = 'मुफ़्त 3D डिजिटल स्कैन';
+    } else {
+      if (raw.includes('ट्रूअलाइन')) cardTitle.textContent = 'In-House TruAlign Clear Aligners';
+      else if (raw.includes('आरसीटी')) cardTitle.textContent = 'Single-Sitting Painless Rotary RCT';
+      else if (raw.includes('इम्प्लांट्स')) cardTitle.textContent = 'Permanent Dental Implants & Zirconia Crown';
+      else if (raw.includes('व्हाइटनिंग')) cardTitle.textContent = 'Laser Teeth Whitening';
+      else if (raw.includes('डिजिटल स्कैन')) cardTitle.textContent = 'FREE 3D Digital Dental Scan';
+    }
+  }
+
+  const specBadge = modal.querySelector('#modal-proc-badge, .text-amber-400.bg-amber-400\\/10');
+  if (specBadge) specBadge.textContent = isHi ? 'विशेषज्ञ उपचार' : 'Specialty';
+
+  const digitCounter = modal.querySelector('#modal-phone-digit-counter, .phone-digit-counter');
+  if (digitCounter) {
+    const val = (document.getElementById('modal_patient_phone')?.value || '').replace(/\D/g, '').length;
+    digitCounter.textContent = isHi ? `${val}/10 अंक` : `${val}/10 Digits`;
+  }
+
   const submitBtn = modal.querySelector('button[onclick="submitModalWhatsAppBooking()"]');
   if (submitBtn) {
     submitBtn.innerHTML = isHi
@@ -771,19 +1455,104 @@ function translateServiceModal(lang) {
   }
 }
 
+function translateModals(lang) {
+  const isHi = lang === 'hi';
+
+  // 1. Lightbox modal
+  const lightbox = document.getElementById('clinic-lightbox');
+  if (lightbox) {
+    const title = lightbox.querySelector('#lightbox-title');
+    if (title && (title.textContent.includes('Infrastructure') || title.textContent.includes('इंफ्रास्ट्रक्चर'))) {
+      title.textContent = isHi ? 'आधुनिक क्लिनिकल इंफ्रास्ट्रक्चर' : 'Live Clinical Infrastructure';
+    }
+    const cBtn = lightbox.querySelector('a[href*="wa.me"]');
+    if (cBtn) {
+      cBtn.innerHTML = isHi 
+        ? '<i data-lucide="message-circle" class="w-3.5 h-3.5"></i> व्हाट्सएप पर परामर्श लें' 
+        : '<i data-lucide="message-circle" class="w-3.5 h-3.5"></i> Consult on WhatsApp';
+    }
+  }
+
+  // 2. Video modal
+  const videoModal = document.getElementById('clinic-video-modal');
+  if (videoModal) {
+    const h3 = videoModal.querySelector('h3');
+    if (h3) {
+      h3.innerHTML = isHi 
+        ? 'वर्चुअल क्लिनिक टूर एवं पेशेंट अनुभव <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">सत्यापित भोपाल</span>' 
+        : 'Virtual Clinic Tour & Patient Stories <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">Verified Bhopal</span>';
+    }
+    const subP = videoModal.querySelector('.px-5 p');
+    if (subP) {
+      subP.textContent = isHi ? 'हैप्पी व्हाइट्स डेंटल क्लिनिक के अंदर • महेंद्रा मेडिस्क्वेयर' : 'Inside Happy Whites Dental Clinic • Mahendra Medisquare';
+    }
+
+    const walkTag = videoModal.querySelector('.aspect-video span.uppercase');
+    if (walkTag) walkTag.textContent = isHi ? 'क्लिनिकल वॉकथ्रू' : 'Clinical Walkthrough';
+
+    const walkH4 = videoModal.querySelector('.aspect-video h4');
+    if (walkH4) walkH4.textContent = isHi ? 'अत्याधुनिक डिजिटल ऑपरेटरी टूर' : 'State-of-the-Art Digital Operatory Tour';
+
+    const walkP = videoModal.querySelector('.aspect-video p');
+    if (walkP) walkP.textContent = isHi ? '3D इंट्राओरल स्कैनर • क्लास-बी ऑटोक्लेव • सिंगल-सिटिंग आरसीटी सेटअप' : '3D Intraoral Scanners • Class-B Autoclave • Single-Sitting RCT Setup';
+
+    const uhdBadge = videoModal.querySelector('.aspect-video .absolute.top-3.right-3');
+    if (uhdBadge) {
+      uhdBadge.innerHTML = isHi 
+        ? '<span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span> 4K अल्ट्रा एचडी सुविधा' 
+        : '<span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span> 4K Ultra HD Facility';
+    }
+
+    const reelSub = videoModal.querySelector('.bg-pink-500\\/20 + div div:last-child');
+    if (reelSub) reelSub.textContent = isHi ? 'डॉ. वैभव के दैनिक पेशेंट टिप्स एवं रील्स' : "Dr. Vaibhav's Daily Patient Tips & Reels";
+
+    const followBtn = videoModal.querySelector('a[href*="instagram.com"]');
+    if (followBtn) followBtn.textContent = isHi ? 'फॉलो करें' : 'Follow';
+
+    const dirSub = videoModal.querySelector('.bg-emerald-500\\/20 + div div:last-child');
+    if (dirSub) dirSub.textContent = isHi ? 'दूसरी मंजिल, महेंद्रा मेडिस्क्वेयर' : '2nd Floor, Mahendra Medisquare';
+
+    const dirBtn = videoModal.querySelector('a[href="#location"]');
+    if (dirBtn) dirBtn.textContent = isHi ? 'दिशा-निर्देश' : 'Directions';
+
+    const sterileRow = videoModal.querySelector('.border-t .text-xs span');
+    if (sterileRow) sterileRow.textContent = isHi ? '100% स्टेरिलाइज्ड प्रोटोकॉल • दर्द-मुक्त डिजिटल डेंटिस्ट्री' : '100% Sterile Protocol • Pain-Free Digital Dentistry';
+
+    const bookBtn = videoModal.querySelector('.border-t button');
+    if (bookBtn) {
+      bookBtn.innerHTML = isHi 
+        ? '<i data-lucide="calendar-plus" class="w-4 h-4"></i> अपॉइंटमेंट बुक करें' 
+        : '<i data-lucide="calendar-plus" class="w-4 h-4"></i> Book Appointment';
+    }
+  }
+}
+
 function setLanguage(lang) {
   currentLang = lang;
   const t = translations[lang] || translations.en;
+  const isHi = lang === 'hi';
   
+  // Set html lang and body styling
+  document.documentElement.lang = lang;
+  document.body.classList.toggle('lang-hi', isHi);
+
   // 1. Update active states on all language toggle buttons (desktop + mobile)
-  document.querySelectorAll('[data-lang-btn="en"]').forEach(btn => btn.classList.toggle('active', lang === 'en'));
-  document.querySelectorAll('[data-lang-btn="hi"]').forEach(btn => btn.classList.toggle('active', lang === 'hi'));
+  document.querySelectorAll('[data-lang-btn="en"]').forEach(btn => btn.classList.toggle('active', !isHi));
+  document.querySelectorAll('[data-lang-btn="hi"]').forEach(btn => btn.classList.toggle('active', isHi));
   
-  // Legacy button IDs fallback
+  // Button IDs fallback
   const langEn = document.getElementById('lang-en');
   const langHi = document.getElementById('lang-hi');
-  if (langEn) langEn.classList.toggle('active', lang === 'en');
-  if (langHi) langHi.classList.toggle('active', lang === 'hi');
+  if (langEn) langEn.classList.toggle('active', !isHi);
+  if (langHi) langHi.classList.toggle('active', isHi);
+  const langEnM = document.getElementById('lang-en-m');
+  const langHiM = document.getElementById('lang-hi-m');
+  if (langEnM) langEnM.classList.toggle('active', !isHi);
+  if (langHiM) langHiM.classList.toggle('active', isHi);
+  const langEnMob = document.getElementById('lang-en-mob');
+  const langHiMob = document.getElementById('lang-hi-mob');
+  if (langEnMob) langEnMob.classList.toggle('active', !isHi);
+  if (langHiMob) langHiMob.classList.toggle('active', isHi);
 
   // 2. Scan all data-i18n elements
   document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -801,7 +1570,7 @@ function setLanguage(lang) {
     }
   });
 
-  // 4. Update section headers (H2 and descriptions)
+  // 4. Update section headers (H2, descriptions, and top badges)
   const sectionMapping = {
     'cases': { title: t.cases_title, desc: t.cases_desc, badge: t.cases_badge },
     'transformation': { title: t.trans_title, desc: t.trans_desc, badge: t.trans_badge },
@@ -820,19 +1589,28 @@ function setLanguage(lang) {
     if (!sec) return;
     const h2 = sec.querySelector('h2, h3.section-heading');
     if (h2 && data.title) h2.textContent = data.title;
-    const p = sec.querySelector('p.text-sm, p.text-base, p.section-subheading');
+    const p = sec.querySelector('.text-center p, p.text-sm, p.text-base, p.text-xs, p.section-subheading');
     if (p && data.desc) p.textContent = data.desc;
+    const badge = sec.querySelector('span.uppercase, span.text-xs.font-extrabold, div.inline-flex span');
+    if (badge && data.badge) badge.textContent = data.badge;
   });
 
   // 5. Run specialized component translators
-  translateFaq(lang);
-  translateTreatments(lang);
-  translateAlignerSteps(lang);
-  translateDoctorSection(lang);
-  translateChatbot(lang);
-  translateBookingWizard(lang);
+  translateCases(lang);
   translateSliderAndBeforeAfter(lang);
+  translateAlignerSteps(lang);
+  translateTreatments(lang);
+  translateTechTour(lang);
+  translateDoctorSection(lang);
+  translateReviews(lang);
+  translateFaq(lang);
+  translateLocationSection(lang);
+  translateBlog(lang);
+  translateBookingWizard(lang);
   translateServiceModal(lang);
+  translateModals(lang);
+  translateChatbot(lang);
+  translateFooter(lang);
 
   // 6. Update hourly slot cards & clinic banners
   renderHourlySlots();
@@ -841,7 +1619,6 @@ function setLanguage(lang) {
   try {
     localStorage.setItem('happy_whites_lang', lang);
   } catch (e) {}
-  document.documentElement.lang = lang;
 
   // 8. Refresh Lucide Icons
   if (window.lucide) lucide.createIcons();
