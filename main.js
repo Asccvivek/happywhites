@@ -211,6 +211,7 @@ const translations = {
 };
 
 let currentLang = 'en';
+let currentWizardStep = 1;
 
 const faqTranslations = [
   {
@@ -647,6 +648,10 @@ function translateBookingWizard(lang) {
   if (heroHeader) heroHeader.textContent = isHi ? 'स्मार्ट ओपीडी बुकिंग टूल' : 'Smart OPD Booking Tool';
   const heroSub = document.querySelector('#booking-tool p');
   if (heroSub) heroSub.textContent = isHi ? 'हैप्पी व्हाइट्स डेंटल क्लिनिक, भोपाल' : 'Happy Whites Dental Clinic, Bhopal';
+
+  document.querySelectorAll('.step-badge').forEach(badge => {
+    badge.innerText = isHi ? `चरण ${currentWizardStep} / 3` : `Step ${currentWizardStep} of 3`;
+  });
 }
 
 function translateSliderAndBeforeAfter(lang) {
@@ -1138,6 +1143,7 @@ function onDateChanged(input) {
 }
 
 function goToStep(stepNumber) {
+  currentWizardStep = stepNumber;
   for (let s = 1; s <= 3; s++) {
     document.querySelectorAll(`.wizard-step-${s}`).forEach(el => {
       if (s === stepNumber) {
@@ -2101,3 +2107,8 @@ function toggleMobileMenu() {
     document.body.style.overflow = '';
   }
 }
+
+// Global window exposure
+window.setLanguage = setLanguage;
+window.switchLanguage = setLanguage;
+
