@@ -143,19 +143,25 @@ function openBookingModal() {
   modal.classList.add('flex');
   document.body.style.overflow = 'hidden';
   
-  // Clone booking tool content into modal
-  const content = document.getElementById('booking-modal-content');
-  const bookingTool = document.getElementById('booking-tool');
-  if (content && bookingTool) {
-    content.innerHTML = '';
-    const clone = bookingTool.cloneNode(true);
-    clone.id = 'booking-tool-modal';
-    clone.classList.remove('lg:col-span-5', 'relative', 'z-10', 'scroll-mt-36');
-    content.appendChild(clone);
-    
-    // Re-initialize icons in modal
-    if (window.lucide) lucide.createIcons();
-  }
+  // Ensure date is set across all date inputs
+  const todayIso = new Date().toISOString().split('T')[0];
+  if (!bookingData.date) bookingData.date = todayIso;
+  document.querySelectorAll('.wizard-date-input').forEach(el => {
+    if (!el.value) el.value = bookingData.date;
+    el.min = todayIso;
+  });
+
+  // Start modal on step 1
+  goToStep(1);
+
+  // Sync procedure selection
+  selectProcedureChip(null, bookingData.procedure || "In-House TruAlign Clear Aligners");
+
+  // Render hourly slots
+  renderHourlySlots();
+  
+  // Re-initialize icons in modal
+  if (window.lucide) lucide.createIcons();
 }
 
 function closeBookingModal() {
@@ -211,8 +217,9 @@ function getSlotsForDate(dateString) {
   }
   
   return ALL_CLINIC_SLOTS.map((slot, index) => {
-    const seedVal = Math.abs((hash * 9301 + 49297 + index * 233) % 233280) / 233280;
-    const isAvailable = seedVal > 0.32;
+    const slotHash = Math.abs(Math.sin(hash + index * 997) * 10000);
+    const rand = slotHash - Math.floor(slotHash);
+    const isAvailable = rand > 0.25;
     return { ...slot, isAvailable: isAvailable };
   });
 }
@@ -227,126 +234,147 @@ let bookingData = {
   phone: ""
 };
 
-document.getElementById('wizard_date').value = bookingData.date;
-document.getElementById('wizard_date').min = bookingData.date;
+// Initialize all wizard date inputs to today
+(function initBookingDates() {
+  const todayIso = new Date().toISOString().split('T')[0];
+  bookingData.date = todayIso;
+  document.querySelectorAll('.wizard-date-input').forEach(el => {
+    el.value = todayIso;
+    el.min = todayIso;
+  });
+})();
 
 function renderHourlySlots() {
-  const dateVal = document.getElementById('wizard_date').value || bookingData.date;
+  const dateInput = document.querySelector('.wizard-date-input');
+  const dateVal = (dateInput && dateInput.value) || bookingData.date;
   const slots = getSlotsForDate(dateVal);
   
   const morningAvailable = slots.filter(s => s.shift === 'morning' && s.isAvailable);
   const eveningAvailable = slots.filter(s => s.shift === 'evening' && s.isAvailable);
   const totalAvailable = slots.filter(s => s.isAvailable);
 
-  document.getElementById('morning-count-badge').innerText = `${morningAvailable.length} Left`;
-  document.getElementById('evening-count-badge').innerText = `${eveningAvailable.length} Left`;
+  document.querySelectorAll('.morning-count-badge').forEach(el => {
+    el.innerText = `${morningAvailable.length} Left`;
+  });
+  document.querySelectorAll('.evening-count-badge').forEach(el => {
+    el.innerText = `${eveningAvailable.length} Left`;
+  });
   
-  const dateSlotsCount = document.getElementById('date-slots-count');
-  const liveBadge = document.getElementById('live-slots-text');
-  
-  if (totalAvailable.length === 0) {
-    if (dateSlotsCount) {
+  document.querySelectorAll('.date-slots-count').forEach(dateSlotsCount => {
+    if (totalAvailable.length === 0) {
       dateSlotsCount.innerText = 'No Slots Available';
-      dateSlotsCount.className = "text-[10px] font-bold text-rose-400 bg-rose-950/80 px-2 py-0.5 rounded border border-rose-500/30";
-    }
-    if (liveBadge) {
-      liveBadge.innerText = 'No slots open — try another date';
-    }
-  } else {
-    if (dateSlotsCount) {
+      dateSlotsCount.className = "date-slots-count text-[10px] font-bold text-rose-400 bg-rose-950/80 px-2 py-0.5 rounded border border-rose-500/30";
+    } else {
       dateSlotsCount.innerText = `${totalAvailable.length} Slots Available`;
-      dateSlotsCount.className = "text-[10px] font-bold text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-500/30";
+      dateSlotsCount.className = "date-slots-count text-[10px] font-bold text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-500/30";
     }
-    if (liveBadge) {
+  });
+
+  document.querySelectorAll('.live-slots-text').forEach(liveBadge => {
+    if (totalAvailable.length === 0) {
+      liveBadge.innerText = 'No slots open — try another date';
+    } else {
       liveBadge.innerText = `⚡ ${totalAvailable.length} Slots Open Today`;
     }
-  }
+  });
 
   const currentShiftSlots = slots.filter(s => s.shift === currentActiveShift);
-  const grid = document.getElementById('hourly-slots-grid');
-  grid.innerHTML = '';
-
   const currentShiftAvailable = currentShiftSlots.filter(s => s.isAvailable);
 
-  if (currentShiftAvailable.length === 0) {
-    const emptyDiv = document.createElement('div');
-    emptyDiv.className = 'slots-empty-state col-span-2';
-    const otherShift = currentActiveShift === 'morning' ? 'Evening' : 'Morning';
-    emptyDiv.innerHTML = `
-      <div class="slots-empty-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-      </div>
-      <div class="slots-empty-title">All ${otherShift} slots booked</div>
-      <div class="slots-empty-desc">Try selecting the ${otherShift} shift or pick a different date for more availability.</div>
-    `;
-    grid.appendChild(emptyDiv);
-  } else {
-    let hasSelected = false;
-    currentShiftSlots.forEach(slot => {
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.setAttribute('data-slot-id', slot.id);
-      btn.setAttribute('data-time', slot.time);
+  // If currently selected slot is not available in this shift, auto-select first available
+  let hasSelected = currentShiftAvailable.some(s => s.time === bookingData.time);
 
-      if (slot.isAvailable) {
-        const isSelected = bookingData.time === slot.time;
-        if (isSelected) hasSelected = true;
-
-        btn.className = isSelected
-          ? "hourly-slot-btn p-2.5 rounded-xl border border-teal-400 bg-teal-950 text-white font-extrabold text-left transition-all shadow-md shadow-teal-500/20 flex items-center justify-between group"
-          : "hourly-slot-btn p-2.5 rounded-xl border border-slate-700 bg-slate-800/90 hover:border-sky-400/80 hover:bg-slate-800 text-slate-100 text-left transition-all flex items-center justify-between group";
-
-        btn.onclick = () => selectHourlySlot(slot.time, slot.period);
-        btn.innerHTML = `
-          <div>
-            <div class="text-xs font-black text-white flex items-center gap-1.5">
-              <span class="w-2 h-2 rounded-full ${isSelected ? 'bg-emerald-400 animate-pulse' : 'bg-teal-400'}"></span>
-              ${slot.time}
-            </div>
-            <div class="text-[9px] ${isSelected ? 'text-teal-200' : 'text-slate-400'} mt-0.5">Doctor Available</div>
-          </div>
-          <span class="text-[9px] font-black ${isSelected ? 'bg-emerald-500 text-slate-950' : 'bg-emerald-950/80 text-emerald-300 border border-emerald-500/30'} px-2 py-0.5 rounded-full">
-            ${isSelected ? 'Selected' : 'Open'}
-          </span>
-        `;
-      } else {
-        btn.disabled = true;
-        btn.className = "p-2.5 rounded-xl border border-slate-800/80 bg-slate-900/50 text-slate-500 text-left opacity-60 cursor-not-allowed flex items-center justify-between";
-        btn.innerHTML = `
-          <div>
-            <div class="text-xs font-bold line-through text-slate-500 flex items-center gap-1.5">
-              <span class="w-1.5 h-1.5 rounded-full bg-slate-600"></span>
-              ${slot.time}
-            </div>
-            <div class="text-[9px] text-rose-400/80 mt-0.5">Booked by Patient</div>
-          </div>
-          <span class="text-[9px] font-bold bg-slate-800 text-slate-400 px-1.5 py-0.5 rounded">Full</span>
-        `;
-      }
-
-      grid.appendChild(btn);
+  if (!hasSelected && currentShiftAvailable.length > 0) {
+    bookingData.time = currentShiftAvailable[0].time;
+    bookingData.slot = `${currentShiftAvailable[0].time} (${currentShiftAvailable[0].period})`;
+    document.querySelectorAll('.selected-slot-display').forEach(el => {
+      el.innerText = `${currentShiftAvailable[0].time} (${currentShiftAvailable[0].period})`;
     });
-
-    if (!hasSelected && currentShiftAvailable.length > 0) {
-      selectHourlySlot(currentShiftAvailable[0].time, currentShiftAvailable[0].period);
-    }
   }
 
-  lucide.createIcons();
+  const grids = document.querySelectorAll('.hourly-slots-grid');
+  grids.forEach(grid => {
+    grid.innerHTML = '';
+
+    if (currentShiftAvailable.length === 0) {
+      const emptyDiv = document.createElement('div');
+      emptyDiv.className = 'slots-empty-state col-span-2 text-center py-6 px-4 bg-slate-950/60 rounded-2xl border border-slate-800';
+      const currentShiftName = currentActiveShift === 'morning' ? 'Morning' : 'Evening';
+      const otherShift = currentActiveShift === 'morning' ? 'Evening' : 'Morning';
+      emptyDiv.innerHTML = `
+        <div class="slots-empty-icon w-10 h-10 mx-auto rounded-full bg-slate-800 flex items-center justify-center text-slate-400 mb-2">
+          <i data-lucide="calendar-x" class="w-5 h-5 text-amber-400"></i>
+        </div>
+        <div class="slots-empty-title text-xs font-bold text-slate-200">All ${currentShiftName} slots booked</div>
+        <div class="slots-empty-desc text-[11px] text-slate-400 mt-1">Try selecting the ${otherShift} shift or pick a different date for more availability.</div>
+      `;
+      grid.appendChild(emptyDiv);
+    } else {
+      currentShiftSlots.forEach(slot => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.setAttribute('data-slot-id', slot.id);
+        btn.setAttribute('data-time', slot.time);
+
+        if (slot.isAvailable) {
+          const isSelected = bookingData.time === slot.time;
+
+          btn.className = isSelected
+            ? "hourly-slot-btn p-2.5 rounded-xl border border-teal-400 bg-teal-950 text-white font-extrabold text-left transition-all shadow-md shadow-teal-500/20 flex items-center justify-between group cursor-pointer"
+            : "hourly-slot-btn p-2.5 rounded-xl border border-slate-700 bg-slate-800/90 hover:border-sky-400/80 hover:bg-slate-800 text-slate-100 text-left transition-all flex items-center justify-between group cursor-pointer";
+
+          btn.onclick = () => selectHourlySlot(slot.time, slot.period);
+          btn.innerHTML = `
+            <div>
+              <div class="text-xs font-black text-white flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full ${isSelected ? 'bg-emerald-400 animate-pulse' : 'bg-teal-400'}"></span>
+                ${slot.time}
+              </div>
+              <div class="text-[9px] ${isSelected ? 'text-teal-200' : 'text-slate-400'} mt-0.5">Doctor Available</div>
+            </div>
+            <span class="text-[9px] font-black ${isSelected ? 'bg-emerald-500 text-slate-950' : 'bg-emerald-950/80 text-emerald-300 border border-emerald-500/30'} px-2 py-0.5 rounded-full">
+              ${isSelected ? 'Selected' : 'Open'}
+            </span>
+          `;
+        } else {
+          btn.disabled = true;
+          btn.className = "p-2.5 rounded-xl border border-slate-800/80 bg-slate-900/50 text-slate-500 text-left opacity-60 cursor-not-allowed flex items-center justify-between";
+          btn.innerHTML = `
+            <div>
+              <div class="text-xs font-bold line-through text-slate-500 flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-slate-600"></span>
+                ${slot.time}
+              </div>
+              <div class="text-[9px] text-rose-400/80 mt-0.5">Booked by Patient</div>
+            </div>
+            <span class="text-[9px] font-bold bg-slate-800 text-slate-400 px-1.5 py-0.5 rounded">Full</span>
+          `;
+        }
+
+        grid.appendChild(btn);
+      });
+    }
+  });
+
+  if (window.lucide) lucide.createIcons();
 }
 
 function filterShift(shiftName) {
   currentActiveShift = shiftName;
-  const morningBtn = document.getElementById('shift-btn-morning');
-  const eveningBtn = document.getElementById('shift-btn-evening');
+  
+  const morningClassesActive = "shift-btn shift-btn-morning p-2.5 rounded-xl border border-amber-400 bg-amber-950/50 text-white font-bold text-left transition-all shadow-md shadow-amber-500/20 cursor-pointer";
+  const morningClassesInactive = "shift-btn shift-btn-morning p-2.5 rounded-xl border border-slate-700 bg-slate-800/80 hover:border-sky-400 text-slate-300 text-left transition-all cursor-pointer";
 
-  if (shiftName === 'morning') {
-    morningBtn.className = "shift-btn p-2.5 rounded-xl border border-amber-400 bg-amber-950/50 text-white font-bold text-left transition-all shadow-md shadow-amber-500/20";
-    eveningBtn.className = "shift-btn p-2.5 rounded-xl border border-slate-700 bg-slate-800/80 hover:border-sky-400 text-slate-300 text-left transition-all";
-  } else {
-    eveningBtn.className = "shift-btn p-2.5 rounded-xl border border-sky-400 bg-blue-950/80 text-white font-bold text-left transition-all shadow-md shadow-blue-900/40";
-    morningBtn.className = "shift-btn p-2.5 rounded-xl border border-slate-700 bg-slate-800/80 hover:border-sky-400 text-slate-300 text-left transition-all";
-  }
+  const eveningClassesActive = "shift-btn shift-btn-evening p-2.5 rounded-xl border border-sky-400 bg-blue-950/80 text-white font-bold text-left transition-all shadow-md shadow-blue-900/40 cursor-pointer";
+  const eveningClassesInactive = "shift-btn shift-btn-evening p-2.5 rounded-xl border border-slate-700 bg-slate-800/80 hover:border-sky-400 text-slate-300 text-left transition-all cursor-pointer";
+
+  document.querySelectorAll('.shift-btn-morning').forEach(btn => {
+    btn.className = shiftName === 'morning' ? morningClassesActive : morningClassesInactive;
+  });
+
+  document.querySelectorAll('.shift-btn-evening').forEach(btn => {
+    btn.className = shiftName === 'evening' ? eveningClassesActive : eveningClassesInactive;
+  });
 
   renderHourlySlots();
 }
@@ -354,58 +382,96 @@ function filterShift(shiftName) {
 function selectHourlySlot(timeStr, periodStr) {
   bookingData.time = timeStr;
   bookingData.slot = `${timeStr} (${periodStr})`;
-  const selectedDisplay = document.getElementById('selected-slot-display');
-  if (selectedDisplay) {
-    selectedDisplay.innerText = `${timeStr} (${periodStr})`;
-  }
+  
+  document.querySelectorAll('.selected-slot-display').forEach(el => {
+    el.innerText = `${timeStr} (${periodStr})`;
+  });
+
+  document.querySelectorAll('.summary-slot').forEach(el => {
+    el.innerText = `${bookingData.date} • ${bookingData.slot}`;
+  });
+
   renderHourlySlots();
 }
 
-function onDateChanged() {
-  bookingData.date = document.getElementById('wizard_date').value;
+function onDateChanged(input) {
+  const newDate = (input && input.value) ? input.value : (document.querySelector('.wizard-date-input')?.value || bookingData.date);
+  bookingData.date = newDate;
+
+  document.querySelectorAll('.wizard-date-input').forEach(el => {
+    if (el !== input) el.value = newDate;
+  });
+
+  document.querySelectorAll('.summary-slot').forEach(el => {
+    el.innerText = `${bookingData.date} • ${bookingData.slot}`;
+  });
+
   renderHourlySlots();
 }
 
 function goToStep(stepNumber) {
-  document.getElementById('wizard-step-1').classList.add('hidden');
-  document.getElementById('wizard-step-2').classList.add('hidden');
-  document.getElementById('wizard-step-3').classList.add('hidden');
+  for (let s = 1; s <= 3; s++) {
+    document.querySelectorAll(`.wizard-step-${s}`).forEach(el => {
+      if (s === stepNumber) {
+        el.classList.remove('hidden');
+      } else {
+        el.classList.add('hidden');
+      }
+    });
+  }
 
-  document.getElementById(`wizard-step-${stepNumber}`).classList.remove('hidden');
+  document.querySelectorAll('.step-badge').forEach(badge => {
+    badge.innerText = `Step ${stepNumber} of 3`;
+  });
 
-  document.getElementById('step-badge').innerText = `Step ${stepNumber} of 3`;
   const progressPercent = stepNumber === 1 ? '33.33%' : stepNumber === 2 ? '66.66%' : '100%';
-  document.getElementById('step-progress-bar').style.width = progressPercent;
+  document.querySelectorAll('.step-progress-bar').forEach(bar => {
+    bar.style.width = progressPercent;
+  });
 
   if (stepNumber === 2) {
     renderHourlySlots();
   }
 
   if (stepNumber === 3) {
-    bookingData.date = document.getElementById('wizard_date').value || bookingData.date;
-    document.getElementById('summary-proc').innerText = bookingData.procedure;
-    document.getElementById('summary-slot').innerText = `${bookingData.date} • ${bookingData.slot}`;
+    const dateInput = document.querySelector('.wizard-date-input');
+    if (dateInput && dateInput.value) {
+      bookingData.date = dateInput.value;
+    }
+    document.querySelectorAll('.summary-proc').forEach(el => {
+      el.innerText = bookingData.procedure;
+    });
+    document.querySelectorAll('.summary-slot').forEach(el => {
+      el.innerText = `${bookingData.date} • ${bookingData.slot}`;
+    });
   }
 
-  lucide.createIcons();
+  if (window.lucide) lucide.createIcons();
 }
 
 function selectProcedureChip(btn, procName) {
   bookingData.procedure = procName;
+
   document.querySelectorAll('.proc-chip').forEach(c => {
-    c.className = "proc-chip text-left p-3 rounded-2xl border border-slate-700/80 bg-slate-800/80 hover:bg-slate-800 hover:border-sky-400/80 text-white transition-all flex flex-col justify-between";
+    const isMatch = c.getAttribute('data-proc') === procName ||
+                    (c.innerText && c.innerText.includes(procName)) ||
+                    (procName && procName.includes(c.querySelector('span')?.innerText || ''));
+    if (isMatch) {
+      c.className = "proc-chip text-left p-3 rounded-2xl border border-sky-400 bg-blue-950/80 text-white shadow-lg shadow-blue-900/40 transition-all flex flex-col justify-between cursor-pointer";
+    } else {
+      c.className = "proc-chip text-left p-3 rounded-2xl border border-slate-700/80 bg-slate-800/80 hover:bg-slate-800 hover:border-sky-400/80 text-white transition-all flex flex-col justify-between cursor-pointer";
+    }
   });
-  btn.className = "proc-chip text-left p-3 rounded-2xl border border-sky-400 bg-blue-950/80 text-white shadow-lg shadow-blue-900/40 transition-all flex flex-col justify-between";
+
+  document.querySelectorAll('.summary-proc').forEach(el => {
+    el.innerText = bookingData.procedure;
+  });
 }
 
 function pickProcedureFromCard(procName) {
   const serviceName = procName || "In-House TruAlign Clear Aligners";
   bookingData.procedure = serviceName;
-  document.querySelectorAll('.proc-chip').forEach(c => {
-    if (c.innerText.includes(serviceName) || serviceName.includes(c.querySelector('span')?.innerText || '')) {
-      c.className = "proc-chip text-left p-3 rounded-2xl border border-teal-500 bg-teal-50/80 text-brand-900 shadow-sm transition-all flex flex-col justify-between";
-    }
-  });
+  selectProcedureChip(null, serviceName);
   openServiceBookingModal(serviceName);
 }
 
@@ -444,48 +510,63 @@ function handlePhoneInput(input) {
   }
   
   input.value = cleaned;
+  bookingData.phone = cleaned;
+
+  // Synchronize across all phone inputs
+  document.querySelectorAll('.wizard-phone-input').forEach(other => {
+    if (other !== input) other.value = cleaned;
+  });
   
-  const counter = document.getElementById('phone-digit-counter');
-  const validIcon = document.getElementById('phone-valid-icon');
-  const errorMsg = document.getElementById('phone-error-msg');
-  
-  if (counter) {
-    counter.innerText = `${cleaned.length}/10 Digits`;
-    if (cleaned.length === 10) {
-      counter.className = "text-[10px] font-extrabold text-emerald-400";
-    } else {
-      counter.className = "text-[10px] font-bold text-slate-500";
+  document.querySelectorAll('.phone-input-group').forEach(pGroup => {
+    const counter = pGroup.querySelector('.phone-digit-counter');
+    const validIcon = pGroup.querySelector('.phone-valid-icon');
+    const errorMsg = pGroup.querySelector('.phone-error-msg');
+    const phoneIn = pGroup.querySelector('.wizard-phone-input');
+
+    if (counter) {
+      counter.innerText = `${cleaned.length}/10 Digits`;
+      if (cleaned.length === 10) {
+        counter.className = "phone-digit-counter text-[10px] font-extrabold text-emerald-400";
+      } else {
+        counter.className = "phone-digit-counter text-[10px] font-bold text-slate-500";
+      }
     }
-  }
-  
-  if (validIcon) {
-    if (cleaned.length === 10) {
-      validIcon.classList.remove('hidden');
-      input.classList.remove('border-rose-500', 'border-slate-700');
-      input.classList.add('border-emerald-500');
-    } else {
-      validIcon.classList.add('hidden');
-      input.classList.remove('border-emerald-500');
-      input.classList.add('border-slate-700');
+    
+    if (validIcon && phoneIn) {
+      if (cleaned.length === 10) {
+        validIcon.classList.remove('hidden');
+        phoneIn.classList.remove('border-rose-500', 'border-slate-700');
+        phoneIn.classList.add('border-emerald-500');
+      } else {
+        validIcon.classList.add('hidden');
+        phoneIn.classList.remove('border-emerald-500');
+        phoneIn.classList.add('border-slate-700');
+      }
     }
-  }
-  
-  if (errorMsg) {
-    errorMsg.classList.add('hidden');
-  }
+    
+    if (errorMsg) {
+      errorMsg.classList.add('hidden');
+    }
+  });
 }
 
-function launchWhatsAppBooking() {
-  const nameInput = document.getElementById('wizard_name');
-  const phoneInput = document.getElementById('wizard_phone');
-  const errorMsg = document.getElementById('phone-error-msg');
+function launchWhatsAppBooking(sourceBtn) {
+  const container = (sourceBtn && sourceBtn.closest) ? (sourceBtn.closest('#booking-modal') || sourceBtn.closest('#booking-tool')) : null;
+
+  let nameInput = container ? container.querySelector('.wizard-name-input') : document.querySelector('.wizard-name-input');
+  let phoneInput = container ? container.querySelector('.wizard-phone-input') : document.querySelector('.wizard-phone-input');
+  let errorMsg = container ? container.querySelector('.phone-error-msg') : document.querySelector('.phone-error-msg');
+
+  if (!nameInput) nameInput = document.getElementById('wizard_name') || document.querySelector('.wizard-name-input');
+  if (!phoneInput) phoneInput = document.getElementById('wizard_phone') || document.querySelector('.wizard-phone-input');
+  if (!errorMsg) errorMsg = document.getElementById('phone-error-msg') || document.querySelector('.phone-error-msg');
   
-  const name = nameInput.value.trim();
-  const phone = phoneInput.value.replace(/\D/g, '').trim();
+  const name = nameInput ? nameInput.value.trim() : '';
+  const phone = phoneInput ? phoneInput.value.replace(/\D/g, '').trim() : '';
 
   if (!name) {
     showToast("Please enter patient full name to proceed.");
-    nameInput.focus();
+    if (nameInput) nameInput.focus();
     return;
   }
 
@@ -494,9 +575,11 @@ function launchWhatsAppBooking() {
       errorMsg.innerText = "Please enter a valid 10-digit mobile number.";
       errorMsg.classList.remove('hidden');
     }
-    phoneInput.classList.remove('border-slate-700', 'border-emerald-500');
-    phoneInput.classList.add('border-rose-500');
-    phoneInput.focus();
+    if (phoneInput) {
+      phoneInput.classList.remove('border-slate-700', 'border-emerald-500');
+      phoneInput.classList.add('border-rose-500');
+      phoneInput.focus();
+    }
     return;
   }
 
@@ -505,11 +588,18 @@ function launchWhatsAppBooking() {
       errorMsg.innerText = "Please enter a valid Indian mobile number starting with 6, 7, 8, or 9.";
       errorMsg.classList.remove('hidden');
     }
-    phoneInput.classList.remove('border-slate-700', 'border-emerald-500');
-    phoneInput.classList.add('border-rose-500');
-    phoneInput.focus();
+    if (phoneInput) {
+      phoneInput.classList.remove('border-slate-700', 'border-emerald-500');
+      phoneInput.classList.add('border-rose-500');
+      phoneInput.focus();
+    }
     return;
   }
+
+  // Sync entered name across inputs
+  document.querySelectorAll('.wizard-name-input').forEach(other => {
+    other.value = name;
+  });
 
   bookingData.name = name;
   bookingData.phone = `+91 ${phone}`;
@@ -519,6 +609,8 @@ function launchWhatsAppBooking() {
   const url = `https://wa.me/919406951737?text=${encoded}`;
   window.open(url, '_blank');
   trackConversion('whatsapp_booking_submit', { procedure: bookingData.procedure, slot: bookingData.slot });
+
+  closeBookingModal();
 }
 
 // ==========================================
