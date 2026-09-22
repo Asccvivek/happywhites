@@ -189,7 +189,7 @@
   </script>
   
   <!-- Custom Styles -->
-  <link rel="stylesheet" href="styles.css?v=2.4">
+  <link rel="stylesheet" href="styles.css?v=2.6">
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased selection:bg-[#0050A8] selection:text-white">
 
@@ -206,12 +206,12 @@
         <span class="inline-flex items-center px-1.5 sm:px-2 py-0.5 rounded text-[9px] sm:text-[10px] font-black bg-amber-400 text-slate-950 uppercase tracking-wide flex-shrink-0">
           ✨ SPECIAL
         </span>
-        <span class="font-semibold text-sky-100 text-[10px] sm:text-xs truncate" id="offer-text">
+        <span class="font-semibold text-sky-100 text-[10px] sm:text-xs truncate" id="offer-text" data-i18n="announcement_offer">
           FREE 3D Scan worth ₹5,000 — <span id="offer-month">Limited Period Offer</span>
         </span>
       </div>
       <div class="flex items-center gap-3 text-[11px] sm:text-xs font-bold flex-shrink-0">
-        <span class="hidden md:flex items-center gap-1.5 font-medium text-slate-300">
+        <span class="hidden md:flex items-center gap-1.5 font-medium text-slate-300" data-i18n="announcement_timings">
           <i data-lucide="clock" class="w-3.5 h-3.5 text-teal-400"></i> Mon–Sat: 10 AM–2 PM & 5 PM–9 PM
         </span>
         <a href="tel:+919406951737" class="text-white hover:text-teal-300 flex items-center gap-1 font-bold transition-colors">
@@ -232,36 +232,36 @@
         <img src="assets/happy_whites_logo_white.svg" alt="Happy Whites Dental Clinic Logo" class="h-8 sm:h-10 lg:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105">
       </a>
 
-      <!-- Desktop Nav Links (High-Contrast Dark Theme) — Hidden below xl -->
-      <nav class="hidden 2xl:flex items-center gap-4 text-[13px] font-bold text-slate-300 whitespace-nowrap flex-shrink min-w-0">
+      <!-- Desktop Nav Links (High-Contrast Dark Theme) -->
+      <nav class="hidden xl:flex items-center gap-2 xl:gap-3 2xl:gap-4 text-xs xl:text-[13px] font-bold text-slate-300 whitespace-nowrap flex-shrink min-w-0">
         <a href="#booking-tool" onclick="event.preventDefault(); scrollToBookingTool();" class="text-sky-300 hover:text-white font-extrabold transition-colors flex items-center gap-1.5 flex-shrink-0">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> Live Booking
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> <span data-i18n="nav_booking">Live Booking</span>
         </a>
-        <a href="#cases" class="hover:text-sky-300 transition-colors flex-shrink-0">Cases</a>
-        <a href="#transformation" class="hover:text-sky-300 transition-colors flex-shrink-0">Smile</a>
-        <a href="#specialties" class="hover:text-sky-300 transition-colors flex-shrink-0">Treatments</a>
-        <a href="#testimonials" class="hover:text-sky-300 transition-colors flex-shrink-0">Reviews</a>
-        <a href="#faq" class="hover:text-sky-300 transition-colors flex-shrink-0">FAQ</a>
-        <a href="#blog" class="hover:text-sky-300 transition-colors flex-shrink-0">Tips</a>
-        <a href="#location" class="hover:text-sky-300 transition-colors flex-shrink-0">Location</a>
+        <a href="#cases" class="hover:text-sky-300 transition-colors flex-shrink-0" data-i18n="nav_cases">Cases</a>
+        <a href="#transformation" class="hover:text-sky-300 transition-colors flex-shrink-0" data-i18n="nav_smile">Smile</a>
+        <a href="#specialties" class="hover:text-sky-300 transition-colors flex-shrink-0" data-i18n="nav_treatments">Treatments</a>
+        <a href="#testimonials" class="hover:text-sky-300 transition-colors flex-shrink-0" data-i18n="nav_reviews">Reviews</a>
+        <a href="#faq" class="hover:text-sky-300 transition-colors flex-shrink-0" data-i18n="nav_faq">FAQ</a>
+        <a href="#blog" class="hover:text-sky-300 transition-colors flex-shrink-0" data-i18n="nav_tips">Tips</a>
+        <a href="#location" class="hover:text-sky-300 transition-colors flex-shrink-0" data-i18n="nav_location">Location</a>
       </nav>
 
       <!-- Action Buttons -->
       <div class="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
         <!-- Language Toggle -->
         <div class="lang-toggle hidden md:flex flex-shrink-0" id="lang-toggle">
-          <button type="button" class="active" onclick="setLanguage('en')" id="lang-en">EN</button>
-          <button type="button" onclick="setLanguage('hi')" id="lang-hi">HI</button>
+          <button type="button" class="active" onclick="setLanguage('en')" data-lang-btn="en" id="lang-en">EN</button>
+          <button type="button" onclick="setLanguage('hi')" data-lang-btn="hi" id="lang-hi">हिन्दी</button>
         </div>
         <a href="https://wa.me/919406951737?text=Namaste%20Dr.%20Vaibhav,%20I%20would%20like%20to%20consult%20at%20Happy%20Whites%20Dental%20Clinic." target="_blank" rel="noopener noreferrer" class="magnetic-btn inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-xl text-[11px] sm:text-xs font-bold text-emerald-300 bg-emerald-950/70 hover:bg-emerald-900/80 border border-emerald-500/40 shadow-sm whitespace-nowrap flex-shrink-0">
           <i data-lucide="message-circle" class="w-4 h-4 text-emerald-400"></i>
-          <span class="hidden lg:inline">WhatsApp Doctor</span>
-          <span class="lg:hidden">Chat</span>
+          <span class="hidden lg:inline" data-i18n="header_whatsapp">WhatsApp Doctor</span>
+          <span class="lg:hidden" data-i18n="header_whatsapp_short">Chat</span>
         </a>
         <button onclick="openBookingModal()" class="magnetic-btn inline-flex items-center gap-1.5 px-2.5 sm:px-4 py-1.5 sm:py-2 rounded-xl text-[11px] sm:text-xs font-extrabold text-white bg-gradient-to-r from-[#0050A8] via-[#0284C7] to-sky-500 hover:from-[#033f85] hover:to-sky-400 shadow-md shadow-blue-900/40 whitespace-nowrap flex-shrink-0">
           <i data-lucide="calendar-plus" class="w-4 h-4"></i>
-          <span class="hidden sm:inline">Book Appointment</span>
-          <span class="sm:hidden">Book</span>
+          <span class="hidden sm:inline" data-i18n="header_book">Book Appointment</span>
+          <span class="sm:hidden" data-i18n="header_book_short">Book</span>
         </button>
         <!-- Mobile Hamburger Menu -->
         <button onclick="toggleMobileMenu()" class="md:hidden w-9 h-9 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-white flex items-center justify-center transition-colors flex-shrink-0" id="mobile-menu-btn" aria-label="Open navigation menu">
@@ -274,40 +274,39 @@
 
   <!-- Mobile Navigation Dropdown -->
   <div id="mobile-menu" class="hidden md:hidden fixed top-[65px] sm:top-[69px] left-0 right-0 z-30 bg-slate-900/98 backdrop-blur-xl border-b border-slate-800 shadow-2xl shadow-black/40">
-    <div class="max-w-7xl mx-auto px-4 py-4 space-y-1">
-      <a href="#booking-tool" onclick="event.preventDefault(); scrollToBookingTool(); toggleMobileMenu();" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold text-sky-300 hover:bg-sky-950/50 transition-colors">
-        <i data-lucide="sparkles" class="w-4 h-4"></i> Live Booking
-      </a>
-      <a href="#cases" onclick="toggleMobileMenu();" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold text-slate-200 hover:bg-slate-800/50 transition-colors">
-        <i data-lucide="smile" class="w-4 h-4 text-sky-400"></i> Cases
-      </a>
-      <a href="#transformation" onclick="toggleMobileMenu();" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold text-slate-200 hover:bg-slate-800/50 transition-colors">
-        <i data-lucide="sliders" class="w-4 h-4 text-teal-400"></i> Smile Transformation
-      </a>
-      <a href="#specialties" onclick="toggleMobileMenu();" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold text-slate-200 hover:bg-slate-800/50 transition-colors">
-        <i data-lucide="stethoscope" class="w-4 h-4 text-amber-400"></i> Treatments
-      </a>
-      <a href="#testimonials" onclick="toggleMobileMenu();" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold text-slate-200 hover:bg-slate-800/50 transition-colors">
-        <i data-lucide="heart" class="w-4 h-4 text-rose-400"></i> Reviews
-      </a>
-      <a href="#faq" onclick="toggleMobileMenu();" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold text-slate-200 hover:bg-slate-800/50 transition-colors">
-        <i data-lucide="help-circle" class="w-4 h-4 text-emerald-400"></i> FAQ
-      </a>
-      <a href="#blog" onclick="toggleMobileMenu();" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold text-slate-200 hover:bg-slate-800/50 transition-colors">
-        <i data-lucide="book-open" class="w-4 h-4 text-blue-400"></i> Tips
-      </a>
-      <a href="#location" onclick="toggleMobileMenu();" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold text-slate-200 hover:bg-slate-800/50 transition-colors">
-        <i data-lucide="map-pin" class="w-4 h-4 text-orange-400"></i> Location
-      </a>
-      <div class="pt-2 mt-2 border-t border-slate-800 flex gap-2">
-        <a href="tel:+919406951737" class="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-xs font-bold text-white bg-slate-800 hover:bg-slate-700 transition-colors">
-          <i data-lucide="phone" class="w-4 h-4"></i> Call Now
-        </a>
-        <div class="lang-toggle flex-shrink-0" id="lang-toggle-mobile">
-          <button type="button" class="active" onclick="setLanguage('en')" id="lang-en-m">EN</button>
-          <button type="button" onclick="setLanguage('hi')" id="lang-hi-m">HI</button>
+    <div class="max-w-7xl mx-auto px-4 py-3 space-y-1.5">
+      <!-- Mobile Language Switch -->
+      <div class="flex items-center justify-between pb-2.5 mb-1.5 border-b border-slate-800">
+        <span class="text-xs font-bold text-slate-300" data-i18n="mobile_lang_select">Language / भाषा:</span>
+        <div class="lang-toggle flex">
+          <button type="button" class="active" onclick="setLanguage('en')" data-lang-btn="en" id="lang-en-m">EN</button>
+          <button type="button" onclick="setLanguage('hi')" data-lang-btn="hi" id="lang-hi-m">हिन्दी</button>
         </div>
       </div>
+      <a href="#booking-tool" onclick="event.preventDefault(); scrollToBookingTool(); toggleMobileMenu();" class="flex items-center gap-3 px-4 py-2 rounded-xl text-sm font-bold text-sky-300 hover:bg-sky-950/50 transition-colors">
+        <i data-lucide="sparkles" class="w-4 h-4"></i> <span data-i18n="nav_booking">Live Booking</span>
+      </a>
+      <a href="#cases" onclick="toggleMobileMenu();" class="flex items-center gap-3 px-4 py-2 rounded-xl text-sm font-bold text-slate-200 hover:bg-slate-800/50 transition-colors">
+        <i data-lucide="smile" class="w-4 h-4 text-sky-400"></i> <span data-i18n="nav_cases">Cases</span>
+      </a>
+      <a href="#transformation" onclick="toggleMobileMenu();" class="flex items-center gap-3 px-4 py-2 rounded-xl text-sm font-bold text-slate-200 hover:bg-slate-800/50 transition-colors">
+        <i data-lucide="sliders" class="w-4 h-4 text-teal-400"></i> <span data-i18n="nav_smile">Smile Transformation</span>
+      </a>
+      <a href="#specialties" onclick="toggleMobileMenu();" class="flex items-center gap-3 px-4 py-2 rounded-xl text-sm font-bold text-slate-200 hover:bg-slate-800/50 transition-colors">
+        <i data-lucide="stethoscope" class="w-4 h-4 text-amber-400"></i> <span data-i18n="nav_treatments">Treatments</span>
+      </a>
+      <a href="#testimonials" onclick="toggleMobileMenu();" class="flex items-center gap-3 px-4 py-2 rounded-xl text-sm font-bold text-slate-200 hover:bg-slate-800/50 transition-colors">
+        <i data-lucide="heart" class="w-4 h-4 text-rose-400"></i> <span data-i18n="nav_reviews">Reviews</span>
+      </a>
+      <a href="#faq" onclick="toggleMobileMenu();" class="flex items-center gap-3 px-4 py-2 rounded-xl text-sm font-bold text-slate-200 hover:bg-slate-800/50 transition-colors">
+        <i data-lucide="help-circle" class="w-4 h-4 text-emerald-400"></i> <span data-i18n="nav_faq">FAQ</span>
+      </a>
+      <a href="#blog" onclick="toggleMobileMenu();" class="flex items-center gap-3 px-4 py-2 rounded-xl text-sm font-bold text-slate-200 hover:bg-slate-800/50 transition-colors">
+        <i data-lucide="book-open" class="w-4 h-4 text-blue-400"></i> <span data-i18n="nav_tips">Tips</span>
+      </a>
+      <a href="#location" onclick="toggleMobileMenu();" class="flex items-center gap-3 px-4 py-2 rounded-xl text-sm font-bold text-slate-200 hover:bg-slate-800/50 transition-colors">
+        <i data-lucide="map-pin" class="w-4 h-4 text-orange-400"></i> <span data-i18n="nav_location">Location</span>
+      </a>
     </div>
   </div>
 
@@ -334,16 +333,16 @@
         <!-- Hero Left Column -->
         <div class="lg:col-span-7 space-y-6 relative z-10">
           
-          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/80 backdrop-blur-md border border-sky-400/40 shadow-lg text-xs font-bold text-sky-200">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/80 backdrop-blur-md border border-sky-400/40 shadow-lg text-xs font-bold text-sky-200" data-i18n="hero_badge">
             <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
             ⭐ 4.9 Verified Google Rating (61+ Reviews) • Bawadiya Kalan, Bhopal
           </div>
 
-          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.12]">
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.12]" data-i18n="hero_title">
             Bhopal's Trusted Centre for <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-sky-200 to-sky-400">Painless & Digital</span> Dentistry.
           </h1>
 
-          <p class="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl font-normal">
+          <p class="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl font-normal" data-i18n="hero_desc">
             Specialized in <strong class="text-white font-bold">In-House TruAlign Clear Aligners</strong>, <strong class="text-white font-bold">Single-Sitting Rotary RCT</strong>, and <strong class="text-white font-bold">Permanent Dental Implants</strong> by <strong class="text-sky-300 font-bold">Dr. Vaibhav Shrivastav</strong> at Mahendra Medisquare (near ApolloSAGE Hospital).
           </p>
 
@@ -351,17 +350,17 @@
           <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-2">
             <button onclick="openBookingModal()" class="magnetic-btn inline-flex justify-center items-center gap-2.5 px-7 py-4 rounded-2xl text-sm font-extrabold text-white bg-gradient-to-r from-[#0050A8] via-[#0284C7] to-sky-500 hover:from-[#033f85] hover:to-sky-400 shadow-xl shadow-blue-900/50">
               <i data-lucide="sparkles" class="w-5 h-5"></i>
-              Launch Smart Booking Wizard
+              <span data-i18n="hero_cta_booking">Launch Smart Booking Wizard</span>
             </button>
             <a href="https://wa.me/919406951737?text=Namaste%20Dr.%20Vaibhav,%20I%20want%20to%20claim%20the%20FREE%20Digital%20Dental%20Scan%20offer." target="_blank" rel="noopener noreferrer" class="magnetic-btn inline-flex justify-center items-center gap-2.5 px-6 py-4 rounded-2xl text-sm font-extrabold text-emerald-300 bg-slate-900/80 hover:bg-slate-800/90 border border-emerald-500/40 shadow-sm backdrop-blur-md">
               <i data-lucide="message-circle" class="w-5 h-5 text-emerald-400"></i>
-              Claim Free 3D Scan on WhatsApp
+              <span data-i18n="hero_cta_scan">Claim Free 3D Scan on WhatsApp</span>
             </a>
             <button onclick="openClinicVideoModal()" class="magnetic-btn inline-flex justify-center items-center gap-2 px-5 py-4 rounded-2xl text-sm font-bold text-sky-200 bg-sky-950/60 hover:bg-sky-900/80 border border-sky-400/40 shadow-sm backdrop-blur-md transition-all">
               <span class="w-5 h-5 rounded-full bg-sky-400/20 text-sky-300 flex items-center justify-center">
                 <i data-lucide="play" class="w-3 h-3 fill-current"></i>
               </span>
-              <span>Watch Video Tour</span>
+              <span data-i18n="hero_cta_video">Watch Video Tour</span>
             </button>
           </div>
 
@@ -371,19 +370,19 @@
               <div class="w-8 h-8 rounded-lg bg-blue-950/90 text-sky-400 border border-blue-500/40 flex items-center justify-center flex-shrink-0">
                 <i data-lucide="scan" class="w-4 h-4"></i>
               </div>
-              <span class="text-xs font-bold text-slate-200">In-House 3D Scan</span>
+              <span class="text-xs font-bold text-slate-200" data-i18n="hero_feat_1">In-House 3D Scan</span>
             </div>
             <div class="flex items-center gap-2 p-2.5 rounded-xl bg-slate-900/70 border border-slate-800/80 backdrop-blur-md hover:border-sky-400/50 transition-all cursor-default">
               <div class="w-8 h-8 rounded-lg bg-blue-950/90 text-sky-400 border border-blue-500/40 flex items-center justify-center flex-shrink-0">
                 <i data-lucide="shield-check" class="w-4 h-4"></i>
               </div>
-              <span class="text-xs font-bold text-slate-200">6-Step Sterile Lab</span>
+              <span class="text-xs font-bold text-slate-200" data-i18n="hero_feat_2">6-Step Sterile Lab</span>
             </div>
             <div class="flex items-center gap-2 p-2.5 rounded-xl bg-slate-900/70 border border-slate-800/80 backdrop-blur-md hover:border-sky-400/50 transition-all cursor-default">
               <div class="w-8 h-8 rounded-lg bg-blue-950/90 text-sky-400 border border-blue-500/40 flex items-center justify-center flex-shrink-0">
                 <i data-lucide="check-circle" class="w-4 h-4"></i>
               </div>
-              <span class="text-xs font-bold text-slate-200">Zero Wait Time</span>
+              <span class="text-xs font-bold text-slate-200" data-i18n="hero_feat_3">Zero Wait Time</span>
             </div>
           </div>
 
@@ -490,7 +489,7 @@
               </div>
 
               <!-- Clinic Operating Hours Banner -->
-              <div class="flex items-center justify-between text-xs bg-slate-950/80 border border-slate-800 rounded-xl px-3 py-2">
+              <div class="clinic-hours-banner flex items-center justify-between text-xs bg-slate-950/80 border border-slate-800 rounded-xl px-3 py-2">
                 <div class="flex items-center gap-2">
                   <i data-lucide="clock" class="w-4 h-4 text-sky-400"></i>
                   <span class="text-slate-300 font-bold text-[11px]">Clinic Hours:</span>
@@ -532,7 +531,7 @@
                   <!-- Injected dynamically based on date & filter -->
                 </div>
                 
-                <div id="slot-selected-indicator" class="text-[11px] text-teal-300 font-bold bg-blue-950/70 border border-sky-500/30 rounded-lg py-1.5 px-3 flex items-center justify-between">
+                <div id="slot-selected-indicator" class="exact-slot-banner text-[11px] text-teal-300 font-bold bg-blue-950/70 border border-sky-500/30 rounded-lg py-1.5 px-3 flex items-center justify-between">
                   <span class="flex items-center gap-1.5">
                     <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-teal-400"></i>
                     <span>Exact Slot:</span>
@@ -2195,7 +2194,7 @@
           </div>
 
           <!-- Clinic Operating Hours Banner -->
-          <div class="flex items-center justify-between text-xs bg-slate-950/80 border border-slate-800 rounded-xl px-3 py-2">
+          <div class="clinic-hours-banner flex items-center justify-between text-xs bg-slate-950/80 border border-slate-800 rounded-xl px-3 py-2">
             <div class="flex items-center gap-2">
               <i data-lucide="clock" class="w-4 h-4 text-sky-400"></i>
               <span class="text-slate-300 font-bold text-[11px]">Clinic Hours:</span>
@@ -2237,7 +2236,7 @@
               <!-- Injected dynamically based on date & filter -->
             </div>
             
-            <div class="text-[11px] text-teal-300 font-bold bg-blue-950/70 border border-sky-500/30 rounded-lg py-1.5 px-3 flex items-center justify-between">
+            <div class="exact-slot-banner text-[11px] text-teal-300 font-bold bg-blue-950/70 border border-sky-500/30 rounded-lg py-1.5 px-3 flex items-center justify-between">
               <span class="flex items-center gap-1.5">
                 <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-teal-400"></i>
                 <span>Exact Slot:</span>
@@ -2574,7 +2573,7 @@
   </div>
 
 
-  <script defer src="main.js?v=2.4"></script>
+  <script defer src="main.js?v=2.6"></script>
 
 </body>
 </html>
