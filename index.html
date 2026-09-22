@@ -189,7 +189,7 @@
   </script>
   
   <!-- Custom Styles -->
-  <link rel="stylesheet" href="styles.css?v=2.3">
+  <link rel="stylesheet" href="styles.css?v=2.4">
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased selection:bg-[#0050A8] selection:text-white">
 
@@ -489,54 +489,54 @@
                 <input type="date" id="wizard_date" onchange="onDateChanged(this)" required class="wizard-date-input w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs font-bold text-white focus:bg-slate-900 focus:outline-none focus:border-sky-400 focus:ring-2 focus:ring-sky-500/30 cursor-pointer">
               </div>
 
-              <!-- Shift / Time Window Filter Pills -->
-              <div class="space-y-1.5">
-                <div class="flex items-center justify-between">
-                  <label class="block text-[11px] font-bold text-slate-300">OPD Timings (Bhopal Clinic)</label>
-                  <span class="text-[10px] text-slate-400">Tap shift to filter</span>
+              <!-- Clinic Operating Hours Banner -->
+              <div class="flex items-center justify-between text-xs bg-slate-950/80 border border-slate-800 rounded-xl px-3 py-2">
+                <div class="flex items-center gap-2">
+                  <i data-lucide="clock" class="w-4 h-4 text-sky-400"></i>
+                  <span class="text-slate-300 font-bold text-[11px]">Clinic Hours:</span>
+                  <span class="text-white font-black text-[11px]">10:00 AM – 09:00 PM</span>
                 </div>
-                <div class="grid grid-cols-2 gap-2" id="shift-pills">
-                  <button type="button" onclick="filterShift('morning')" id="shift-btn-morning" class="shift-btn shift-btn-morning p-2.5 rounded-xl border border-slate-700 bg-slate-800/80 hover:border-sky-400 text-left transition-all cursor-pointer">
-                    <div class="flex items-center justify-between">
-                      <div class="flex items-center gap-1.5 text-amber-400 font-bold text-xs">
-                        <i data-lucide="sun" class="w-3.5 h-3.5"></i> Morning
-                      </div>
-                      <span id="morning-count-badge" class="morning-count-badge text-[9px] font-extrabold px-1.5 py-0.5 rounded bg-amber-950/80 text-amber-300 border border-amber-500/30">3 Left</span>
-                    </div>
-                    <div class="text-[10px] text-slate-400 mt-0.5">10:00 AM – 02:00 PM</div>
-                  </button>
-
-                  <button type="button" onclick="filterShift('evening')" id="shift-btn-evening" class="shift-btn shift-btn-evening p-2.5 rounded-xl border border-sky-400 bg-blue-950/80 text-white font-bold text-left transition-all shadow-md shadow-blue-900/40 cursor-pointer">
-                    <div class="flex items-center justify-between">
-                      <div class="flex items-center gap-1.5 text-sky-300 font-bold text-xs">
-                        <i data-lucide="moon" class="w-3.5 h-3.5"></i> Evening
-                      </div>
-                      <span id="evening-count-badge" class="evening-count-badge text-[9px] font-extrabold px-1.5 py-0.5 rounded bg-emerald-950/80 text-emerald-300 border border-emerald-500/30">3 Left</span>
-                    </div>
-                    <div class="text-[10px] text-sky-200/80 mt-0.5">05:00 PM – 09:00 PM</div>
-                  </button>
-                </div>
+                <span class="text-[10px] font-extrabold text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-500/30">
+                  Open 7 Days
+                </span>
               </div>
 
-              <!-- Granular Hourly Time Slots Grid -->
-              <div class="space-y-1.5">
+              <!-- Time Filter Segment Tabs & Hourly Slots Grid -->
+              <div class="space-y-2">
                 <div class="flex items-center justify-between">
-                  <label class="block text-[11px] font-bold text-slate-300">Select Specific Time</label>
+                  <label class="block text-[11px] font-bold text-slate-300">Choose 1-Hour Time Slot</label>
                   <span class="text-[10px] text-emerald-400 font-bold flex items-center gap-1">
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
                     Green = Available
                   </span>
                 </div>
-                
-                <!-- Dynamic Slot Grid Container -->
-                <div class="hourly-slots-grid grid grid-cols-2 gap-2 max-h-[170px] overflow-y-auto pr-1 custom-scrollbar" id="hourly-slots-grid">
-                  <!-- Injected dynamically based on date & shift -->
+
+                <!-- Filter Tabs: All, Morning, Afternoon, Evening -->
+                <div class="grid grid-cols-4 gap-1.5">
+                  <button type="button" onclick="filterShift('all')" class="time-filter-btn time-filter-all text-[10px] font-black py-1.5 px-1 rounded-lg border border-sky-400 bg-blue-950 text-white shadow-sm text-center transition-all cursor-pointer">
+                    All Hours
+                  </button>
+                  <button type="button" onclick="filterShift('morning')" class="time-filter-btn time-filter-morning text-[10px] font-bold py-1.5 px-1 rounded-lg border border-slate-700 bg-slate-800/80 hover:border-sky-400 text-slate-300 text-center transition-all cursor-pointer">
+                    Morning
+                  </button>
+                  <button type="button" onclick="filterShift('afternoon')" class="time-filter-btn time-filter-afternoon text-[10px] font-bold py-1.5 px-1 rounded-lg border border-slate-700 bg-slate-800/80 hover:border-sky-400 text-slate-300 text-center transition-all cursor-pointer">
+                    Afternoon
+                  </button>
+                  <button type="button" onclick="filterShift('evening')" class="time-filter-btn time-filter-evening text-[10px] font-bold py-1.5 px-1 rounded-lg border border-slate-700 bg-slate-800/80 hover:border-sky-400 text-slate-300 text-center transition-all cursor-pointer">
+                    Evening
+                  </button>
                 </div>
                 
-                <div id="slot-selected-indicator" class="text-[11px] text-teal-300 font-bold bg-blue-950/70 border border-sky-500/30 rounded-lg py-1 px-2.5 flex items-center justify-between">
+                <!-- Dynamic Slot Grid Container (Scrollable 11-Hour Slots) -->
+                <div class="hourly-slots-grid grid grid-cols-2 gap-2 max-h-[190px] overflow-y-auto pr-1 custom-scrollbar" id="hourly-slots-grid">
+                  <!-- Injected dynamically based on date & filter -->
+                </div>
+                
+                <div id="slot-selected-indicator" class="text-[11px] text-teal-300 font-bold bg-blue-950/70 border border-sky-500/30 rounded-lg py-1.5 px-3 flex items-center justify-between">
                   <span class="flex items-center gap-1.5">
-                    <i data-lucide="clock" class="w-3.5 h-3.5 text-teal-400"></i>
-                    Selected Time: <strong id="selected-slot-display" class="selected-slot-display text-white">06:00 PM</strong>
+                    <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-teal-400"></i>
+                    <span>Exact Slot:</span>
+                    <strong id="selected-slot-display" class="selected-slot-display text-white">10:00 AM (10:00 AM – 11:00 AM)</strong>
                   </span>
                   <span class="text-[10px] text-emerald-400 font-extrabold uppercase">Confirmed</span>
                 </div>
@@ -2194,53 +2194,54 @@
             <input type="date" onchange="onDateChanged(this)" required class="wizard-date-input w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs font-bold text-white focus:bg-slate-900 focus:outline-none focus:border-sky-400 focus:ring-2 focus:ring-sky-500/30 cursor-pointer">
           </div>
 
-          <!-- Shift Selector -->
-          <div class="space-y-1.5">
-            <div class="flex items-center justify-between">
-              <label class="block text-[11px] font-bold text-slate-300">OPD Timings (Bhopal Clinic)</label>
-              <span class="text-[10px] text-slate-400">Tap shift to filter</span>
+          <!-- Clinic Operating Hours Banner -->
+          <div class="flex items-center justify-between text-xs bg-slate-950/80 border border-slate-800 rounded-xl px-3 py-2">
+            <div class="flex items-center gap-2">
+              <i data-lucide="clock" class="w-4 h-4 text-sky-400"></i>
+              <span class="text-slate-300 font-bold text-[11px]">Clinic Hours:</span>
+              <span class="text-white font-black text-[11px]">10:00 AM – 09:00 PM</span>
             </div>
-            <div class="grid grid-cols-2 gap-2">
-              <button type="button" onclick="filterShift('morning')" class="shift-btn shift-btn-morning p-2.5 rounded-xl border border-slate-700 bg-slate-800/80 hover:border-sky-400 text-left transition-all cursor-pointer">
-                <div class="flex items-center justify-between">
-                  <div class="flex items-center gap-1.5 text-amber-400 font-bold text-xs">
-                    <i data-lucide="sun" class="w-3.5 h-3.5"></i> Morning
-                  </div>
-                  <span class="morning-count-badge text-[9px] font-extrabold px-1.5 py-0.5 rounded bg-amber-950/80 text-amber-300 border border-amber-500/30">3 Left</span>
-                </div>
-                <div class="text-[10px] text-slate-400 mt-0.5">10:00 AM – 02:00 PM</div>
-              </button>
-
-              <button type="button" onclick="filterShift('evening')" class="shift-btn shift-btn-evening p-2.5 rounded-xl border border-sky-400 bg-blue-950/80 text-white font-bold text-left transition-all shadow-md shadow-blue-900/40 cursor-pointer">
-                <div class="flex items-center justify-between">
-                  <div class="flex items-center gap-1.5 text-sky-300 font-bold text-xs">
-                    <i data-lucide="moon" class="w-3.5 h-3.5"></i> Evening
-                  </div>
-                  <span class="evening-count-badge text-[9px] font-extrabold px-1.5 py-0.5 rounded bg-emerald-950/80 text-emerald-300 border border-emerald-500/30">3 Left</span>
-                </div>
-                <div class="text-[10px] text-sky-200/80 mt-0.5">05:00 PM – 09:00 PM</div>
-              </button>
-            </div>
+            <span class="text-[10px] font-extrabold text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-500/30">
+              Open 7 Days
+            </span>
           </div>
 
-          <!-- Dynamic Slot Grid Container -->
-          <div class="space-y-1.5">
+          <!-- Time Filter Segment Tabs & Hourly Slots Grid -->
+          <div class="space-y-2">
             <div class="flex items-center justify-between">
-              <label class="block text-[11px] font-bold text-slate-300">Select Specific Time</label>
+              <label class="block text-[11px] font-bold text-slate-300">Choose 1-Hour Time Slot</label>
               <span class="text-[10px] text-emerald-400 font-bold flex items-center gap-1">
                 <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
                 Green = Available
               </span>
             </div>
-            
-            <div class="hourly-slots-grid grid grid-cols-2 gap-2 max-h-[170px] overflow-y-auto pr-1 custom-scrollbar">
-              <!-- Injected dynamically based on date & shift -->
+
+            <!-- Filter Tabs: All, Morning, Afternoon, Evening -->
+            <div class="grid grid-cols-4 gap-1.5">
+              <button type="button" onclick="filterShift('all')" class="time-filter-btn time-filter-all text-[10px] font-black py-1.5 px-1 rounded-lg border border-sky-400 bg-blue-950 text-white shadow-sm text-center transition-all cursor-pointer">
+                All Hours
+              </button>
+              <button type="button" onclick="filterShift('morning')" class="time-filter-btn time-filter-morning text-[10px] font-bold py-1.5 px-1 rounded-lg border border-slate-700 bg-slate-800/80 hover:border-sky-400 text-slate-300 text-center transition-all cursor-pointer">
+                Morning
+              </button>
+              <button type="button" onclick="filterShift('afternoon')" class="time-filter-btn time-filter-afternoon text-[10px] font-bold py-1.5 px-1 rounded-lg border border-slate-700 bg-slate-800/80 hover:border-sky-400 text-slate-300 text-center transition-all cursor-pointer">
+                Afternoon
+              </button>
+              <button type="button" onclick="filterShift('evening')" class="time-filter-btn time-filter-evening text-[10px] font-bold py-1.5 px-1 rounded-lg border border-slate-700 bg-slate-800/80 hover:border-sky-400 text-slate-300 text-center transition-all cursor-pointer">
+                Evening
+              </button>
             </div>
             
-            <div class="text-[11px] text-teal-300 font-bold bg-blue-950/70 border border-sky-500/30 rounded-lg py-1 px-2.5 flex items-center justify-between">
+            <!-- Dynamic Slot Grid Container (Scrollable 11-Hour Slots) -->
+            <div class="hourly-slots-grid grid grid-cols-2 gap-2 max-h-[190px] overflow-y-auto pr-1 custom-scrollbar">
+              <!-- Injected dynamically based on date & filter -->
+            </div>
+            
+            <div class="text-[11px] text-teal-300 font-bold bg-blue-950/70 border border-sky-500/30 rounded-lg py-1.5 px-3 flex items-center justify-between">
               <span class="flex items-center gap-1.5">
-                <i data-lucide="clock" class="w-3.5 h-3.5 text-teal-400"></i>
-                Selected Time: <strong class="selected-slot-display text-white">06:00 PM</strong>
+                <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-teal-400"></i>
+                <span>Exact Slot:</span>
+                <strong class="selected-slot-display text-white">10:00 AM (10:00 AM – 11:00 AM)</strong>
               </span>
               <span class="text-[10px] text-emerald-400 font-extrabold uppercase">Confirmed</span>
             </div>
@@ -2573,7 +2574,7 @@
   </div>
 
 
-  <script defer src="main.js?v=2.3"></script>
+  <script defer src="main.js?v=2.4"></script>
 
 </body>
 </html>

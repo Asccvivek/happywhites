@@ -197,17 +197,20 @@ VanillaTilt.init(document.querySelectorAll(".tilt-card"), {
 // Dynamic Real-Time Slot Availability & Granular Hourly Engine
 // =========================================================================
 const ALL_CLINIC_SLOTS = [
-  { id: 'm10', time: '10:00 AM', display: '10:00 AM', shift: 'morning', period: 'Morning' },
-  { id: 'm11', time: '11:00 AM', display: '11:00 AM', shift: 'morning', period: 'Morning' },
-  { id: 'm12', time: '12:00 PM', display: '12:00 PM', shift: 'morning', period: 'Morning' },
-  { id: 'm01', time: '01:00 PM', display: '01:00 PM', shift: 'morning', period: 'Morning' },
-  { id: 'e05', time: '05:00 PM', display: '05:00 PM', shift: 'evening', period: 'Evening' },
-  { id: 'e06', time: '06:00 PM', display: '06:00 PM', shift: 'evening', period: 'Evening' },
-  { id: 'e07', time: '07:00 PM', display: '07:00 PM', shift: 'evening', period: 'Evening' },
-  { id: 'e08', time: '08:00 PM', display: '08:00 PM', shift: 'evening', period: 'Evening' }
+  { id: 'h10', time: '10:00 AM', end: '11:00 AM', range: '10:00 AM – 11:00 AM', period: 'Morning', shift: 'morning' },
+  { id: 'h11', time: '11:00 AM', end: '12:00 PM', range: '11:00 AM – 12:00 PM', period: 'Morning', shift: 'morning' },
+  { id: 'h12', time: '12:00 PM', end: '01:00 PM', range: '12:00 PM – 01:00 PM', period: 'Morning', shift: 'morning' },
+  { id: 'h01', time: '01:00 PM', end: '02:00 PM', range: '01:00 PM – 02:00 PM', period: 'Afternoon', shift: 'afternoon' },
+  { id: 'h02', time: '02:00 PM', end: '03:00 PM', range: '02:00 PM – 03:00 PM', period: 'Afternoon', shift: 'afternoon' },
+  { id: 'h03', time: '03:00 PM', end: '04:00 PM', range: '03:00 PM – 04:00 PM', period: 'Afternoon', shift: 'afternoon' },
+  { id: 'h04', time: '04:00 PM', end: '05:00 PM', range: '04:00 PM – 05:00 PM', period: 'Afternoon', shift: 'afternoon' },
+  { id: 'h05', time: '05:00 PM', end: '06:00 PM', range: '05:00 PM – 06:00 PM', period: 'Evening', shift: 'evening' },
+  { id: 'h06', time: '06:00 PM', end: '07:00 PM', range: '06:00 PM – 07:00 PM', period: 'Evening', shift: 'evening' },
+  { id: 'h07', time: '07:00 PM', end: '08:00 PM', range: '07:00 PM – 08:00 PM', period: 'Evening', shift: 'evening' },
+  { id: 'h08', time: '08:00 PM', end: '09:00 PM', range: '08:00 PM – 09:00 PM', period: 'Evening', shift: 'evening' }
 ];
 
-let currentActiveShift = 'evening';
+let currentActiveShift = 'all';
 
 function getSlotsForDate(dateString) {
   let hash = 0;
@@ -219,7 +222,7 @@ function getSlotsForDate(dateString) {
   return ALL_CLINIC_SLOTS.map((slot, index) => {
     const slotHash = Math.abs(Math.sin(hash + index * 997) * 10000);
     const rand = slotHash - Math.floor(slotHash);
-    const isAvailable = rand > 0.25;
+    const isAvailable = rand > 0.20;
     return { ...slot, isAvailable: isAvailable };
   });
 }
@@ -227,9 +230,10 @@ function getSlotsForDate(dateString) {
 let bookingData = {
   procedure: "In-House TruAlign Clear Aligners",
   date: new Date().toISOString().split('T')[0],
-  slot: "06:00 PM (Evening)",
-  time: "06:00 PM",
-  shift: "evening",
+  slot: "10:00 AM (10:00 AM – 11:00 AM)",
+  time: "10:00 AM",
+  range: "10:00 AM – 11:00 AM",
+  shift: "all",
   name: "",
   phone: ""
 };
@@ -249,23 +253,14 @@ function renderHourlySlots() {
   const dateVal = (dateInput && dateInput.value) || bookingData.date;
   const slots = getSlotsForDate(dateVal);
   
-  const morningAvailable = slots.filter(s => s.shift === 'morning' && s.isAvailable);
-  const eveningAvailable = slots.filter(s => s.shift === 'evening' && s.isAvailable);
   const totalAvailable = slots.filter(s => s.isAvailable);
 
-  document.querySelectorAll('.morning-count-badge').forEach(el => {
-    el.innerText = `${morningAvailable.length} Left`;
-  });
-  document.querySelectorAll('.evening-count-badge').forEach(el => {
-    el.innerText = `${eveningAvailable.length} Left`;
-  });
-  
   document.querySelectorAll('.date-slots-count').forEach(dateSlotsCount => {
     if (totalAvailable.length === 0) {
       dateSlotsCount.innerText = 'No Slots Available';
       dateSlotsCount.className = "date-slots-count text-[10px] font-bold text-rose-400 bg-rose-950/80 px-2 py-0.5 rounded border border-rose-500/30";
     } else {
-      dateSlotsCount.innerText = `${totalAvailable.length} Slots Available`;
+      dateSlotsCount.innerText = `${totalAvailable.length} Slots Open (10 AM – 9 PM)`;
       dateSlotsCount.className = "date-slots-count text-[10px] font-bold text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-500/30";
     }
   });
@@ -274,21 +269,23 @@ function renderHourlySlots() {
     if (totalAvailable.length === 0) {
       liveBadge.innerText = 'No slots open — try another date';
     } else {
-      liveBadge.innerText = `⚡ ${totalAvailable.length} Slots Open Today`;
+      liveBadge.innerText = `⚡ ${totalAvailable.length} Slots Open Today (10 AM – 9 PM)`;
     }
   });
 
-  const currentShiftSlots = slots.filter(s => s.shift === currentActiveShift);
-  const currentShiftAvailable = currentShiftSlots.filter(s => s.isAvailable);
+  const filteredSlots = currentActiveShift === 'all' 
+    ? slots 
+    : slots.filter(s => s.shift === currentActiveShift);
+  const currentAvailable = filteredSlots.filter(s => s.isAvailable);
 
-  // If currently selected slot is not available in this shift, auto-select first available
-  let hasSelected = currentShiftAvailable.some(s => s.time === bookingData.time);
-
-  if (!hasSelected && currentShiftAvailable.length > 0) {
-    bookingData.time = currentShiftAvailable[0].time;
-    bookingData.slot = `${currentShiftAvailable[0].time} (${currentShiftAvailable[0].period})`;
+  // Auto-select valid slot if current choice is not in view or booked
+  let hasSelected = filteredSlots.some(s => s.time === bookingData.time && s.isAvailable);
+  if (!hasSelected && currentAvailable.length > 0) {
+    bookingData.time = currentAvailable[0].time;
+    bookingData.range = currentAvailable[0].range;
+    bookingData.slot = `${currentAvailable[0].time} (${currentAvailable[0].range})`;
     document.querySelectorAll('.selected-slot-display').forEach(el => {
-      el.innerText = `${currentShiftAvailable[0].time} (${currentShiftAvailable[0].period})`;
+      el.innerText = `${currentAvailable[0].time} (${currentAvailable[0].range})`;
     });
   }
 
@@ -296,21 +293,20 @@ function renderHourlySlots() {
   grids.forEach(grid => {
     grid.innerHTML = '';
 
-    if (currentShiftAvailable.length === 0) {
+    if (currentAvailable.length === 0) {
       const emptyDiv = document.createElement('div');
       emptyDiv.className = 'slots-empty-state col-span-2 text-center py-6 px-4 bg-slate-950/60 rounded-2xl border border-slate-800';
-      const currentShiftName = currentActiveShift === 'morning' ? 'Morning' : 'Evening';
-      const otherShift = currentActiveShift === 'morning' ? 'Evening' : 'Morning';
+      const label = currentActiveShift === 'all' ? 'All day' : `${currentActiveShift.charAt(0).toUpperCase() + currentActiveShift.slice(1)}`;
       emptyDiv.innerHTML = `
         <div class="slots-empty-icon w-10 h-10 mx-auto rounded-full bg-slate-800 flex items-center justify-center text-slate-400 mb-2">
           <i data-lucide="calendar-x" class="w-5 h-5 text-amber-400"></i>
         </div>
-        <div class="slots-empty-title text-xs font-bold text-slate-200">All ${currentShiftName} slots booked</div>
-        <div class="slots-empty-desc text-[11px] text-slate-400 mt-1">Try selecting the ${otherShift} shift or pick a different date for more availability.</div>
+        <div class="slots-empty-title text-xs font-bold text-slate-200">No ${label} slots open</div>
+        <div class="slots-empty-desc text-[11px] text-slate-400 mt-1">Tap 'All Hours' or pick a different date to view more availability.</div>
       `;
       grid.appendChild(emptyDiv);
     } else {
-      currentShiftSlots.forEach(slot => {
+      filteredSlots.forEach(slot => {
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.setAttribute('data-slot-id', slot.id);
@@ -323,14 +319,14 @@ function renderHourlySlots() {
             ? "hourly-slot-btn p-2.5 rounded-xl border border-teal-400 bg-teal-950 text-white font-extrabold text-left transition-all shadow-md shadow-teal-500/20 flex items-center justify-between group cursor-pointer"
             : "hourly-slot-btn p-2.5 rounded-xl border border-slate-700 bg-slate-800/90 hover:border-sky-400/80 hover:bg-slate-800 text-slate-100 text-left transition-all flex items-center justify-between group cursor-pointer";
 
-          btn.onclick = () => selectHourlySlot(slot.time, slot.period);
+          btn.onclick = () => selectHourlySlot(slot.time, slot.range, slot.period);
           btn.innerHTML = `
             <div>
               <div class="text-xs font-black text-white flex items-center gap-1.5">
                 <span class="w-2 h-2 rounded-full ${isSelected ? 'bg-emerald-400 animate-pulse' : 'bg-teal-400'}"></span>
                 ${slot.time}
               </div>
-              <div class="text-[9px] ${isSelected ? 'text-teal-200' : 'text-slate-400'} mt-0.5">Doctor Available</div>
+              <div class="text-[9px] ${isSelected ? 'text-teal-200 font-bold' : 'text-slate-400'} mt-0.5">${slot.range}</div>
             </div>
             <span class="text-[9px] font-black ${isSelected ? 'bg-emerald-500 text-slate-950' : 'bg-emerald-950/80 text-emerald-300 border border-emerald-500/30'} px-2 py-0.5 rounded-full">
               ${isSelected ? 'Selected' : 'Open'}
@@ -345,7 +341,7 @@ function renderHourlySlots() {
                 <span class="w-1.5 h-1.5 rounded-full bg-slate-600"></span>
                 ${slot.time}
               </div>
-              <div class="text-[9px] text-rose-400/80 mt-0.5">Booked by Patient</div>
+              <div class="text-[9px] text-rose-400/80 mt-0.5">${slot.range} • Booked</div>
             </div>
             <span class="text-[9px] font-bold bg-slate-800 text-slate-400 px-1.5 py-0.5 rounded">Full</span>
           `;
@@ -362,33 +358,32 @@ function renderHourlySlots() {
 function filterShift(shiftName) {
   currentActiveShift = shiftName;
   
-  const morningClassesActive = "shift-btn shift-btn-morning p-2.5 rounded-xl border border-amber-400 bg-amber-950/50 text-white font-bold text-left transition-all shadow-md shadow-amber-500/20 cursor-pointer";
-  const morningClassesInactive = "shift-btn shift-btn-morning p-2.5 rounded-xl border border-slate-700 bg-slate-800/80 hover:border-sky-400 text-slate-300 text-left transition-all cursor-pointer";
+  const activeClass = "time-filter-btn text-[10px] font-black py-1.5 px-1 rounded-lg border border-sky-400 bg-blue-950 text-white shadow-sm text-center transition-all cursor-pointer";
+  const inactiveClass = "time-filter-btn text-[10px] font-bold py-1.5 px-1 rounded-lg border border-slate-700 bg-slate-800/80 hover:border-sky-400 text-slate-300 text-center transition-all cursor-pointer";
 
-  const eveningClassesActive = "shift-btn shift-btn-evening p-2.5 rounded-xl border border-sky-400 bg-blue-950/80 text-white font-bold text-left transition-all shadow-md shadow-blue-900/40 cursor-pointer";
-  const eveningClassesInactive = "shift-btn shift-btn-evening p-2.5 rounded-xl border border-slate-700 bg-slate-800/80 hover:border-sky-400 text-slate-300 text-left transition-all cursor-pointer";
-
-  document.querySelectorAll('.shift-btn-morning').forEach(btn => {
-    btn.className = shiftName === 'morning' ? morningClassesActive : morningClassesInactive;
-  });
-
-  document.querySelectorAll('.shift-btn-evening').forEach(btn => {
-    btn.className = shiftName === 'evening' ? eveningClassesActive : eveningClassesInactive;
+  ['all', 'morning', 'afternoon', 'evening'].forEach(key => {
+    document.querySelectorAll(`.time-filter-${key}`).forEach(btn => {
+      btn.className = `${activeClass.replace('time-filter-btn', `time-filter-btn time-filter-${key}`)}`;
+      if (key !== shiftName) {
+        btn.className = `${inactiveClass.replace('time-filter-btn', `time-filter-btn time-filter-${key}`)}`;
+      }
+    });
   });
 
   renderHourlySlots();
 }
 
-function selectHourlySlot(timeStr, periodStr) {
+function selectHourlySlot(timeStr, rangeStr, periodStr) {
   bookingData.time = timeStr;
-  bookingData.slot = `${timeStr} (${periodStr})`;
+  bookingData.range = rangeStr || `${timeStr}`;
+  bookingData.slot = `${timeStr} (${bookingData.range})`;
   
   document.querySelectorAll('.selected-slot-display').forEach(el => {
-    el.innerText = `${timeStr} (${periodStr})`;
+    el.innerText = `${timeStr} (${bookingData.range})`;
   });
 
   document.querySelectorAll('.summary-slot').forEach(el => {
-    el.innerText = `${bookingData.date} • ${bookingData.slot}`;
+    el.innerText = `${bookingData.date} • ${timeStr} (${bookingData.range})`;
   });
 
   renderHourlySlots();
@@ -604,7 +599,7 @@ function launchWhatsAppBooking(sourceBtn) {
   bookingData.name = name;
   bookingData.phone = `+91 ${phone}`;
 
-  const msg = `Namaste Dr. Vaibhav,\n\nI would like to book a dental consultation at Happy Whites Dental Clinic:\n\nPatient Name: ${bookingData.name}\nMobile: ${bookingData.phone}\nProcedure: ${bookingData.procedure}\nPreferred Date: ${bookingData.date}\nSlot: ${bookingData.slot}\n\nPlease confirm my appointment slot. Thank you!`;
+  const msg = `Namaste Dr. Vaibhav,\n\nI would like to book a dental consultation at Happy Whites Dental Clinic:\n\nPatient Name: ${bookingData.name}\nMobile: ${bookingData.phone}\nProcedure: ${bookingData.procedure}\nPreferred Date: ${bookingData.date}\nExact Time Slot: ${bookingData.time} (1-Hour Consultation: ${bookingData.range})\n\nPlease confirm my appointment slot. Thank you!`;
   const encoded = encodeURIComponent(msg);
   const url = `https://wa.me/919406951737?text=${encoded}`;
   window.open(url, '_blank');
