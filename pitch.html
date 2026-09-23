@@ -1,0 +1,1832 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-slate-950 text-slate-100">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Happy Whites × NexG Tech | Executive Strategic Pitch Deck</title>
+  <link rel="icon" type="image/svg+xml" href="assets/happy_whites_logo.svg">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              400: '#38bdf8',
+              500: '#0ea5e9',
+              600: '#0284c7',
+              700: '#0369a1',
+              900: '#0c4a6e',
+            },
+            clinical: {
+              emerald: '#10b981',
+              teal: '#14b8a6',
+              cyan: '#06b6d4',
+              amber: '#f59e0b',
+              rose: '#f43f5e',
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+            display: ['"Outfit"', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts & Lucide Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* Custom Presentation Styling */
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow: hidden;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(0.98) translateY(12px);
+      transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                  transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                  visibility 0.4s;
+      pointer-events: none;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
+    .slide.active {
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1) translateY(0);
+      pointer-events: auto;
+      z-index: 10;
+    }
+
+    /* Custom Scrollbar for slide content */
+    .slide::-webkit-scrollbar {
+      width: 6px;
+    }
+    .slide::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.6);
+    }
+    .slide::-webkit-scrollbar-thumb {
+      background: rgba(56, 189, 248, 0.25);
+      border-radius: 9999px;
+    }
+    .slide::-webkit-scrollbar-thumb:hover {
+      background: rgba(56, 189, 248, 0.5);
+    }
+
+    /* Glass card effects */
+    .glass-card {
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(56, 189, 248, 0.15);
+    }
+    .glass-card-hover:hover {
+      border-color: rgba(56, 189, 248, 0.4);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px -10px rgba(2, 132, 199, 0.25);
+    }
+
+    .glow-dot {
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.8);
+    }
+
+    /* Radial backgrounds */
+    .bg-mesh {
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(2, 132, 199, 0.18) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.12) 0px, transparent 50%),
+        radial-gradient(at 50% 50%, rgba(15, 23, 42, 0.95) 0px, rgba(3, 7, 18, 1) 100%);
+    }
+
+    /* Print / PDF Mode */
+    @media print {
+      body {
+        overflow: visible !important;
+        background: #0b1120 !important;
+        color: #f8fafc !important;
+      }
+      #top-navbar, #bottom-nav, #notes-drawer, #overview-drawer, #key-hints {
+        display: none !important;
+      }
+      .slide {
+        position: relative !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+        display: block !important;
+        page-break-after: always !important;
+        break-after: page !important;
+        height: 100vh !important;
+        padding: 2.5rem !important;
+      }
+    }
+  </style>
+</head>
+<body class="h-full bg-slate-950 text-slate-100 flex flex-col font-sans select-none antialiased bg-mesh">
+
+  <!-- ========================================================
+       TOP EXECUTIVE CONTROL BAR
+       ======================================================== -->
+  <header id="top-navbar" class="h-16 border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-lg px-4 sm:px-6 flex items-center justify-between shrink-0 z-50">
+    <div class="flex items-center gap-3">
+      <!-- Logo Lockup -->
+      <a href="index.html" target="_blank" title="View Live Portal" class="flex items-center gap-2 group">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-brand-600 to-cyan-400 flex items-center justify-center shadow-lg shadow-brand-500/20 group-hover:scale-105 transition-transform">
+          <i data-lucide="sparkles" class="w-4 h-4 text-white"></i>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-extrabold text-sm tracking-wide text-white flex items-center gap-1.5 font-display">
+            HAPPY WHITES
+            <span class="text-[10px] font-bold text-teal-400 bg-teal-950/80 border border-teal-500/30 px-1.5 py-0.5 rounded">CMS</span>
+          </span>
+          <span class="text-[10px] text-slate-400 tracking-wider">STRATEGIC PITCH DECK</span>
+        </div>
+      </a>
+
+      <div class="hidden md:flex items-center text-slate-600 mx-2 text-xs">/</div>
+
+      <!-- Slide Title & Counter -->
+      <div class="hidden md:flex items-center gap-2 bg-slate-900/90 border border-slate-800 px-3 py-1 rounded-full text-xs">
+        <span id="current-slide-num" class="font-mono font-bold text-brand-400">01</span>
+        <span class="text-slate-500">/</span>
+        <span id="total-slide-num" class="font-mono text-slate-400">11</span>
+        <span class="text-slate-600">•</span>
+        <span id="slide-category" class="text-slate-300 font-medium truncate max-w-[240px]">Strategic Vision</span>
+      </div>
+    </div>
+
+    <!-- Presentation Action Buttons -->
+    <div class="flex items-center gap-2 sm:gap-2.5">
+      <!-- Live Web Prototype Quick Link -->
+      <a href="index.html" target="_blank" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-brand-600/20 border border-brand-500/40 text-brand-300 hover:bg-brand-600/30 text-xs font-semibold transition">
+        <i data-lucide="external-link" class="w-3.5 h-3.5 text-brand-400"></i>
+        <span>Live Web Portal</span>
+      </a>
+
+      <!-- Overview Grid Button -->
+      <button id="btn-overview" onclick="toggleOverview()" title="Slide Overview [O]" class="p-2 sm:px-3 sm:py-1.5 rounded-lg bg-slate-900 border border-slate-800 hover:border-slate-700 text-slate-300 hover:text-white text-xs font-medium flex items-center gap-1.5 transition">
+        <i data-lucide="layout-grid" class="w-4 h-4 text-slate-400"></i>
+        <span class="hidden lg:inline">Overview <kbd class="text-[9px] text-slate-500 border border-slate-700 rounded px-1 ml-0.5">O</kbd></span>
+      </button>
+
+      <!-- Speaker Notes Button -->
+      <button id="btn-notes" onclick="toggleNotes()" title="Speaker Notes [N]" class="p-2 sm:px-3 sm:py-1.5 rounded-lg bg-slate-900 border border-slate-800 hover:border-slate-700 text-slate-300 hover:text-white text-xs font-medium flex items-center gap-1.5 transition">
+        <i data-lucide="file-text" class="w-4 h-4 text-emerald-400"></i>
+        <span class="hidden lg:inline">Notes <kbd class="text-[9px] text-slate-500 border border-slate-700 rounded px-1 ml-0.5">N</kbd></span>
+      </button>
+
+      <!-- Print / Export PDF -->
+      <button onclick="window.print()" title="Print / Export PDF [P]" class="p-2 sm:px-3 sm:py-1.5 rounded-lg bg-slate-900 border border-slate-800 hover:border-slate-700 text-slate-300 hover:text-white text-xs font-medium flex items-center gap-1.5 transition">
+        <i data-lucide="printer" class="w-4 h-4 text-slate-400"></i>
+        <span class="hidden lg:inline">PDF</span>
+      </button>
+
+      <!-- Fullscreen Toggle -->
+      <button onclick="toggleFullscreen()" title="Fullscreen [F]" class="p-2 rounded-lg bg-slate-900 border border-slate-800 hover:border-slate-700 text-slate-300 hover:text-white transition">
+        <i id="fullscreen-icon" data-lucide="maximize" class="w-4 h-4 text-slate-400"></i>
+      </button>
+
+      <!-- Navigation Arrows -->
+      <div class="flex items-center gap-1 pl-1 border-l border-slate-800">
+        <button onclick="prevSlide()" title="Previous Slide [←]" class="p-2 rounded-lg bg-slate-900 border border-slate-800 hover:border-slate-700 text-slate-300 hover:text-white transition">
+          <i data-lucide="chevron-left" class="w-4 h-4"></i>
+        </button>
+        <button onclick="nextSlide()" title="Next Slide [→]" class="p-2 rounded-lg bg-brand-600 hover:bg-brand-500 text-white shadow-md shadow-brand-500/25 transition">
+          <i data-lucide="chevron-right" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Animated Slide Progress Bar -->
+  <div class="h-1 bg-slate-900 w-full shrink-0 relative overflow-hidden">
+    <div id="progress-bar" class="h-full bg-gradient-to-r from-brand-500 via-teal-400 to-emerald-400 transition-all duration-300" style="width: 9.09%;"></div>
+  </div>
+
+  <!-- ========================================================
+       MAIN PRESENTATION SLIDES STACK
+       ======================================================== -->
+  <main class="flex-1 relative overflow-hidden">
+
+    <!-- ----------------------------------------------------
+         SLIDE 1: STRATEGIC VISION & COVER
+         ---------------------------------------------------- -->
+    <section class="slide active p-6 sm:p-10 lg:p-16 flex flex-col justify-center items-center text-center" data-title="Strategic Vision" data-category="Executive Overview">
+      <div class="max-w-4xl mx-auto flex flex-col items-center">
+        <!-- Eyebrow Pill -->
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-950/80 border border-brand-500/40 text-brand-300 text-xs font-bold tracking-wide uppercase mb-6 shadow-lg shadow-brand-500/10">
+          <span class="w-2 h-2 rounded-full bg-brand-400 animate-pulse"></span>
+          Confidential Strategic Proposal • Bhopal, MP
+        </div>
+
+        <!-- Main Title -->
+        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.15] mb-6 font-display">
+          Transforming Happy Whites into Central India's 
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 via-teal-300 to-emerald-400">
+            #1 Digital Dental Enterprise
+          </span>
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="text-base sm:text-xl text-slate-300 leading-relaxed font-normal max-w-2xl mb-10">
+          A high-impact 360° clinical operating blueprint: Seamless patient acquisition, 1-hour digital booking, and a complete multi-chair Clinic Management System (CMS).
+        </p>
+
+        <!-- Executive Metadata & Stakeholders Card -->
+        <div class="glass-card rounded-2xl p-4 sm:p-6 w-full max-w-2xl grid grid-cols-1 sm:grid-cols-2 gap-4 text-left border border-slate-700/60 mb-10">
+          <div class="flex items-center gap-3.5">
+            <div class="w-12 h-12 rounded-xl overflow-hidden border border-brand-500/40 shrink-0">
+              <img src="assets/doctor_vaibhav_hd_verified.jpg" alt="Dr. Vaibhav Shrivastav" class="w-full h-full object-cover">
+            </div>
+            <div>
+              <div class="text-xs text-slate-400 font-medium">Prepared Exclusively For</div>
+              <div class="text-sm font-bold text-white">Dr. Vaibhav Shrivastav</div>
+              <div class="text-[11px] text-teal-400">BDS, MDS • Clinical Director</div>
+            </div>
+          </div>
+          <div class="flex items-center gap-3.5 sm:border-l sm:border-slate-800 sm:pl-4">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-slate-900 to-slate-800 border border-slate-700 flex items-center justify-center shrink-0">
+              <i data-lucide="shield-check" class="w-6 h-6 text-brand-400"></i>
+            </div>
+            <div>
+              <div class="text-xs text-slate-400 font-medium">Presented By</div>
+              <div class="text-sm font-bold text-white">NexG Tech Innovation Team</div>
+              <div class="text-[11px] text-slate-400">Enterprise Medical IT Division</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 Key Strategic Metrics -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 w-full max-w-3xl">
+          <div class="glass-card rounded-xl p-3 border border-slate-800 text-center">
+            <div class="text-xl sm:text-2xl font-black text-emerald-400 font-display">+35</div>
+            <div class="text-[11px] text-slate-400 font-medium">High-Ticket Cases/Mo</div>
+          </div>
+          <div class="glass-card rounded-xl p-3 border border-slate-800 text-center">
+            <div class="text-xl sm:text-2xl font-black text-brand-400 font-display">&lt; 5%</div>
+            <div class="text-[11px] text-slate-400 font-medium">OPD No-Show Rate</div>
+          </div>
+          <div class="glass-card rounded-xl p-3 border border-slate-800 text-center">
+            <div class="text-xl sm:text-2xl font-black text-teal-300 font-display">100%</div>
+            <div class="text-[11px] text-slate-400 font-medium">Chair Transparency</div>
+          </div>
+          <div class="glass-card rounded-xl p-3 border border-slate-800 text-center">
+            <div class="text-xl sm:text-2xl font-black text-amber-400 font-display">₹4.6L+</div>
+            <div class="text-[11px] text-slate-400 font-medium">Projected Monthly ROI</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------
+         SLIDE 2: THE CLINICAL DIAGNOSTIC (HIDDEN LEAKS)
+         ---------------------------------------------------- -->
+    <section class="slide p-6 sm:p-10 lg:p-16 flex flex-col justify-center" data-title="The Clinical Diagnostic" data-category="Current Practice Friction">
+      <div class="max-w-6xl mx-auto w-full">
+        <!-- Eyebrow & Title -->
+        <div class="mb-8">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-950/80 border border-rose-500/30 text-rose-300 text-xs font-bold uppercase tracking-wide mb-3">
+            <i data-lucide="alert-triangle" class="w-3.5 h-3.5 text-rose-400"></i>
+            Operational Bottleneck Analysis
+          </div>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-white font-display">
+            Where Premium Dental Clinics Lose <span class="text-rose-400">₹10L – ₹18L Annually</span>
+          </h2>
+          <p class="text-slate-400 text-sm sm:text-base mt-2">
+            Even top multispecialty dental setups leak high-margin revenue through 4 unaddressed operational friction points.
+          </p>
+        </div>
+
+        <!-- 4 Grid Friction Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-8">
+          <!-- Friction 1 -->
+          <div class="glass-card rounded-2xl p-5 border border-rose-900/40 bg-gradient-to-br from-slate-900/90 to-rose-950/20 relative overflow-hidden">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-xl bg-rose-500/10 border border-rose-500/30 flex items-center justify-center shrink-0 text-rose-400">
+                <i data-lucide="phone-missed" class="w-6 h-6"></i>
+              </div>
+              <div>
+                <span class="text-[10px] font-black uppercase text-rose-400 tracking-wider">Friction Point #1</span>
+                <h3 class="text-lg font-bold text-white mt-0.5">After-Hours Patient Inquiry Leakage</h3>
+                <p class="text-xs sm:text-sm text-slate-300 mt-1.5 leading-relaxed">
+                  Over <strong class="text-white">42% of patients research dental treatments after 8:00 PM</strong> when front-desk staff is away. Unanswered calls and delayed WhatsApp replies cause patients to book consultations with competing clinics.
+                </p>
+                <div class="mt-3 text-[11px] font-semibold text-rose-300 flex items-center gap-1.5">
+                  <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                  Estimated Loss: 12-18 high-ticket aligner & implant inquiries/month
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Friction 2 -->
+          <div class="glass-card rounded-2xl p-5 border border-amber-900/40 bg-gradient-to-br from-slate-900/90 to-amber-950/20 relative overflow-hidden">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center shrink-0 text-amber-400">
+                <i data-lucide="user-x" class="w-6 h-6"></i>
+              </div>
+              <div>
+                <span class="text-[10px] font-black uppercase text-amber-400 tracking-wider">Friction Point #2</span>
+                <h3 class="text-lg font-bold text-white mt-0.5">The 25% – 30% OPD No-Show Trap</h3>
+                <p class="text-xs sm:text-sm text-slate-300 mt-1.5 leading-relaxed">
+                  Manual calling to confirm appointments consumes 2+ receptionist hours daily, yet patients still forget. An empty operatory chair costs ₹1,500 – ₹3,500 per lost hour in sterilized downtime and doctor opportunity cost.
+                </p>
+                <div class="mt-3 text-[11px] font-semibold text-amber-300 flex items-center gap-1.5">
+                  <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                  Estimated Loss: ₹75,000 – ₹1,20,000 in lost chair time monthly
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Friction 3 -->
+          <div class="glass-card rounded-2xl p-5 border border-cyan-900/40 bg-gradient-to-br from-slate-900/90 to-cyan-950/20 relative overflow-hidden">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center shrink-0 text-cyan-400">
+                <i data-lucide="folder-x" class="w-6 h-6"></i>
+              </div>
+              <div>
+                <span class="text-[10px] font-black uppercase text-cyan-400 tracking-wider">Friction Point #3</span>
+                <h3 class="text-lg font-bold text-white mt-0.5">Fragmented Clinical Records & X-Rays</h3>
+                <p class="text-xs sm:text-sm text-slate-300 mt-1.5 leading-relaxed">
+                  Patient notes on physical registers, OPG X-rays on a local workstation, and intraoral scans on another drive. When a patient returns after 6 months, doctors waste 5–10 minutes hunting for previous treatment history.
+                </p>
+                <div class="mt-3 text-[11px] font-semibold text-cyan-300 flex items-center gap-1.5">
+                  <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                  Estimated Loss: Impaired patient trust & compromised clinical audit trail
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Friction 4 -->
+          <div class="glass-card rounded-2xl p-5 border border-purple-900/40 bg-gradient-to-br from-slate-900/90 to-purple-950/20 relative overflow-hidden">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center shrink-0 text-purple-400">
+                <i data-lucide="boxes" class="w-6 h-6"></i>
+              </div>
+              <div>
+                <span class="text-[10px] font-black uppercase text-purple-400 tracking-wider">Friction Point #4</span>
+                <h3 class="text-lg font-bold text-white mt-0.5">Lab Case Delays & Stock Spoilage</h3>
+                <p class="text-xs sm:text-sm text-slate-300 mt-1.5 leading-relaxed">
+                  TruAlign aligner batches and Zirconia crown delivery statuses tracked in chat threads. High-cost items (implant posts, bonding resins) risk expiring unnoticed or being out-of-stock when the patient is already seated in the chair.
+                </p>
+                <div class="mt-3 text-[11px] font-semibold text-purple-300 flex items-center gap-1.5">
+                  <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                  Estimated Loss: Embarrassing patient reschedules & ₹30K/mo inventory waste
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Summary Banner -->
+        <div class="p-3.5 rounded-xl bg-slate-900/90 border border-slate-700/80 flex items-center justify-between">
+          <div class="flex items-center gap-2.5 text-xs text-slate-300">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 glow-dot shrink-0"></span>
+            <span><strong>The Solution:</strong> Replace manual guesswork with an interconnected digital workflow engine.</span>
+          </div>
+          <button onclick="nextSlide()" class="text-xs font-bold text-brand-400 hover:text-brand-300 flex items-center gap-1 transition">
+            See The 2-Pillar Solution <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------
+         SLIDE 3: THE 2-PILLAR ARCHITECTURAL SOLUTION
+         ---------------------------------------------------- -->
+    <section class="slide p-6 sm:p-10 lg:p-16 flex flex-col justify-center" data-title="2-Pillar Solution" data-category="Strategic Architecture">
+      <div class="max-w-6xl mx-auto w-full">
+        <!-- Eyebrow & Title -->
+        <div class="text-center max-w-3xl mx-auto mb-10">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-teal-950/80 border border-teal-500/40 text-teal-300 text-xs font-bold uppercase tracking-wide mb-3">
+            <i data-lucide="git-merge" class="w-3.5 h-3.5 text-teal-400"></i>
+            Integrated Clinical Architecture
+          </div>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-white font-display">
+            The Two-Pillar Modern Practice Engine
+          </h2>
+          <p class="text-slate-300 text-sm sm:text-base mt-2">
+            A closed-loop system connecting patient discovery on the web directly into Dr. Vaibhav's clinical chair and inventory.
+          </p>
+        </div>
+
+        <!-- Two Columns Architecture -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 relative">
+          <!-- Center Connector Badge (Desktop) -->
+          <div class="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-gradient-to-tr from-brand-600 to-teal-500 items-center justify-center shadow-xl shadow-brand-500/40 text-white font-black text-xs border-2 border-slate-900">
+            SYNC
+          </div>
+
+          <!-- PILLAR 1: PATIENT ACQUISITION -->
+          <div class="glass-card rounded-2xl p-6 border-2 border-brand-500/30 bg-gradient-to-b from-slate-900/90 to-brand-950/20 relative">
+            <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-brand-500/20 border border-brand-500/40 flex items-center justify-center text-brand-400 font-black">
+                  01
+                </div>
+                <div>
+                  <h3 class="text-lg font-bold text-white">Pillar 1: Patient Acquisition</h3>
+                  <div class="text-xs text-brand-400 font-medium">Front-Facing Digital Experience</div>
+                </div>
+              </div>
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-500/30">
+                100% READY
+              </span>
+            </div>
+
+            <ul class="space-y-3.5 mt-5 text-xs sm:text-sm text-slate-300">
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-400 mt-0.5 shrink-0"></i>
+                <div>
+                  <strong class="text-white">100% Authentic Bilingual Experience:</strong> Instant toggle between English and authentic medical Devanagari Hindi for all Bhopal demographics.
+                </div>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-400 mt-0.5 shrink-0"></i>
+                <div>
+                  <strong class="text-white">10 AM – 9 PM 1-Hour Continuous Booking:</strong> 11 unambiguous hourly slots eliminating "morning/evening" scheduling friction.
+                </div>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-400 mt-0.5 shrink-0"></i>
+                <div>
+                  <strong class="text-white">24/7 AI Dental Assistant:</strong> Instant answers on aligner costs, RCT sitting times, and clinic timings right inside the browser.
+                </div>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-400 mt-0.5 shrink-0"></i>
+                <div>
+                  <strong class="text-white">Visual Transformation Slider & Google Flywheel:</strong> Interactive before/after cases and 58+ verified 5.0★ patient testimonials.
+                </div>
+              </li>
+            </ul>
+
+            <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between">
+              <span class="text-xs text-slate-400">Live Production Prototype:</span>
+              <a href="index.html" target="_blank" class="text-xs font-bold text-brand-400 hover:text-brand-300 flex items-center gap-1">
+                View Live Website <i data-lucide="external-link" class="w-3 h-3"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- PILLAR 2: CLINIC MANAGEMENT SYSTEM -->
+          <div class="glass-card rounded-2xl p-6 border-2 border-teal-500/30 bg-gradient-to-b from-slate-900/90 to-teal-950/20 relative">
+            <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-teal-500/20 border border-teal-500/40 flex items-center justify-center text-teal-400 font-black">
+                  02
+                </div>
+                <div>
+                  <h3 class="text-lg font-bold text-white">Pillar 2: Clinical Operations</h3>
+                  <div class="text-xs text-teal-400 font-medium">Smart Clinic Management System (CMS)</div>
+                </div>
+              </div>
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-teal-950 text-teal-300 border border-teal-500/30">
+                PROPOSAL FOCUS
+              </span>
+            </div>
+
+            <ul class="space-y-3.5 mt-5 text-xs sm:text-sm text-slate-300">
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-teal-400 mt-0.5 shrink-0"></i>
+                <div>
+                  <strong class="text-white">Multi-Chair & Doctor Roster Engine:</strong> Synchronized scheduling across 3 dental chairs with automated 15-min sterilization buffers.
+                </div>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-teal-400 mt-0.5 shrink-0"></i>
+                <div>
+                  <strong class="text-white">Electronic Dental Records & 32-Tooth Odontogram:</strong> Visual charting of crowns, RCTs, and aligners with 1-click cloud X-ray access.
+                </div>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-teal-400 mt-0.5 shrink-0"></i>
+                <div>
+                  <strong class="text-white">Smart Inventory & TruAlign Lab Tracking:</strong> End-to-end tracking of aligner tray manufacturing, Zirconia crowns, and implant stocks.
+                </div>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-teal-400 mt-0.5 shrink-0"></i>
+                <div>
+                  <strong class="text-white">2-Way WhatsApp Reminders & Digital Rx:</strong> Automated confirmations reducing no-shows to &lt;5% and instant digital prescription PDFs.
+                </div>
+              </li>
+            </ul>
+
+            <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between">
+              <span class="text-xs text-slate-400">Implementation Timeline:</span>
+              <span class="text-xs font-bold text-teal-300">Turnkey in 4–5 Weeks</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------
+         SLIDE 4: PILLAR 1 LIVE SHOWCASE (WHAT WE BUILT)
+         ---------------------------------------------------- -->
+    <section class="slide p-6 sm:p-10 lg:p-16 flex flex-col justify-center" data-title="Pillar 1 Live Showcase" data-category="Patient Growth Portal">
+      <div class="max-w-6xl mx-auto w-full">
+        <!-- Header -->
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-950/80 border border-brand-500/30 text-brand-300 text-xs font-bold uppercase tracking-wide mb-2">
+              <i data-lucide="check" class="w-3.5 h-3.5 text-brand-400"></i>
+              Proven Value Delivered First
+            </div>
+            <h2 class="text-2xl sm:text-4xl font-extrabold text-white font-display">
+              Pillar 1: Production-Ready Patient Portal
+            </h2>
+            <p class="text-slate-300 text-sm mt-1">
+              Engineered with zero technical debt — already live on desktop and mobile.
+            </p>
+          </div>
+          <a href="index.html" target="_blank" class="mt-4 sm:mt-0 inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs shadow-lg shadow-brand-500/30 transition shrink-0">
+            <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i>
+            Open Live Portal in New Tab
+          </a>
+        </div>
+
+        <!-- 3 Feature Showcases with Visual Artifacts -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <!-- Card 1: 10-9 Continuous 1-Hour Slot Engine -->
+          <div class="glass-card rounded-2xl p-5 border border-slate-700/80 flex flex-col">
+            <div class="h-44 rounded-xl overflow-hidden mb-4 relative bg-slate-900 border border-slate-800">
+              <img src="assets/hd/smile_consultation_4k.jpg" alt="Booking Consultation" class="w-full h-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
+              <div class="absolute bottom-2.5 left-2.5 right-2.5">
+                <span class="text-[10px] font-black px-2 py-0.5 rounded bg-brand-500/90 text-white uppercase">
+                  1-Hour Granular Slots
+                </span>
+                <div class="text-xs font-bold text-white mt-1">10:00 AM – 09:00 PM Engine</div>
+              </div>
+            </div>
+            <h3 class="text-base font-bold text-white">Smart OPD Booking Wizard</h3>
+            <p class="text-xs text-slate-300 mt-2 leading-relaxed flex-1">
+              Patients select a specific treatment chip, choose an exact 1-hour time slot (e.g. 11:00 AM – 12:00 PM), and enter their 10-digit mobile number.
+            </p>
+            <div class="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between text-xs text-brand-300 font-semibold">
+              <span>Direct WhatsApp Dispatch</span>
+              <i data-lucide="message-square" class="w-4 h-4 text-emerald-400"></i>
+            </div>
+          </div>
+
+          <!-- Card 2: 100% Hindi Devanagari Parity -->
+          <div class="glass-card rounded-2xl p-5 border border-slate-700/80 flex flex-col">
+            <div class="h-44 rounded-xl overflow-hidden mb-4 relative bg-slate-900 border border-slate-800">
+              <img src="assets/real_clinic/photo_1.jpg" alt="Happy Whites Facility" class="w-full h-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
+              <div class="absolute bottom-2.5 left-2.5 right-2.5">
+                <span class="text-[10px] font-black px-2 py-0.5 rounded bg-teal-500/90 text-white uppercase font-sans">
+                  हिन्दी भाषा समर्थन
+                </span>
+                <div class="text-xs font-bold text-white mt-1">100% Zero English Leakage</div>
+              </div>
+            </div>
+            <h3 class="text-base font-bold text-white">Full Bilingual Local Experience</h3>
+            <p class="text-xs text-slate-300 mt-2 leading-relaxed flex-1">
+              Every badge, review name, treatment tag, and FAQ is translated into natural, respectful Hindi. Tested with 0 unallowed English words across the entire live DOM.
+            </p>
+            <div class="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between text-xs text-teal-300 font-semibold">
+              <span>Devanagari Optimized Typography</span>
+              <i data-lucide="languages" class="w-4 h-4 text-teal-400"></i>
+            </div>
+          </div>
+
+          <!-- Card 3: 24/7 AI Dental Assistant -->
+          <div class="glass-card rounded-2xl p-5 border border-slate-700/80 flex flex-col">
+            <div class="h-44 rounded-xl overflow-hidden mb-4 relative bg-slate-900 border border-slate-800">
+              <img src="assets/hd/step1_intraoral_scan.jpg" alt="3D Intraoral Scan" class="w-full h-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
+              <div class="absolute bottom-2.5 left-2.5 right-2.5">
+                <span class="text-[10px] font-black px-2 py-0.5 rounded bg-purple-500/90 text-white uppercase">
+                  24/7 AI Chatbot
+                </span>
+                <div class="text-xs font-bold text-white mt-1">Instant Patient Triage</div>
+              </div>
+            </div>
+            <h3 class="text-base font-bold text-white">AI Dental Assistant</h3>
+            <p class="text-xs text-slate-300 mt-2 leading-relaxed flex-1">
+              Replaces dead telephone lines with an intelligent automated consultant that educates patients on TruAlign aligners, painless RCTs, and transparent estimates.
+            </p>
+            <div class="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between text-xs text-purple-300 font-semibold">
+              <span>Right-Dock Floating Trigger</span>
+              <i data-lucide="bot" class="w-4 h-4 text-purple-400"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------
+         SLIDE 5: PILLAR 2 — MULTI-CHAIR & DOCTOR SCHEDULING
+         ---------------------------------------------------- -->
+    <section class="slide p-6 sm:p-10 lg:p-16 flex flex-col justify-center" data-title="Multi-Chair & Doctor Roster" data-category="Clinic Operations (CMS)">
+      <div class="max-w-6xl mx-auto w-full">
+        <!-- Eyebrow & Title -->
+        <div class="mb-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-950/80 border border-teal-500/30 text-teal-300 text-xs font-bold uppercase tracking-wide mb-2">
+            <i data-lucide="calendar" class="w-3.5 h-3.5 text-teal-400"></i>
+            Module 1: Chair Optimization
+          </div>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-white font-display">
+            Smart Multi-Chair & Doctor Roster Engine
+          </h2>
+          <p class="text-slate-300 text-sm mt-1">
+            Maximized operatory throughput with automated 15-minute sterilization buffers and two-way WhatsApp confirmations.
+          </p>
+        </div>
+
+        <!-- Interactive Schedule Simulator Canvas -->
+        <div class="glass-card rounded-2xl p-5 border border-slate-700/80 mb-6">
+          <div class="flex items-center justify-between pb-3 border-b border-slate-800 mb-4">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span class="text-xs font-bold text-white uppercase tracking-wider">Live Operatory Master Grid • Today (10:00 AM – 02:00 PM)</span>
+            </div>
+            <div class="flex items-center gap-3 text-xs text-slate-400">
+              <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded bg-brand-500"></span> Dr. Vaibhav</span>
+              <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded bg-teal-400"></span> Dr. Akash</span>
+              <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded bg-purple-400"></span> Hygienist/OPD</span>
+            </div>
+          </div>
+
+          <!-- Chair Columns -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <!-- Chair 1: Dr. Vaibhav Shrivastav -->
+            <div class="bg-slate-900/80 rounded-xl p-3 border border-brand-500/30">
+              <div class="flex items-center justify-between mb-3 pb-2 border-b border-slate-800">
+                <span class="text-xs font-bold text-brand-300 flex items-center gap-1.5">
+                  <i data-lucide="armchair" class="w-3.5 h-3.5"></i> Chair 1: Ortho / Implant Suite
+                </span>
+                <span class="text-[10px] text-slate-400">Dr. Vaibhav</span>
+              </div>
+              <div class="space-y-2.5 text-xs">
+                <div class="p-2.5 rounded-lg bg-brand-950/60 border border-brand-500/40 text-slate-200">
+                  <div class="flex justify-between font-bold text-white">
+                    <span>10:00 AM – 11:00 AM</span>
+                    <span class="text-emerald-400 text-[10px]">Confirmed (WA)</span>
+                  </div>
+                  <div class="text-[11px] text-slate-300 mt-1 font-medium">Vishweshwar M. • TruAlign 3D Scan</div>
+                </div>
+                <div class="p-2 rounded bg-amber-950/40 border border-amber-500/30 text-amber-300 text-[10px] flex items-center gap-1.5">
+                  <i data-lucide="sparkles" class="w-3 h-3 text-amber-400"></i>
+                  15-Min Operatory Sterilization Buffer
+                </div>
+                <div class="p-2.5 rounded-lg bg-brand-950/60 border border-brand-500/40 text-slate-200">
+                  <div class="flex justify-between font-bold text-white">
+                    <span>11:15 AM – 12:15 PM</span>
+                    <span class="text-emerald-400 text-[10px]">Seated</span>
+                  </div>
+                  <div class="text-[11px] text-slate-300 mt-1 font-medium">Dr. R. Verma • Implant Crown Fitting</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Chair 2: Dr. Akash Shrivastava -->
+            <div class="bg-slate-900/80 rounded-xl p-3 border border-teal-500/30">
+              <div class="flex items-center justify-between mb-3 pb-2 border-b border-slate-800">
+                <span class="text-xs font-bold text-teal-300 flex items-center gap-1.5">
+                  <i data-lucide="armchair" class="w-3.5 h-3.5"></i> Chair 2: Endodontic Suite
+                </span>
+                <span class="text-[10px] text-slate-400">Dr. Akash</span>
+              </div>
+              <div class="space-y-2.5 text-xs">
+                <div class="p-2.5 rounded-lg bg-teal-950/60 border border-teal-500/40 text-slate-200">
+                  <div class="flex justify-between font-bold text-white">
+                    <span>10:30 AM – 11:30 AM</span>
+                    <span class="text-emerald-400 text-[10px]">In Progress</span>
+                  </div>
+                  <div class="text-[11px] text-slate-300 mt-1 font-medium">Nimisha G. • Single-Sitting RCT (#46)</div>
+                </div>
+                <div class="p-2 rounded bg-amber-950/40 border border-amber-500/30 text-amber-300 text-[10px] flex items-center gap-1.5">
+                  <i data-lucide="sparkles" class="w-3 h-3 text-amber-400"></i>
+                  15-Min Operatory Sterilization Buffer
+                </div>
+                <div class="p-2.5 rounded-lg bg-teal-950/60 border border-teal-500/40 text-slate-200">
+                  <div class="flex justify-between font-bold text-white">
+                    <span>11:45 AM – 12:45 PM</span>
+                    <span class="text-slate-400 text-[10px]">Reminder Sent</span>
+                  </div>
+                  <div class="text-[11px] text-slate-300 mt-1 font-medium">Nitin Sood • Re-RCT Follow-up</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Chair 3: Preventive & Diagnostics -->
+            <div class="bg-slate-900/80 rounded-xl p-3 border border-purple-500/30">
+              <div class="flex items-center justify-between mb-3 pb-2 border-b border-slate-800">
+                <span class="text-xs font-bold text-purple-300 flex items-center gap-1.5">
+                  <i data-lucide="armchair" class="w-3.5 h-3.5"></i> Chair 3: Diagnostics & Hygiene
+                </span>
+                <span class="text-[10px] text-slate-400">OPD Team</span>
+              </div>
+              <div class="space-y-2.5 text-xs">
+                <div class="p-2.5 rounded-lg bg-purple-950/60 border border-purple-500/40 text-slate-200">
+                  <div class="flex justify-between font-bold text-white">
+                    <span>11:00 AM – 11:45 AM</span>
+                    <span class="text-emerald-400 text-[10px]">Confirmed (WA)</span>
+                  </div>
+                  <div class="text-[11px] text-slate-300 mt-1 font-medium">Harkaran L. • Piezo Scaling & Polish</div>
+                </div>
+                <div class="p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 text-slate-400">
+                  <div class="flex justify-between font-bold text-slate-400">
+                    <span>12:00 PM – 01:00 PM</span>
+                    <span class="text-emerald-400 text-[10px]">Open Slot</span>
+                  </div>
+                  <div class="text-[11px] text-slate-500 mt-1 font-medium">Available for Walk-in or Online OPD</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 Feature Bullets -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-slate-300">
+          <div class="flex items-start gap-2.5">
+            <i data-lucide="bell-ring" class="w-4 h-4 text-teal-400 mt-0.5 shrink-0"></i>
+            <div><strong class="text-white">Automated WhatsApp 2-Way Reminders:</strong> Sent 24h & 2h prior; patient taps [Confirm] or [Reschedule], updating the live grid automatically.</div>
+          </div>
+          <div class="flex items-start gap-2.5">
+            <i data-lucide="clock" class="w-4 h-4 text-brand-400 mt-0.5 shrink-0"></i>
+            <div><strong class="text-white">Smart Sterilization Buffers:</strong> Automatically reserves 15 mins for Class-B autoclave instrument prep between sittings.</div>
+          </div>
+          <div class="flex items-start gap-2.5">
+            <i data-lucide="user-check" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0"></i>
+            <div><strong class="text-white">Doctor Specialty Matching:</strong> Complex aligner/implant cases auto-routed to Dr. Vaibhav; RCT cases to Dr. Akash.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------
+         SLIDE 6: PILLAR 2 — DIGITAL EDR & 32-TOOTH ODONTOGRAM
+         ---------------------------------------------------- -->
+    <section class="slide p-6 sm:p-10 lg:p-16 flex flex-col justify-center" data-title="Digital EDR & Odontogram" data-category="Clinic Operations (CMS)">
+      <div class="max-w-6xl mx-auto w-full">
+        <!-- Header -->
+        <div class="mb-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/30 text-cyan-300 text-xs font-bold uppercase tracking-wide mb-2">
+            <i data-lucide="stethoscope" class="w-3.5 h-3.5 text-cyan-400"></i>
+            Module 2: Clinical Records
+          </div>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-white font-display">
+            Interactive 32-Tooth Digital Odontogram & EDR
+          </h2>
+          <p class="text-slate-300 text-sm mt-1">
+            Tap any tooth below to inspect real-time diagnosis, past treatments, and digital prescriptions.
+          </p>
+        </div>
+
+        <!-- Interactive Odontogram Card -->
+        <div class="glass-card rounded-2xl p-5 border border-slate-700/80 mb-6">
+          <!-- Odontogram Interactive Arch Demo -->
+          <div class="mb-5">
+            <div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2 flex items-center justify-between">
+              <span>Maxillary Arch (Upper Teeth 18 – 28)</span>
+              <span class="text-cyan-400 font-normal">Click any highlighted tooth</span>
+            </div>
+            
+            <!-- Upper Teeth Buttons -->
+            <div class="grid grid-cols-8 sm:grid-cols-16 gap-1.5 text-center">
+              <!-- Tooth 18-11 -->
+              <button onclick="selectTooth(18, 'Wisdom Tooth', 'Healthy', 'bg-slate-800')" class="tooth-btn p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-[11px] font-bold border border-slate-700">18</button>
+              <button onclick="selectTooth(17, 'Second Molar', 'Healthy', 'bg-slate-800')" class="tooth-btn p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-[11px] font-bold border border-slate-700">17</button>
+              <button onclick="selectTooth(16, 'First Molar', 'Laser RCT Completed (Zirconia Crown)', 'bg-emerald-600')" class="tooth-btn p-2 rounded-lg bg-emerald-600/30 hover:bg-emerald-600/50 text-[11px] font-bold border border-emerald-500 text-emerald-300">16</button>
+              <button onclick="selectTooth(15, 'Second Premolar', 'Healthy', 'bg-slate-800')" class="tooth-btn p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-[11px] font-bold border border-slate-700">15</button>
+              <button onclick="selectTooth(14, 'First Premolar', 'Healthy', 'bg-slate-800')" class="tooth-btn p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-[11px] font-bold border border-slate-700">14</button>
+              <button onclick="selectTooth(13, 'Canine', 'TruAlign Active Tray #4', 'bg-brand-600')" class="tooth-btn p-2 rounded-lg bg-brand-600/30 hover:bg-brand-600/50 text-[11px] font-bold border border-brand-500 text-brand-300">13</button>
+              <button onclick="selectTooth(12, 'Lateral Incisor', 'TruAlign Active Tray #4', 'bg-brand-600')" class="tooth-btn p-2 rounded-lg bg-brand-600/30 hover:bg-brand-600/50 text-[11px] font-bold border border-brand-500 text-brand-300">12</button>
+              <button onclick="selectTooth(11, 'Central Incisor', 'Composite Veneer', 'bg-purple-600')" class="tooth-btn p-2 rounded-lg bg-purple-600/30 hover:bg-purple-600/50 text-[11px] font-bold border border-purple-500 text-purple-300">11</button>
+              
+              <!-- Tooth 21-28 -->
+              <button onclick="selectTooth(21, 'Central Incisor', 'TruAlign Active Tray #4', 'bg-brand-600')" class="tooth-btn p-2 rounded-lg bg-brand-600/30 hover:bg-brand-600/50 text-[11px] font-bold border border-brand-500 text-brand-300">21</button>
+              <button onclick="selectTooth(22, 'Lateral Incisor', 'Healthy', 'bg-slate-800')" class="tooth-btn p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-[11px] font-bold border border-slate-700">22</button>
+              <button onclick="selectTooth(23, 'Canine', 'Healthy', 'bg-slate-800')" class="tooth-btn p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-[11px] font-bold border border-slate-700">23</button>
+              <button onclick="selectTooth(24, 'First Premolar', 'Deep Caries Detected (Watch)', 'bg-amber-600')" class="tooth-btn p-2 rounded-lg bg-amber-600/30 hover:bg-amber-600/50 text-[11px] font-bold border border-amber-500 text-amber-300">24</button>
+              <button onclick="selectTooth(25, 'Second Premolar', 'Healthy', 'bg-slate-800')" class="tooth-btn p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-[11px] font-bold border border-slate-700">25</button>
+              <button onclick="selectTooth(26, 'First Molar', 'German Titanium Implant Planned', 'bg-rose-600')" class="tooth-btn p-2 rounded-lg bg-rose-600/30 hover:bg-rose-600/50 text-[11px] font-bold border border-rose-500 text-rose-300">26</button>
+              <button onclick="selectTooth(27, 'Second Molar', 'Healthy', 'bg-slate-800')" class="tooth-btn p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-[11px] font-bold border border-slate-700">27</button>
+              <button onclick="selectTooth(28, 'Wisdom Tooth', 'Impacted (Surgical Plan)', 'bg-rose-600')" class="tooth-btn p-2 rounded-lg bg-rose-600/30 hover:bg-rose-600/50 text-[11px] font-bold border border-rose-500 text-rose-300">28</button>
+            </div>
+          </div>
+
+          <!-- Dynamic Inspection Inspector Box -->
+          <div id="tooth-inspector" class="p-3.5 rounded-xl bg-slate-900 border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+              <div id="inspector-badge" class="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center font-bold text-emerald-400 shrink-0 text-sm">
+                #16
+              </div>
+              <div>
+                <div class="text-xs text-slate-400 font-medium">Selected Tooth Anatomy</div>
+                <div id="inspector-title" class="text-sm font-bold text-white">Tooth #16: First Molar — Laser RCT Completed</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <span id="inspector-status" class="px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-950 text-emerald-300 border border-emerald-500/30">
+                Monolithic Zirconia Crown Sealed
+              </span>
+              <button onclick="alert('Digital Rx with Dr. Vaibhav\'s signature dispatched directly to patient WhatsApp!')" class="px-3 py-1 rounded-lg bg-brand-600 hover:bg-brand-500 text-white text-xs font-bold flex items-center gap-1 transition">
+                <i data-lucide="send" class="w-3 h-3"></i> WhatsApp Rx
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 Architecture Capabilities -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-slate-300">
+          <div class="glass-card p-3.5 rounded-xl border border-slate-800">
+            <div class="font-bold text-white mb-1 flex items-center gap-1.5 text-cyan-400">
+              <i data-lucide="cloud" class="w-4 h-4"></i> Cloud 3D Scan & OPG Archive
+            </div>
+            Directly binds 3D intraoral scans and panoramic X-rays to the patient's record with zero local disk clutter.
+          </div>
+          <div class="glass-card p-3.5 rounded-xl border border-slate-800">
+            <div class="font-bold text-white mb-1 flex items-center gap-1.5 text-teal-400">
+              <i data-lucide="file-check" class="w-4 h-4"></i> 1-Click Digital Prescriptions
+            </div>
+            Pre-configured antibiotic, analgesic, and mouthwash templates with Dr. Vaibhav's digital signature in seconds.
+          </div>
+          <div class="glass-card p-3.5 rounded-xl border border-slate-800">
+            <div class="font-bold text-white mb-1 flex items-center gap-1.5 text-brand-400">
+              <i data-lucide="repeat" class="w-4 h-4"></i> Automated Recall Sequences
+            </div>
+            Triggers automatic WhatsApp reminders at 6 months (Scaling) and 12 months (Aligner retainer review).
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------
+         SLIDE 7: PILLAR 2 — INVENTORY & TRUALIGN LAB TRACKING
+         ---------------------------------------------------- -->
+    <section class="slide p-6 sm:p-10 lg:p-16 flex flex-col justify-center" data-title="Inventory & Lab Tracking" data-category="Clinic Operations (CMS)">
+      <div class="max-w-6xl mx-auto w-full">
+        <!-- Header -->
+        <div class="mb-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-950/80 border border-purple-500/30 text-purple-300 text-xs font-bold uppercase tracking-wide mb-2">
+            <i data-lucide="package" class="w-3.5 h-3.5 text-purple-400"></i>
+            Module 3: Supply Chain & Lab
+          </div>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-white font-display">
+            Smart Inventory Vault & TruAlign Lab Tracking
+          </h2>
+          <p class="text-slate-300 text-sm mt-1">
+            Complete transparency over high-value consumables, aligner tray manufacturing stages, and expiry dates.
+          </p>
+        </div>
+
+        <!-- 4 Grid Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
+          <!-- Card 1: TruAlign Aligner Pipeline -->
+          <div class="glass-card rounded-2xl p-5 border border-purple-500/30">
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="text-base font-bold text-white flex items-center gap-2">
+                <i data-lucide="layers" class="w-4 h-4 text-purple-400"></i>
+                TruAlign Clear Aligner Tray Pipeline
+              </h3>
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-purple-950 text-purple-300 border border-purple-500/30">Active Cases: 14</span>
+            </div>
+            <p class="text-xs text-slate-300 mb-4">
+              Real-time stage tracking from initial optical scan to delivery:
+            </p>
+            <!-- 5-Stage Stepper -->
+            <div class="grid grid-cols-5 gap-1.5 text-center text-[10px]">
+              <div class="p-2 rounded bg-slate-900 border border-slate-800 text-slate-400">
+                <span class="font-bold block text-white">01</span> Scan Upload
+              </div>
+              <div class="p-2 rounded bg-slate-900 border border-slate-800 text-slate-400">
+                <span class="font-bold block text-white">02</span> 3D CAD Plan
+              </div>
+              <div class="p-2 rounded bg-brand-950/80 border border-brand-500/50 text-brand-300">
+                <span class="font-bold block text-brand-400">03</span> Thermoform
+              </div>
+              <div class="p-2 rounded bg-slate-900 border border-slate-800 text-slate-400">
+                <span class="font-bold block text-white">04</span> Doctor QC
+              </div>
+              <div class="p-2 rounded bg-emerald-950/80 border border-emerald-500/50 text-emerald-300">
+                <span class="font-bold block text-emerald-400">05</span> Fitted
+              </div>
+            </div>
+            <div class="mt-3 text-[11px] text-slate-400 flex items-center justify-between">
+              <span>Patient: Ayesha Azhar (Set 3 of 12)</span>
+              <span class="text-emerald-400 font-semibold">Ready for Fitting</span>
+            </div>
+          </div>
+
+          <!-- Card 2: Implant & Crown Serialized Vault -->
+          <div class="glass-card rounded-2xl p-5 border border-brand-500/30">
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="text-base font-bold text-white flex items-center gap-2">
+                <i data-lucide="shield" class="w-4 h-4 text-brand-400"></i>
+                Serialized Titanium & Crown Vault
+              </h3>
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-brand-950 text-brand-300 border border-brand-500/30">Warranty Vault</span>
+            </div>
+            <p class="text-xs text-slate-300 mb-3">
+              Stores German Grade-5 titanium post lot numbers and Zirconia crown warranty certificates:
+            </p>
+            <div class="space-y-2 text-xs">
+              <div class="p-2.5 rounded-lg bg-slate-900/90 border border-slate-800 flex justify-between items-center">
+                <div>
+                  <span class="font-bold text-white">German Grade-5 Post (4.2 × 11.5mm)</span>
+                  <div class="text-[10px] text-slate-400">Batch: #DE-9428 • Lot Expiry: 2031</div>
+                </div>
+                <span class="text-xs font-mono font-bold text-emerald-400">6 in stock</span>
+              </div>
+              <div class="p-2.5 rounded-lg bg-slate-900/90 border border-slate-800 flex justify-between items-center">
+                <div>
+                  <span class="font-bold text-white">Monolithic Multi-Layer Zirconia</span>
+                  <div class="text-[10px] text-slate-400">Lifetime Warranty Certificate Auto-Generated</div>
+                </div>
+                <span class="text-xs font-mono font-bold text-brand-400">Direct Link</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: Expiry Sentinel -->
+          <div class="glass-card rounded-2xl p-4 border border-rose-500/30">
+            <h4 class="text-sm font-bold text-white flex items-center gap-2 mb-2">
+              <i data-lucide="alert-octagon" class="w-4 h-4 text-rose-400"></i>
+              Expiry & Low-Stock Sentinel
+            </h4>
+            <p class="text-xs text-slate-300">
+              Automatic alerts 45 days prior to expiry on etching gels, bonding agents, and anesthetics. Eliminates costly clinical disposal.
+            </p>
+          </div>
+
+          <!-- Card 4: Vendor & Cost Analytics -->
+          <div class="glass-card rounded-2xl p-4 border border-emerald-500/30">
+            <h4 class="text-sm font-bold text-white flex items-center gap-2 mb-2">
+              <i data-lucide="bar-chart-3" class="w-4 h-4 text-emerald-400"></i>
+              Procedure Cost & Profit Analytics
+            </h4>
+            <p class="text-xs text-slate-300">
+              Live calculation of actual material cost per RCT or implant sitting, revealing exact profit margins per dental operatory chair.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------
+         SLIDE 8: FINANCIAL ROI & IMPACT (INTERACTIVE CALCULATOR)
+         ---------------------------------------------------- -->
+    <section class="slide p-6 sm:p-10 lg:p-16 flex flex-col justify-center" data-title="Financial ROI Calculator" data-category="Commercial Business Case">
+      <div class="max-w-6xl mx-auto w-full">
+        <!-- Header -->
+        <div class="mb-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-500/30 text-emerald-300 text-xs font-bold uppercase tracking-wide mb-2">
+            <i data-lucide="trending-up" class="w-3.5 h-3.5 text-emerald-400"></i>
+            Interactive Financial Projection
+          </div>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-white font-display">
+            The Happy Whites Return on Investment (ROI)
+          </h2>
+          <p class="text-slate-300 text-sm mt-1">
+            Adjust the sliders below to calculate projected monthly revenue uplift for your Bawadiya Kalan clinic.
+          </p>
+        </div>
+
+        <!-- Calculator Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <!-- Left: Sliders Input Card -->
+          <div class="lg:col-span-6 glass-card rounded-2xl p-6 border border-slate-700/80 space-y-5">
+            <!-- Slider 1: Chairs -->
+            <div>
+              <div class="flex justify-between text-xs font-bold mb-1.5">
+                <span class="text-slate-300">Active Dental Operatory Chairs</span>
+                <span id="val-chairs" class="text-brand-400 font-mono text-sm">3 Chairs</span>
+              </div>
+              <input type="range" id="slider-chairs" min="1" max="6" value="3" oninput="calculateROI()" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-brand-500">
+            </div>
+
+            <!-- Slider 2: Patients / Day / Chair -->
+            <div>
+              <div class="flex justify-between text-xs font-bold mb-1.5">
+                <span class="text-slate-300">Avg OPD Patients / Day (Per Chair)</span>
+                <span id="val-patients" class="text-brand-400 font-mono text-sm">6 Patients</span>
+              </div>
+              <input type="range" id="slider-patients" min="2" max="12" value="6" oninput="calculateROI()" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-brand-500">
+            </div>
+
+            <!-- Slider 3: Avg Ticket Size -->
+            <div>
+              <div class="flex justify-between text-xs font-bold mb-1.5">
+                <span class="text-slate-300">Avg Ticket Size (RCT/Aligner/Implant Blended)</span>
+                <span id="val-ticket" class="text-teal-400 font-mono text-sm">₹4,500</span>
+              </div>
+              <input type="range" id="slider-ticket" min="1500" max="15000" step="500" value="4500" oninput="calculateROI()" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-teal-400">
+            </div>
+
+            <!-- Slider 4: Current No-Show Rate -->
+            <div>
+              <div class="flex justify-between text-xs font-bold mb-1.5">
+                <span class="text-slate-300">Current OPD No-Show Rate</span>
+                <span id="val-noshow" class="text-rose-400 font-mono text-sm">25%</span>
+              </div>
+              <input type="range" id="slider-noshow" min="10" max="40" step="5" value="25" oninput="calculateROI()" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-rose-500">
+            </div>
+          </div>
+
+          <!-- Right: Dynamic Revenue Output Card -->
+          <div class="lg:col-span-6 glass-card rounded-2xl p-6 border-2 border-emerald-500/40 bg-gradient-to-br from-slate-900 via-slate-900 to-emerald-950/40 relative overflow-hidden">
+            <div class="text-xs text-emerald-400 font-bold uppercase tracking-wider mb-1">
+              Projected Monthly Practice Uplift
+            </div>
+            <div id="out-total-uplift" class="text-4xl sm:text-5xl font-black text-white font-display mb-4">
+              ₹3,96,000 <span class="text-sm font-normal text-slate-400">/ month</span>
+            </div>
+
+            <!-- Breakdown Rows -->
+            <div class="space-y-3 pt-4 border-t border-slate-800 text-xs">
+              <div class="flex items-center justify-between text-slate-300">
+                <span class="flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                  Recovered No-Show Chair Hours (80% drop)
+                </span>
+                <span id="out-noshow-saved" class="font-mono font-bold text-emerald-400">+₹81,000</span>
+              </div>
+
+              <div class="flex items-center justify-between text-slate-300">
+                <span class="flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-brand-400"></span>
+                  High-Ticket Inquiries Converted via 24/7 Web & AI
+                </span>
+                <span id="out-new-cases" class="font-mono font-bold text-brand-400">+₹2,70,000</span>
+              </div>
+
+              <div class="flex items-center justify-between text-slate-300">
+                <span class="flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-teal-400"></span>
+                  Inventory Wastage & Chair Idle Time Eliminated
+                </span>
+                <span id="out-waste-saved" class="font-mono font-bold text-teal-300">+₹45,000</span>
+              </div>
+            </div>
+
+            <!-- Annualized Banner -->
+            <div class="mt-6 p-3.5 rounded-xl bg-slate-950/80 border border-slate-800 flex items-center justify-between">
+              <div>
+                <span class="text-[10px] text-slate-400 block uppercase font-bold">Annualized Net Practice Growth</span>
+                <span id="out-annual-uplift" class="text-xl font-extrabold text-emerald-400 font-display">₹47.5 Lakhs / Year</span>
+              </div>
+              <span class="text-xs px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 font-bold border border-emerald-500/30">
+                ~18x System ROI
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------
+         SLIDE 9: 5-WEEK TURNKEY IMPLEMENTATION ROADMAP
+         ---------------------------------------------------- -->
+    <section class="slide p-6 sm:p-10 lg:p-16 flex flex-col justify-center" data-title="Implementation Roadmap" data-category="Execution Plan">
+      <div class="max-w-6xl mx-auto w-full">
+        <!-- Header -->
+        <div class="mb-8">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-950/80 border border-brand-500/30 text-brand-300 text-xs font-bold uppercase tracking-wide mb-2">
+            <i data-lucide="clock" class="w-3.5 h-3.5 text-brand-400"></i>
+            Zero Clinical Downtime
+          </div>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-white font-display">
+            5-Week Turnkey Implementation Roadmap
+          </h2>
+          <p class="text-slate-300 text-sm mt-1">
+            NexG Tech handles 100% of data migration, staff training, and system setup onsite in Bhopal.
+          </p>
+        </div>
+
+        <!-- 5-Week Timeline Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-3.5">
+          <!-- Week 1 -->
+          <div class="glass-card rounded-2xl p-4 border border-brand-500/30 flex flex-col justify-between">
+            <div>
+              <span class="text-[10px] font-black uppercase text-brand-400 tracking-wider">Week 01</span>
+              <h3 class="text-sm font-bold text-white mt-1">Web Front-Door Go-Live</h3>
+              <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                Connect custom domain, launch 10–9 1-hour booking wizard, WhatsApp gateway & 24/7 AI chatbot.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] text-emerald-400 font-bold flex items-center gap-1">
+              <i data-lucide="check" class="w-3.5 h-3.5"></i> Live in 48 Hours
+            </div>
+          </div>
+
+          <!-- Week 2 -->
+          <div class="glass-card rounded-2xl p-4 border border-slate-700/80 flex flex-col justify-between">
+            <div>
+              <span class="text-[10px] font-black uppercase text-teal-400 tracking-wider">Week 02</span>
+              <h3 class="text-sm font-bold text-white mt-1">Multi-Chair Setup</h3>
+              <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                Configure 3 operatory chairs, doctor roster matching, buffer intervals, and front-desk terminal.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] text-teal-300 font-bold flex items-center gap-1">
+              <i data-lucide="calendar" class="w-3.5 h-3.5"></i> Roster Live
+            </div>
+          </div>
+
+          <!-- Week 3 -->
+          <div class="glass-card rounded-2xl p-4 border border-slate-700/80 flex flex-col justify-between">
+            <div>
+              <span class="text-[10px] font-black uppercase text-cyan-400 tracking-wider">Week 03</span>
+              <h3 class="text-sm font-bold text-white mt-1">EDR & Odontogram</h3>
+              <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                Import active patients, set up digital prescription templates and cloud storage for 3D scans.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] text-cyan-300 font-bold flex items-center gap-1">
+              <i data-lucide="database" class="w-3.5 h-3.5"></i> Data Migrated
+            </div>
+          </div>
+
+          <!-- Week 4 -->
+          <div class="glass-card rounded-2xl p-4 border border-slate-700/80 flex flex-col justify-between">
+            <div>
+              <span class="text-[10px] font-black uppercase text-purple-400 tracking-wider">Week 04</span>
+              <h3 class="text-sm font-bold text-white mt-1">TruAlign Lab & Stock</h3>
+              <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                Input implant serials, barcode inventory items, and link TruAlign tray manufacturing tracker.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] text-purple-300 font-bold flex items-center gap-1">
+              <i data-lucide="package" class="w-3.5 h-3.5"></i> Lab Linked
+            </div>
+          </div>
+
+          <!-- Week 5 -->
+          <div class="glass-card rounded-2xl p-4 border border-emerald-500/40 bg-gradient-to-b from-slate-900 to-emerald-950/20 flex flex-col justify-between">
+            <div>
+              <span class="text-[10px] font-black uppercase text-emerald-400 tracking-wider">Week 05</span>
+              <h3 class="text-sm font-bold text-white mt-1">Onsite Staff Training</h3>
+              <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                2-day hands-on workshop at Bawadiya Kalan clinic, receptionist certification, and full go-live.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] text-emerald-400 font-bold flex items-center gap-1">
+              <i data-lucide="award" class="w-3.5 h-3.5"></i> 100% Operational
+            </div>
+          </div>
+        </div>
+
+        <!-- Guarantee Note -->
+        <div class="mt-8 p-4 rounded-xl bg-slate-900/90 border border-slate-800 flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center shrink-0 text-emerald-400">
+            <i data-lucide="shield-check" class="w-5 h-5"></i>
+          </div>
+          <div class="text-xs text-slate-300 leading-relaxed">
+            <strong class="text-white">Zero Disruption Clinical Guarantee:</strong> Daily patient OPD flow continues uninterrupted. All configuration and migration is executed during non-consultation hours.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------
+         SLIDE 10: TRANSPARENT COMMERCIAL TIERS
+         ---------------------------------------------------- -->
+    <section class="slide p-6 sm:p-10 lg:p-16 flex flex-col justify-center" data-title="Commercial Partnership Tiers" data-category="Investment Options">
+      <div class="max-w-6xl mx-auto w-full">
+        <!-- Header -->
+        <div class="text-center max-w-3xl mx-auto mb-8">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-950/80 border border-brand-500/30 text-brand-300 text-xs font-bold uppercase tracking-wide mb-2">
+            <i data-lucide="layers" class="w-3.5 h-3.5 text-brand-400"></i>
+            Flexible Investment Models
+          </div>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-white font-display">
+            Tailored Commercial Partnership Tiers
+          </h2>
+          <p class="text-slate-300 text-sm mt-1">
+            Choose the pace that suits Happy Whites' expansion goals in Bhopal.
+          </p>
+        </div>
+
+        <!-- 3 Tier Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <!-- Tier 1: Growth Foundation -->
+          <div class="glass-card rounded-2xl p-6 border border-slate-700/80 flex flex-col justify-between">
+            <div>
+              <span class="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-1">Tier 1</span>
+              <h3 class="text-xl font-bold text-white">Patient Growth Foundation</h3>
+              <p class="text-xs text-slate-300 mt-2 mb-4 leading-relaxed">
+                For rapid patient acquisition and immediate elimination of booking drop-offs.
+              </p>
+              
+              <ul class="space-y-2.5 text-xs text-slate-300 mb-6 border-t border-slate-800 pt-4">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-400 shrink-0"></i> High-Converting Bilingual Website</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-400 shrink-0"></i> 10–9 Continuous 1-Hour Slot Engine</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-400 shrink-0"></i> 24/7 AI Dental Assistant Chatbot</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-400 shrink-0"></i> Verified Google Review Flywheel</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-400 shrink-0"></i> Fast Cloud Hosting & SSL</li>
+              </ul>
+            </div>
+            <button onclick="nextSlide()" class="w-full py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs border border-slate-700 transition">
+              Select Foundation
+            </button>
+          </div>
+
+          <!-- Tier 2: Complete Practice Suite (RECOMMENDED) -->
+          <div class="glass-card rounded-2xl p-6 border-2 border-emerald-500/50 bg-gradient-to-b from-slate-900 via-slate-900 to-emerald-950/30 flex flex-col justify-between relative shadow-xl shadow-emerald-500/10">
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-emerald-500 text-slate-950 text-[10px] font-black uppercase tracking-wider">
+              MOST RECOMMENDED
+            </div>
+            <div>
+              <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider block mb-1">Tier 2</span>
+              <h3 class="text-xl font-bold text-white">Full Practice & CMS Suite</h3>
+              <p class="text-xs text-slate-300 mt-2 mb-4 leading-relaxed">
+                The complete end-to-end clinical engine connecting patient bookings to chair & lab.
+              </p>
+              
+              <ul class="space-y-2.5 text-xs text-slate-300 mb-6 border-t border-slate-800 pt-4">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0"></i> <strong class="text-white">Everything in Tier 1 Foundation</strong></li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0"></i> Multi-Chair & Doctor Roster Engine</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0"></i> 2-Way WhatsApp Auto-Reminders</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0"></i> 32-Tooth Digital Odontogram & EDR</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0"></i> Smart Consumables & Lab Case Tracker</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0"></i> Onsite Receptionist & Staff Training</li>
+              </ul>
+            </div>
+            <button onclick="nextSlide()" class="w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-lg shadow-emerald-500/25 transition">
+              Select Complete CMS Suite
+            </button>
+          </div>
+
+          <!-- Tier 3: Enterprise Multispecialty -->
+          <div class="glass-card rounded-2xl p-6 border border-slate-700/80 flex flex-col justify-between">
+            <div>
+              <span class="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-1">Tier 3</span>
+              <h3 class="text-xl font-bold text-white">Enterprise Multispecialty</h3>
+              <p class="text-xs text-slate-300 mt-2 mb-4 leading-relaxed">
+                For multi-branch expansion, proprietary aligner lab manufacturing ERP, and custom mobile apps.
+              </p>
+              
+              <ul class="space-y-2.5 text-xs text-slate-300 mb-6 border-t border-slate-800 pt-4">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-teal-400 shrink-0"></i> <strong class="text-white">Everything in Tier 2 CMS Suite</strong></li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-teal-400 shrink-0"></i> Multi-Branch Synchronization</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-teal-400 shrink-0"></i> Custom Aligner Lab Manufacturing ERP</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-teal-400 shrink-0"></i> Dedicated HIPAA/NABH Cloud Server</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-teal-400 shrink-0"></i> 2-Hour Priority Onsite Bhopal SLA</li>
+              </ul>
+            </div>
+            <button onclick="nextSlide()" class="w-full py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs border border-slate-700 transition">
+              Discuss Enterprise
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------
+         SLIDE 11: WHY NEXG TECH & TOMORROW'S NEXT STEPS
+         ---------------------------------------------------- -->
+    <section class="slide p-6 sm:p-10 lg:p-16 flex flex-col justify-center" data-title="Why NexG & Next Steps" data-category="Executive Next Steps">
+      <div class="max-w-6xl mx-auto w-full">
+        <!-- Eyebrow & Title -->
+        <div class="text-center max-w-3xl mx-auto mb-8">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-950/80 border border-brand-500/30 text-brand-300 text-xs font-bold uppercase tracking-wide mb-2">
+            <i data-lucide="handshake" class="w-3.5 h-3.5 text-brand-400"></i>
+            Long-Term Technology Partnership
+          </div>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-white font-display">
+            Why Partner with NexG Tech
+          </h2>
+          <p class="text-slate-300 text-sm mt-1">
+            Local accountability in Bhopal combined with world-class engineering execution.
+          </p>
+        </div>
+
+        <!-- 4 Pillars of Difference -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+          <div class="glass-card rounded-2xl p-4 border border-slate-800">
+            <div class="w-10 h-10 rounded-xl bg-brand-500/10 border border-brand-500/30 flex items-center justify-center text-brand-400 mb-3">
+              <i data-lucide="map-pin" class="w-5 h-5"></i>
+            </div>
+            <h3 class="text-sm font-bold text-white">Local Bhopal Team</h3>
+            <p class="text-xs text-slate-300 mt-1.5 leading-relaxed">
+              We are on the ground in Bhopal. No dealing with distant call centers or unresponsive offshore developers.
+            </p>
+          </div>
+
+          <div class="glass-card rounded-2xl p-4 border border-slate-800">
+            <div class="w-10 h-10 rounded-xl bg-teal-500/10 border border-teal-500/30 flex items-center justify-center text-teal-400 mb-3">
+              <i data-lucide="sparkle" class="w-5 h-5"></i>
+            </div>
+            <h3 class="text-sm font-bold text-white">Dental-Domain Focus</h3>
+            <p class="text-xs text-slate-300 mt-1.5 leading-relaxed">
+              Customized specifically around Dr. Vaibhav's aligner stages, RCT sessions, and implant lot warranties.
+            </p>
+          </div>
+
+          <div class="glass-card rounded-2xl p-4 border border-slate-800">
+            <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-3">
+              <i data-lucide="zap" class="w-5 h-5"></i>
+            </div>
+            <h3 class="text-sm font-bold text-white">Zero Guesswork</h3>
+            <p class="text-xs text-slate-300 mt-1.5 leading-relaxed">
+              We don't pitch wireframes. You can literally test your live website and booking portal on your phone today.
+            </p>
+          </div>
+
+          <div class="glass-card rounded-2xl p-4 border border-slate-800">
+            <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 mb-3">
+              <i data-lucide="refresh-cw" class="w-5 h-5"></i>
+            </div>
+            <h3 class="text-sm font-bold text-white">Continuous Innovation</h3>
+            <p class="text-xs text-slate-300 mt-1.5 leading-relaxed">
+              Ongoing performance optimization, security updates, and AI feature upgrades included in partnership.
+            </p>
+          </div>
+        </div>
+
+        <!-- Tomorrow's Action Plan Card -->
+        <div class="glass-card rounded-2xl p-6 border-2 border-brand-500/40 bg-gradient-to-r from-slate-900 via-slate-900 to-brand-950/40 flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div>
+            <span class="text-xs font-bold text-brand-400 uppercase tracking-wider block">Recommended Action for Tomorrow's Discussion</span>
+            <h3 class="text-xl font-bold text-white mt-1">Initiate 14-Day Zero-Risk Clinical Pilot</h3>
+            <p class="text-xs text-slate-300 mt-1 max-w-xl">
+              Launch Pillar 1 patient portal immediately, test WhatsApp appointment dispatch with 10 real patients, and review the operational uplift together.
+            </p>
+          </div>
+          <div class="flex items-center gap-3 shrink-0">
+            <a href="index.html" target="_blank" class="px-5 py-3 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs shadow-lg shadow-brand-500/30 transition flex items-center gap-2">
+              <i data-lucide="globe" class="w-4 h-4"></i>
+              Launch Live Portal
+            </a>
+            <button onclick="goToSlide(0)" class="px-4 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white font-bold text-xs border border-slate-700 transition">
+              Restart Presentation
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================
+       SLIDE OVERVIEW GRID DRAWER (ACCESSIBLE VIA 'O' KEY)
+       ======================================================== -->
+  <aside id="overview-drawer" class="fixed inset-0 z-50 bg-slate-950/95 backdrop-blur-xl p-6 sm:p-10 flex flex-col opacity-0 pointer-events-none transition-opacity duration-300">
+    <div class="flex items-center justify-between pb-4 border-b border-slate-800 max-w-6xl mx-auto w-full">
+      <div class="flex items-center gap-2.5">
+        <i data-lucide="layout-grid" class="w-5 h-5 text-brand-400"></i>
+        <h2 class="text-lg font-bold text-white">Presentation Slide Index</h2>
+        <span class="text-xs text-slate-400">(Click any card or press Esc to return)</span>
+      </div>
+      <button onclick="toggleOverview()" class="p-2 rounded-lg bg-slate-900 text-slate-300 hover:text-white border border-slate-800">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+    </div>
+
+    <!-- Thumbnails Container -->
+    <div id="overview-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 overflow-y-auto max-w-6xl mx-auto w-full py-6">
+      <!-- Injected by JavaScript -->
+    </div>
+  </aside>
+
+  <!-- ========================================================
+       PRESENTER / SPEAKER NOTES DRAWER (ACCESSIBLE VIA 'N' KEY)
+       ======================================================== -->
+  <aside id="notes-drawer" class="fixed right-0 top-16 bottom-0 w-full sm:w-[420px] bg-slate-950/95 backdrop-blur-xl border-l border-slate-800/80 p-6 z-40 transform translate-x-full transition-transform duration-300 flex flex-col shadow-2xl">
+    <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+      <div class="flex items-center gap-2">
+        <i data-lucide="file-text" class="w-4 h-4 text-emerald-400"></i>
+        <h3 class="text-sm font-bold text-white uppercase tracking-wider">Speaker Talking Points</h3>
+      </div>
+      <button onclick="toggleNotes()" class="p-1.5 rounded-lg bg-slate-900 text-slate-400 hover:text-white">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+    </div>
+
+    <div class="flex-1 overflow-y-auto py-4 space-y-4 text-xs">
+      <div>
+        <span class="text-[10px] font-bold text-slate-500 uppercase">Current Slide Objective</span>
+        <div id="notes-objective" class="text-slate-200 font-semibold mt-1 p-2.5 rounded-lg bg-slate-900/80 border border-slate-800">
+          Establish authority, show genuine respect for Dr. Vaibhav's high-tech clinical reputation, and frame the partnership around measurable business growth.
+        </div>
+      </div>
+
+      <div>
+        <span class="text-[10px] font-bold text-emerald-400 uppercase">Exact Pitch Phrasing</span>
+        <div id="notes-script" class="text-slate-300 leading-relaxed mt-1 p-2.5 rounded-lg bg-emerald-950/30 border border-emerald-500/20">
+          "Dr. Vaibhav, you've built one of Bhopal's most technically advanced dental practices with 3D scanners and in-house aligner crafting. But while your clinical tools are cutting-edge, patient acquisition and back-office management are often still bottlenecked by phone lines and manual follow-ups."
+        </div>
+      </div>
+
+      <div>
+        <span class="text-[10px] font-bold text-brand-400 uppercase">Key Discovery Question</span>
+        <div id="notes-question" class="text-slate-300 leading-relaxed mt-1 p-2.5 rounded-lg bg-brand-950/30 border border-brand-500/20 italic">
+          "How many hours does your reception spend each day calling patients for confirmations, and what happens when an aligner inquiry arrives after 8 PM?"
+        </div>
+      </div>
+
+      <div>
+        <span class="text-[10px] font-bold text-amber-400 uppercase">Objection Handler</span>
+        <div id="notes-objection" class="text-slate-300 leading-relaxed mt-1 p-2.5 rounded-lg bg-amber-950/30 border border-amber-500/20">
+          <strong>If he says:</strong> "My staff is used to our current manual routine."<br>
+          <strong>You respond:</strong> "We don't ask your staff to become IT experts. We run a 2-day onsite training and keep the interface as simple as WhatsApp."
+        </div>
+      </div>
+    </div>
+
+    <div class="pt-3 border-t border-slate-800 text-[10px] text-slate-500 text-center">
+      Press <kbd class="px-1 border border-slate-700 rounded bg-slate-900">N</kbd> or click Notes to close
+    </div>
+  </aside>
+
+  <!-- ========================================================
+       BOTTOM FLOATING NAVIGATION BAR
+       ======================================================== -->
+  <footer id="bottom-nav" class="h-14 border-t border-slate-800/80 bg-slate-950/90 backdrop-blur-lg px-4 sm:px-6 flex items-center justify-between shrink-0 z-30">
+    <!-- Keyboard Shortcut Hints -->
+    <div id="key-hints" class="hidden sm:flex items-center gap-3 text-[11px] text-slate-500">
+      <span><kbd class="px-1.5 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-400">←</kbd> <kbd class="px-1.5 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-400">→</kbd> Navigate</span>
+      <span><kbd class="px-1.5 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-400">Space</kbd> Next</span>
+      <span><kbd class="px-1.5 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-400">F</kbd> Fullscreen</span>
+      <span><kbd class="px-1.5 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-400">O</kbd> Overview</span>
+      <span><kbd class="px-1.5 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-400">N</kbd> Notes</span>
+    </div>
+
+    <!-- Slide Dot Indicators -->
+    <div id="slide-dots" class="flex items-center gap-1.5 mx-auto sm:mx-0">
+      <!-- Dots injected via JS -->
+    </div>
+
+    <!-- Quick Slide Controls -->
+    <div class="flex items-center gap-2">
+      <button onclick="prevSlide()" class="px-2.5 py-1 rounded bg-slate-900 hover:bg-slate-800 text-xs font-semibold text-slate-300 border border-slate-800">
+        Prev
+      </button>
+      <button onclick="nextSlide()" class="px-3 py-1 rounded bg-brand-600 hover:bg-brand-500 text-xs font-semibold text-white shadow-sm">
+        Next
+      </button>
+    </div>
+  </footer>
+
+  <!-- ========================================================
+       PRESENTATION DECK ENGINE (JAVASCRIPT)
+       ======================================================== -->
+  <script>
+    // Speaker notes data per slide
+    const slideNotes = [
+      {
+        objective: "Establish authority, demonstrate genuine alignment with Dr. Vaibhav's high-tech clinical reputation, and frame the partnership around measurable business growth.",
+        script: "\"Dr. Vaibhav, you've built one of Bhopal's most technically advanced dental practices with 3D scanners and in-house aligner crafting. But while your clinical tools are cutting-edge, patient acquisition and back-office management are often still bottlenecked by phone lines and manual follow-ups.\"",
+        question: "\"How many hours does your reception spend each day calling patients for confirmations, and what happens when an aligner inquiry arrives after 8 PM?\"",
+        objection: "If he says: 'We are already getting patients via word of mouth.' Respond: 'Word of mouth is your greatest asset. Our system ensures every referral converts instantly without getting lost in unanswered calls or unconfirmed slots.'"
+      },
+      {
+        objective: "Diagnose the 4 hidden operational leaks where dental practices lose ₹10L - ₹18L annually without realizing it.",
+        script: "\"A 25% no-show rate isn't just an annoyance — when an operatory chair sits empty for 1 hour, that's ₹2,000 to ₹4,000 lost in overhead and sterilized doctor time that can never be recovered.\"",
+        question: "\"On a typical Saturday, how many scheduled patients end up rescheduling at the last minute or failing to show up?\"",
+        objection: "If he says: 'My staff calls everyone in the morning.' Respond: 'Morning calls disrupt patients during work meetings. Our automated WhatsApp confirmations let patients confirm or reschedule with 1 tap 24 hours prior.'"
+      },
+      {
+        objective: "Introduce the 2-Pillar architecture: Patient Acquisition (Front-door) + Clinical Operations (CMS).",
+        script: "\"Most software companies offer either an agency website OR an offline dental software. NexG Tech connects both into a single closed loop — from the patient's first Google search to their 5-year implant recall.\"",
+        question: "\"Would having your patient booking portal directly talk to your chair schedule and WhatsApp simplify your front desk?\"",
+        objection: "If he asks: 'Do I need both pillars?' Respond: 'You can start with Pillar 1 today in 48 hours, and activate Pillar 2 as your clinic schedule expands.'"
+      },
+      {
+        objective: "WOW the doctor by proving that Pillar 1 is ALREADY BUILT, production-ready, and live.",
+        script: "\"We didn't just bring slides. We already built your full bilingual website, your 10 AM to 9 PM 1-hour booking wizard, and an AI assistant tuned to your clinic. You can test it right now on your smartphone.\"",
+        question: "\"Let's open the website on your phone right now. What do you think of having your patients select their exact 1-hour slot?\"",
+        objection: "If he mentions other clinics: 'Notice how other clinics have generic static forms. Your portal has real-time slot counters and direct WhatsApp dispatch to your number.'"
+      },
+      {
+        objective: "Walk through Module 1: Multi-Chair scheduling, buffer times, and automated WhatsApp confirmations.",
+        script: "\"With 3 chairs running, keeping track of who is in Chair 1 for an aligner scan versus Chair 2 for a laser RCT requires clinical choreography. Our master grid prevents double bookings and auto-reserves 15 minutes for room sterilization.\"",
+        question: "\"How do you currently communicate chair delays or doctor rotation when an emergency root canal arrives?\"",
+        objection: "If he worries about internet drops: 'The front-desk terminal caches locally and automatically syncs the moment connection restores.'"
+      },
+      {
+        objective: "Demonstrate Module 2: The interactive 32-tooth odontogram and instant digital prescriptions.",
+        script: "\"Click any tooth on this chart. Dr. Vaibhav can visually tag crowns, implants, or active TruAlign aligner trays in under 5 seconds. Prescriptions are generated with your signature and sent directly to the patient's WhatsApp as a branded PDF.\"",
+        question: "\"How does your team currently retrieve a patient's historical X-rays and treatment history when they walk in for a revision?\"",
+        objection: "If he asks about legal validity: 'Digital prescriptions with doctor registration number and verifiable timestamp comply fully with Indian Telemedicine and NABH clinical standards.'"
+      },
+      {
+        objective: "Present Module 3: TruAlign aligner batch tracking, implant warranties, and expiry sentinels.",
+        script: "\"You manufacture TruAlign aligners in-house. Our pipeline tracks every patient's tray set through Scan, CAD, Thermoforming, QC, and Fitting. Plus, high-cost titanium implant posts have their warranty certificates linked directly to the patient.\"",
+        question: "\"Have you ever had an aligner case delayed because a lab tray status was buried in staff WhatsApp chats?\"",
+        objection: "If he asks: 'Can we track non-dental consumables?' Respond: 'Yes, everything from autoclave indicator strips to suction tips can have low-stock thresholds.'"
+      },
+      {
+        objective: "Engage Dr. Vaibhav in the interactive financial ROI calculator to prove undeniable monetary value.",
+        script: "\"Let's look at conservative numbers for your clinic. With 3 chairs and an average ticket of ₹4,500, cutting your no-shows from 25% to 5% and converting just 15 new online inquiries yields over ₹3.9 Lakhs in net monthly practice uplift.\"",
+        question: "\"Play with these sliders. What is your actual average daily patient footfall across your chairs?\"",
+        objection: "If he is skeptical of the numbers: 'Even if we cut these projections in half, the system still pays for itself 9 times over every single month.'"
+      },
+      {
+        objective: "Eliminate implementation anxiety by presenting the structured 5-week turnkey roadmap.",
+        script: "\"You don't have to hire an IT guy. Week 1 we turn on your web portal. Over Weeks 2 to 4 we migrate your patient records and configure your chairs. In Week 5 we spend 2 days onsite in Bawadiya Kalan training your staff.\"",
+        question: "\"Does having our engineering team physically onsite at your clinic give you confidence in a smooth transition?\"",
+        objection: "If he worries about staff pushback: 'Our training includes a simple 1-page cheat sheet and WhatsApp-like controls that any receptionist can master in 30 minutes.'"
+      },
+      {
+        objective: "Present the commercial options, nudging toward Tier 2 (Full CMS Suite) as the logical choice.",
+        script: "\"We offer three flexible tiers. You can start with Tier 1 Foundation, but Tier 2 Complete CMS Suite is where you unlock the full multi-chair scheduling, odontogram, and lab tracking.\"",
+        question: "\"Looking at these options, which tier best aligns with Happy Whites' goals for the coming quarter?\"",
+        objection: "If he asks for a discount: 'We can offer a 14-day zero-risk trial period on Tier 2 so you can experience the operational relief firsthand before committing.'"
+      },
+      {
+        objective: "Close the meeting with a concrete, low-friction next step for tomorrow.",
+        script: "\"Why NexG Tech? Because we are right here in Bhopal, we understand dental workflows, and we've already done the hard work. Let's start with a 14-day pilot: we point your domain to the new portal and you test it with real patients tomorrow.\"",
+        question: "\"Shall we configure your official WhatsApp number on the booking tool right now so you can receive your first digital appointment tonight?\"",
+        objection: "If he hesitates: 'There is zero financial risk. If it doesn't bring in extra patients and save your staff time in the first two weeks, you owe us nothing.'"
+      }
+    ];
+
+    // State Variables
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    let isOverviewOpen = false;
+    let isNotesOpen = false;
+
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // DOM Elements
+    const progressBar = document.getElementById('progress-bar');
+    const currentSlideNum = document.getElementById('current-slide-num');
+    const totalSlideNum = document.getElementById('total-slide-num');
+    const slideCategory = document.getElementById('slide-category');
+    const slideDotsContainer = document.getElementById('slide-dots');
+    const overviewGrid = document.getElementById('overview-grid');
+    const overviewDrawer = document.getElementById('overview-drawer');
+    const notesDrawer = document.getElementById('notes-drawer');
+
+    // Build Slide Dots and Overview Grid
+    totalSlideNum.textContent = String(totalSlides).padStart(2, '0');
+    
+    slides.forEach((slide, idx) => {
+      // Build bottom dot
+      const dot = document.createElement('button');
+      dot.className = `w-2 h-2 rounded-full transition-all duration-300 ${idx === 0 ? 'w-6 bg-brand-400' : 'bg-slate-700 hover:bg-slate-500'}`;
+      dot.title = `Go to Slide ${idx + 1}: ${slide.dataset.title}`;
+      dot.onclick = () => goToSlide(idx);
+      slideDotsContainer.appendChild(dot);
+
+      // Build overview card
+      const card = document.createElement('div');
+      card.className = 'glass-card glass-card-hover rounded-xl p-4 border border-slate-800 cursor-pointer transition flex flex-col justify-between h-36';
+      card.onclick = () => {
+        goToSlide(idx);
+        toggleOverview();
+      };
+      card.innerHTML = `
+        <div>
+          <div class="flex items-center justify-between text-[10px] text-slate-400 font-mono mb-1">
+            <span>SLIDE ${String(idx + 1).padStart(2, '0')}</span>
+            <span class="text-brand-400 font-bold">${slide.dataset.category || ''}</span>
+          </div>
+          <h4 class="text-xs font-bold text-white line-clamp-2">${slide.dataset.title}</h4>
+        </div>
+        <div class="pt-2 border-t border-slate-800/80 flex items-center justify-between text-[10px] text-slate-500">
+          <span>Jump to slide</span>
+          <i data-lucide="arrow-up-right" class="w-3 h-3 text-slate-400"></i>
+        </div>
+      `;
+      overviewGrid.appendChild(card);
+    });
+
+    // Update UI on Slide Change
+    function updateSlide() {
+      slides.forEach((slide, idx) => {
+        if (idx === currentSlide) {
+          slide.classList.add('active');
+          slide.scrollTop = 0;
+        } else {
+          slide.classList.remove('active');
+        }
+      });
+
+      // Update counters & badges
+      currentSlideNum.textContent = String(currentSlide + 1).padStart(2, '0');
+      const activeSlideEl = slides[currentSlide];
+      slideCategory.textContent = `${activeSlideEl.dataset.category} • ${activeSlideEl.dataset.title}`;
+      
+      // Update progress bar
+      const progressPercent = ((currentSlide + 1) / totalSlides) * 100;
+      progressBar.style.width = `${progressPercent}%`;
+
+      // Update dots
+      const dots = slideDotsContainer.children;
+      for (let i = 0; i < dots.length; i++) {
+        if (i === currentSlide) {
+          dots[i].className = 'w-6 h-2 rounded-full bg-brand-400 transition-all duration-300 shadow-sm shadow-brand-400/50';
+        } else {
+          dots[i].className = 'w-2 h-2 rounded-full bg-slate-700 hover:bg-slate-500 transition-all duration-300';
+        }
+      }
+
+      // Update speaker notes
+      const notes = slideNotes[currentSlide] || slideNotes[0];
+      document.getElementById('notes-objective').textContent = notes.objective;
+      document.getElementById('notes-script').textContent = notes.script;
+      document.getElementById('notes-question').textContent = notes.question;
+      document.getElementById('notes-objection').innerHTML = notes.objection;
+
+      // Re-trigger lucide icons inside slide
+      lucide.createIcons();
+    }
+
+    // Navigation methods
+    function nextSlide() {
+      if (currentSlide < totalSlides - 1) {
+        currentSlide++;
+        updateSlide();
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        currentSlide--;
+        updateSlide();
+      }
+    }
+
+    function goToSlide(index) {
+      if (index >= 0 && index < totalSlides) {
+        currentSlide = index;
+        updateSlide();
+      }
+    }
+
+    // Drawer Toggles
+    function toggleOverview() {
+      isOverviewOpen = !isOverviewOpen;
+      if (isOverviewOpen) {
+        overviewDrawer.classList.remove('opacity-0', 'pointer-events-none');
+        overviewDrawer.classList.add('opacity-100', 'pointer-events-auto');
+      } else {
+        overviewDrawer.classList.add('opacity-0', 'pointer-events-none');
+        overviewDrawer.classList.remove('opacity-100', 'pointer-events-auto');
+      }
+    }
+
+    function toggleNotes() {
+      isNotesOpen = !isNotesOpen;
+      if (isNotesOpen) {
+        notesDrawer.classList.remove('translate-x-full');
+      } else {
+        notesDrawer.classList.add('translate-x-full');
+      }
+    }
+
+    // Fullscreen Toggle
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+        document.getElementById('fullscreen-icon').setAttribute('data-lucide', 'minimize');
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen().catch(() => {});
+          document.getElementById('fullscreen-icon').setAttribute('data-lucide', 'maximize');
+        }
+      }
+      lucide.createIcons();
+    }
+
+    // Keyboard Listeners
+    window.addEventListener('keydown', (e) => {
+      // If typing in input, ignore
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+      if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        e.preventDefault();
+        prevSlide();
+      } else if (e.key === 'f' || e.key === 'F') {
+        e.preventDefault();
+        toggleFullscreen();
+      } else if (e.key === 'o' || e.key === 'O') {
+        e.preventDefault();
+        toggleOverview();
+      } else if (e.key === 'n' || e.key === 'N') {
+        e.preventDefault();
+        toggleNotes();
+      } else if (e.key === 'p' || e.key === 'P') {
+        e.preventDefault();
+        window.print();
+      } else if (e.key === 'Escape') {
+        if (isOverviewOpen) toggleOverview();
+        if (isNotesOpen) toggleNotes();
+      }
+    });
+
+    // Touch Swipe Navigation for iPad/Mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+    window.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, {passive: true});
+
+    window.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      if (touchStartX - touchEndX > 60) {
+        nextSlide(); // Swiped left -> Next
+      } else if (touchEndX - touchStartX > 60) {
+        prevSlide(); // Swiped right -> Prev
+      }
+    }, {passive: true});
+
+    // --------------------------------------------------------
+    // INTERACTIVE ODONTOGRAM DEMO HANDLER (SLIDE 6)
+    // --------------------------------------------------------
+    function selectTooth(toothNum, name, diagnosis, badgeBg) {
+      const badge = document.getElementById('inspector-badge');
+      const title = document.getElementById('inspector-title');
+      const status = document.getElementById('inspector-status');
+      
+      badge.textContent = `#${toothNum}`;
+      title.textContent = `Tooth #${toothNum}: ${name} — ${diagnosis}`;
+      status.textContent = diagnosis;
+      
+      // Visual feedback on buttons
+      document.querySelectorAll('.tooth-btn').forEach(btn => {
+        btn.classList.remove('ring-2', 'ring-brand-400');
+        if (btn.textContent.trim() === String(toothNum)) {
+          btn.classList.add('ring-2', 'ring-brand-400');
+        }
+      });
+    }
+
+    // --------------------------------------------------------
+    // INTERACTIVE FINANCIAL ROI CALCULATOR (SLIDE 8)
+    // --------------------------------------------------------
+    function calculateROI() {
+      const chairs = parseInt(document.getElementById('slider-chairs').value);
+      const patientsPerDay = parseInt(document.getElementById('slider-patients').value);
+      const ticketSize = parseInt(document.getElementById('slider-ticket').value);
+      const noShowRate = parseInt(document.getElementById('slider-noshow').value) / 100;
+
+      // Update slider readout labels
+      document.getElementById('val-chairs').textContent = `${chairs} Chair${chairs > 1 ? 's' : ''}`;
+      document.getElementById('val-patients').textContent = `${patientsPerDay} Patients`;
+      document.getElementById('val-ticket').textContent = `₹${ticketSize.toLocaleString('en-IN')}`;
+      document.getElementById('val-noshow').textContent = `${Math.round(noShowRate * 100)}%`;
+
+      // Working days per month: 26 days
+      const workingDays = 26;
+      const totalMonthlyPatientsScheduled = chairs * patientsPerDay * workingDays;
+
+      // 1. Recovered no-show savings (cutting no-shows by 80% with automated WhatsApp confirmations)
+      const currentNoShows = totalMonthlyPatientsScheduled * noShowRate;
+      const noShowsRecovered = currentNoShows * 0.80;
+      // Conservative recovery value per saved slot (₹600 chair overhead + opportunity value)
+      const noShowRevenueSaved = Math.round(noShowsRecovered * (ticketSize * 0.45));
+
+      // 2. High-ticket cases converted via 24/7 Web Portal & AI Chatbot
+      // Baseline: 12 to 25 new patients/month depending on chair capacity
+      const newHighTicketPatients = Math.round(chairs * 4.5);
+      const newCasesRevenue = newHighTicketPatients * ticketSize;
+
+      // 3. Inventory wastage & Chair idle time saved
+      const inventorySavings = Math.round(chairs * 15000);
+
+      // Total Monthly Practice Uplift
+      const totalMonthlyUplift = noShowRevenueSaved + newCasesRevenue + inventorySavings;
+      const annualUplift = totalMonthlyUplift * 12;
+
+      // Update Output Elements
+      document.getElementById('out-noshow-saved').textContent = `+₹${noShowRevenueSaved.toLocaleString('en-IN')}`;
+      document.getElementById('out-new-cases').textContent = `+₹${newCasesRevenue.toLocaleString('en-IN')}`;
+      document.getElementById('out-waste-saved').textContent = `+₹${inventorySavings.toLocaleString('en-IN')}`;
+      document.getElementById('out-total-uplift').innerHTML = `₹${totalMonthlyUplift.toLocaleString('en-IN')} <span class="text-sm font-normal text-slate-400">/ month</span>`;
+      
+      const annualLakhs = (annualUplift / 100000).toFixed(1);
+      document.getElementById('out-annual-uplift').textContent = `₹${annualLakhs} Lakhs / Year`;
+    }
+
+    // Run initial calculations
+    calculateROI();
+    updateSlide();
+  </script>
+</body>
+</html>

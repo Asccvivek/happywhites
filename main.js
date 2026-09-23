@@ -1045,6 +1045,7 @@ function translateFooter(lang) {
     else if (href === '#testimonials') a.textContent = isHi ? 'मरीजों की राय' : 'Reviews';
     else if (href === '#faq') a.textContent = isHi ? 'सवाल-जवाब' : 'FAQ';
     else if (href === '#location') a.textContent = isHi ? 'क्लिनिक पता' : 'Location';
+    else if (href === 'pitch.html') a.innerHTML = isHi ? '<span>सीएमएस प्रेजेंटेशन</span>' : '<span>CMS Deck</span>';
   });
 
   const cols = footer.querySelectorAll('.grid > div');
